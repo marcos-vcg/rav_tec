@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;principal.Filme.alugados&apos; in &apos;principal.Filme&apos;&#x0D;&#x0A;- Original project: &apos;LocSimples&apos;&#x0D;&#x0A;- Original element: &apos;principal.Filme.alugados&apos;&#x0D;&#x0A;- Getter method name: &apos;getAlugados&apos;&#x0D;&#x0A;- Setter method name: &apos;setAlugados&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;alugados&apos;" flags="589830" getter="getAlugados" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;principal{Filme.java[Filme^alugados" insertion="14" setter="setAlugados" stamp="1600979636304" version="1.0" visibility="1"/>
+</session>

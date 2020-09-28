@@ -1,0 +1,14 @@
+package classes;
+
+public class Cliente {
+
+	private int id;
+	private String nome;
+	private int cpf;
+	private int telefone;
+	private String email;
+	private int nascimento;
+	private String endereco;
+	private foto;
+
+}

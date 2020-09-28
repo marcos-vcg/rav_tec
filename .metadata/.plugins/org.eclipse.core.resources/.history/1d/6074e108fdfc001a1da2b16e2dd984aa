@@ -1,0 +1,8 @@
+package classes;
+
+public class Filme {
+
+	private String titulo;
+	Genero genero = new Genero();
+	
+}

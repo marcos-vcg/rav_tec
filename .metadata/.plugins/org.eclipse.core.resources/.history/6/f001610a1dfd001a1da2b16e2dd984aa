@@ -1,0 +1,17 @@
+package exemplo;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		JFrame frame = new JFrame("Alo, Mundo");
+		JPanel painel = new JPanel ();
+		
+		frame.getContentPane().add (painel); 
+
+	}
+
+}

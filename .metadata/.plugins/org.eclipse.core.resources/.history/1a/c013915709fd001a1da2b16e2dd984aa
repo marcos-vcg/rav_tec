@@ -1,0 +1,61 @@
+package telas;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JToolBar;
+
+public class JanelaPrincipal {
+
+	public static void main(String[] args) {
+
+		JFrame janela = new JFrame("Locação de Filmes"); // Cria
+		janela.setVisible(true); 							// Mostra
+		janela.setSize(600, 400); 							// Tamanho
+		janela.setLayout(new FlowLayout()); 				// Tudo segue o novo layout
+		janela.setLocationRelativeTo(null); 				// Centraliza
+		
+
+		
+		
+		JLabel label = new JLabel("Lista de Filmes disponíveis\n");
+		janela.add(label);		
+		
+		// Botão Filme
+		JButton botaoSelecionarFilme = new JButton("Filme!");
+		janela.add(botaoSelecionarFilme);
+		botaoSelecionarFilme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Filme selecionado!");
+			}
+		});
+			
+		
+		
+		// Botão Cliente
+		JButton botaoCliente = new JButton("Cliente!");
+		janela.add(botaoCliente);
+		botaoCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Cliente selecionado!");
+			}
+		});		
+		
+
+		
+		// Botçao Alugar
+		JButton botaoAlugar = new JButton("Alugar!");
+		janela.add(botaoAlugar);
+		botaoAlugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Filme alugado com sucesso!");
+			}
+		});
+
+	}
+
+}

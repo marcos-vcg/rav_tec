@@ -1,0 +1,23 @@
+package telas;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
+
+public class FilmePesquisa {
+
+	public static void main(String[] args) {
+		
+		JFrame janela = new JFrame("Filmes (Pesquisa)"); 			// Cria
+		janela.setVisible(true); 									// Mostra
+		janela.setSize(600, 400); 									// Tamanho
+		janela.setLayout(new FlowLayout()); 						// Tudo segue o novo layout
+		janela.setLocationRelativeTo(null); 						// Centraliza
+		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      // Sai ao fechar a tela
+
+
+		
+		
+	}
+
+}

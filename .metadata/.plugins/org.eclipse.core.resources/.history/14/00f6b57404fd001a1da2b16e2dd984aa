@@ -1,0 +1,32 @@
+package telas;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class JanelaPrincipal {
+
+	public static void main(String[] args) {
+
+		JFrame janela = new JFrame("Locação de Filmes"); // Cria
+		janela.setVisible(true); // Mostra
+		janela.setSize(600, 400); // Tamanho
+		janela.setLayout(new FlowLayout()); // Tudo segue o novo layout
+		janela.setLocationRelativeTo(null); // Centraliza
+
+		JButton botao = new JButton("Alugar!");
+		janela.add(botao);
+
+		botao.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Filme alugado com sucesso!");
+			}
+		});
+
+	}
+
+}

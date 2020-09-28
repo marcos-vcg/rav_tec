@@ -1,0 +1,14 @@
+import javax.swing.JInternalFrame;
+
+public class Filme extends JInternalFrame {
+	static final int xPosition = 30, yPosition = 30;
+
+	public Filme() {
+		super("Filme", true, // resizable
+				true, // closable
+				true, // maximizable
+				true);// iconifiable
+		setSize(300, 300);
+		setLocation(xPosition, yPosition);
+	}
+}

@@ -1,0 +1,47 @@
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+@SuppressWarnings("serial")
+public class Genero extends JInternalFrame {
+	static final int xPosition = 100, yPosition = 100;
+	
+	public Genero(ArrayList<String> cadGenero) {
+		super("Cadastro de Gêneros", true, // resizable
+				true, // closable
+				true, // maximizable
+				true);// iconifiable
+		setSize(250, 250);
+		setLocation(xPosition, yPosition);
+		setLayout(new FlowLayout());
+		
+		
+		JLabel label = new JLabel("Novo Gênero:");
+		add(label);
+		JTextField texto = new JTextField(10);
+		add(texto);
+		JButton botao = new JButton("Cadastrar");
+		add(botao);
+		
+		
+		botao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				if(texto.getText().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					cadGenero.add(texto.getText());
+					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+	}
+	
+}
