@@ -42,7 +42,7 @@ class Main {
 		
 		
 		i1 = new JMenuItem("Gênero");
-		final JDesktopPane jdpGenero = new JDesktopPane();
+		JDesktopPane jdpGenero = new JDesktopPane();
 		i1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Genero generoFrame = new Genero(generos);

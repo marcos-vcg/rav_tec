@@ -50,13 +50,27 @@ public class Genero extends JInternalFrame {
 		
 		
 		// Aba Consulta
-		painel1.add(new JLabel("Gênero:")).setBounds(30, 11, 98, 14);
+		painel1.add(new JLabel("Gênero:")).setBounds(70, 18, 98, 14);
 		JComboBox comboBoxGenero = new JComboBox(cadGenero.toArray());
-		comboBoxGenero.setBounds(80, 11, 98, 22);
+		comboBoxGenero.setBounds(120, 14, 98, 22);
 		painel1.add(comboBoxGenero);
+		comboBoxGenero.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		JLabel lab_inf= new JLabel("Edição:");
+		painel1.add(lab_inf).setBounds(119, 49, 98, 14);
+		JTextField generoEditado = new JTextField(10);
+		generoEditado.setBounds(149, 49, 75, 20);
+		painel1.add(generoEditado);
+		generoEditado.setVisible(false);
+		
+		
 		
 		JButton btn_novo = new JButton("Novo");
-		btn_novo.setBounds(210, 70, 80, 25);
+		btn_novo.setBounds(210, 75, 80, 25);
 		painel1.add(btn_novo);
 		btn_novo.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,32 +79,34 @@ public class Genero extends JInternalFrame {
 		});
 		
 		JButton btn_editar = new JButton("Editar");
-		btn_editar.setBounds(115, 70, 80, 25);
+		btn_editar.setBounds(115, 75, 80, 25);
 		painel1.add(btn_editar);
 		btn_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBoxGenero.getSelectedItem().toString().contentEquals("") ) {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
 				} else {
-					//cadGenero.set(comboBoxGenero.getSelectedItem().toString());
-					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-					dispose();
+					generoEditado.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Informe o Gênero Editado!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
 		
-		JButton excluir = new JButton("Excluir");
-		//btn_editar.setBounds(20, 70, 80, 25);
-		painel1.add(excluir);
-		excluir.addActionListener( new ActionListener() {
+		
+		
+		
+		JButton btn_excluir = new JButton("Excluir");
+		btn_excluir.setBounds(20, 75, 80, 25);
+		painel1.add(btn_excluir);
+		btn_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 								
 				if(comboBoxGenero.getSelectedItem().toString().contentEquals("") ) {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
 				} else {
 					cadGenero.remove(comboBoxGenero.getSelectedItem());
+					comboBoxGenero.removeItemAt(comboBoxGenero.getSelectedIndex());
 					JOptionPane.showMessageDialog(null, "Exclusçao efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
-					
 				}
 			}
 		});

@@ -16,3 +16,6 @@
 1601406505742	Rename local variable 'panel1'
 1601406516306	Rename local variable 'panel2'
 1601407107578	Rename local variable 'btn_excluir'
+1601407419680	Rename local variable 'excluir'
+1601413294680	Rename local variable 'textEdicao'
+1601413322313	Rename local variable 'generoNovo'
