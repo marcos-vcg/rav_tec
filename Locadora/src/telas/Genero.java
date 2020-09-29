@@ -1,13 +1,10 @@
 package telas;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,49 +23,102 @@ public class Genero extends JInternalFrame {
 				true);// iconifiable
 		setSize(350, 200);
 		setLocation(xPosition, yPosition);
-		setLayout(new FlowLayout());
+		setLayout(null);
 		
-
 		
 		// Criar Abas
-		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.setSize(200, 200);
-		
-		JPanel panel1 = new JPanel();
-		panel1.setSize(200, 200);
-		add("Panel #1", panel1);
-		tabbedPane.addTab("Tab 1", null, panel1, null);
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
-		
-		JPanel panel2 = new JPanel();
-		panel2.setSize(200, 200);
-		add("Panel #2", panel2);
-		tabbedPane.addTab("Tab 2", panel2);
-		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-		
-		add(tabbedPane);
+		JTabbedPane abas = new JTabbedPane(JTabbedPane.TOP);
+		abas.setBounds(10, 11, 320, 139);
+		//tabbedPane.setSize(300, 300);
+		add(abas);
 		
 		
-		// Consulta
-		panel1.add(new JLabel("Gênero:")).setBounds(212, 11, 98, 14);;
-
+		// Painéis das Abas
+		JPanel painel1 = new JPanel();
+		painel1.setLayout(null);
+		//panel1.setSize(300, 300);
+		//add("Panel #1", panel1);
+		abas.addTab("Pesquisa", null, painel1, null);
+		//tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		
+		JPanel painel2 = new JPanel();
+		//panel2.setSize(200, 200);
+		//add("Panel #2", panel2);
+		abas.addTab("Cadastro", painel2);
+		//tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		
+		
+		
+		// Aba Consulta
+		painel1.add(new JLabel("Gênero:")).setBounds(30, 11, 98, 14);
 		JComboBox comboBoxGenero = new JComboBox(cadGenero.toArray());
-		comboBoxGenero.setBounds(212, 28, 98, 22);
-		// comboBoxGenero.add(generos)
-		panel1.add(comboBoxGenero);
+		comboBoxGenero.setBounds(80, 11, 98, 22);
+		painel1.add(comboBoxGenero);
+		
+		JButton btn_novo = new JButton("Novo");
+		btn_novo.setBounds(210, 70, 80, 25);
+		painel1.add(btn_novo);
+		btn_novo.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abas.setSelectedIndex(1);
+			}
+		});
+		
+		JButton btn_editar = new JButton("Editar");
+		btn_editar.setBounds(115, 70, 80, 25);
+		painel1.add(btn_editar);
+		btn_editar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboBoxGenero.getSelectedItem().toString().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					//cadGenero.set(comboBoxGenero.getSelectedItem().toString());
+					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+					dispose();
+				}
+			}
+		});
+		
+		JButton excluir = new JButton("Excluir");
+		//btn_editar.setBounds(20, 70, 80, 25);
+		painel1.add(excluir);
+		excluir.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				if(comboBoxGenero.getSelectedItem().toString().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					cadGenero.remove(comboBoxGenero.getSelectedItem());
+					JOptionPane.showMessageDialog(null, "Exclusçao efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+					
+				}
+			}
+		});
+		
+		
+		// Tabela
+		/*JTable tabela = new JTable();
+		DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Generos"}, 0);
+		tabela.setModel(modelo);
+		for(String s: cadGenero) {
+			modelo.addRow(new Object[] {s.toString()});
+		}
+		tabela.getColumnModel().getColumn(0).setPreferredWidth(100);;
+		//table.addColumn(teste);
+		panel1.add(tabela);*/
 		
 		
 		
-		// Conteúdo da Aba Cadastro
+		// Aba Cadastro
 		JLabel label = new JLabel("Novo Gênero:");
-		panel2.add(label);
+		painel2.add(label);
 		JTextField texto = new JTextField(10);
-		panel2.add(texto);
+		painel2.add(texto);
 		JButton botao = new JButton("Cadastrar");
-		panel2.add(botao);
+		painel2.add(botao);
 		
 		
-		botao.addActionListener(new ActionListener() {
+		botao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 								
 				if(texto.getText().contentEquals("") ) {
@@ -76,11 +126,14 @@ public class Genero extends JInternalFrame {
 				} else {
 					cadGenero.add(texto.getText());
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					dispose();
 				}
 			}
 		});
 		
 		
 	}
+	
+	//private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) { if (tabbedPane.getSelectedIndex() == 1){ recuperaCfop(); } }
 	
 }

@@ -12,3 +12,7 @@
 1601324540222	Move compilation unit
 1601324549627	Move compilation unit
 1601324718588	Copy compilation unit
+1601406437082	Rename local variable 'tabbedPane'
+1601406505742	Rename local variable 'panel1'
+1601406516306	Rename local variable 'panel2'
+1601407107578	Rename local variable 'btn_excluir'
