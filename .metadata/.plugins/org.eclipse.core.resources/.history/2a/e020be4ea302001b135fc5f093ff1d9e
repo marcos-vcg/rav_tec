@@ -89,7 +89,7 @@ public class Genero extends JInternalFrame {
 				} else {
 					cadGenero.remove(comboBoxGenero.getSelectedItem());
 					comboBoxGenero.removeItemAt(comboBoxGenero.getSelectedIndex());
-					JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Exclusçao efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -130,6 +130,7 @@ public class Genero extends JInternalFrame {
 				JOptionPane.showMessageDialog(null, "Cancelado com sucesso!", "Cancelamento!", JOptionPane.WARNING_MESSAGE);
 				btn_salvar.setVisible(false);
 				btn_cancelar.setVisible(false);			
+				
 			}
 		});
 		
@@ -182,13 +183,12 @@ public class Genero extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
 				} else {
 					cadGenero.add(texto.getText());
-					comboBoxGenero.addItem(texto.getText());
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					dispose();
 				}
 			}
 		});	
 	}
 	
-	//dispose();
 	//private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) { if (tabbedPane.getSelectedIndex() == 1){ recuperaCfop(); } }
 }

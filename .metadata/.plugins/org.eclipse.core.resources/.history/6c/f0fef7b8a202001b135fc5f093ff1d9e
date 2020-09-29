@@ -89,10 +89,13 @@ public class Genero extends JInternalFrame {
 				} else {
 					cadGenero.remove(comboBoxGenero.getSelectedItem());
 					comboBoxGenero.removeItemAt(comboBoxGenero.getSelectedIndex());
-					JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Exclusçao efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
+		
+		
+		
 		
 		
 		JButton btn_editar = new JButton("Editar");
@@ -100,7 +103,9 @@ public class Genero extends JInternalFrame {
 		btn_editar.setBounds(115, 75, 80, 25);
 		painel1.add(btn_editar);
 		
-	
+		
+		
+		
 		JButton btn_salvar = new JButton("Salvar");
 		btn_salvar.setVisible(false);
 		btn_salvar.setBounds(210, 75, 80, 25);
@@ -108,17 +113,13 @@ public class Genero extends JInternalFrame {
 		btn_salvar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
-				
-				
 			}
 		});
 		
 		
 		JButton btn_cancelar = new JButton("Cancelar");
 		btn_cancelar.setVisible(false);
-		btn_cancelar.setBounds(20, 75, 90, 25);
+		btn_cancelar.setBounds(20, 75, 80, 25);
 		painel1.add(btn_cancelar);
 		btn_cancelar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -130,6 +131,7 @@ public class Genero extends JInternalFrame {
 				JOptionPane.showMessageDialog(null, "Cancelado com sucesso!", "Cancelamento!", JOptionPane.WARNING_MESSAGE);
 				btn_salvar.setVisible(false);
 				btn_cancelar.setVisible(false);			
+				
 			}
 		});
 		
@@ -182,13 +184,12 @@ public class Genero extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
 				} else {
 					cadGenero.add(texto.getText());
-					comboBoxGenero.addItem(texto.getText());
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					dispose();
 				}
 			}
 		});	
 	}
 	
-	//dispose();
 	//private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) { if (tabbedPane.getSelectedIndex() == 1){ recuperaCfop(); } }
 }
