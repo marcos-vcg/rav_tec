@@ -12,13 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import classes.Categoria;
-
 @SuppressWarnings("serial")
 public class CategoriaCadastro extends JInternalFrame {
 	static final int xPosition = 140, yPosition = 80;
 
-	public CategoriaCadastro(ArrayList<Categoria> cadCategoria) {
+	public CategoriaCadastro(ArrayList<String> cadCategoria) {
 		super("Cadastro de Categorias", true, // resizable
 				true, // closable
 				true, // maximizable

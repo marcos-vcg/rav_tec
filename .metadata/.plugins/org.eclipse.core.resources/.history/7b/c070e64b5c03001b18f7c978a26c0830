@@ -14,13 +14,16 @@ import javax.swing.JMenuItem;
 import classes.Categoria;
 import classes.Cliente;
 import classes.Filme;
+import telas.FilmeAluguel;
+import telas.FilmeCadastro;
+import telas.GeneroCadastro;
 
 
 class Main {
 	JMenu menuCadastros, submenuCadastros, menuLocacao;
 	JMenuItem i1, i2, i3, i4, i5, i6, i7;
 	ArrayList<String> generos;
-	ArrayList<Categoria> categorias;
+	ArrayList<String> categorias;
 	ArrayList<Filme> filmes;
 	ArrayList<Cliente> clientes;
 	
@@ -30,9 +33,9 @@ class Main {
 	Main() {
 		
 		generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical"}));
-		categorias = new ArrayList<Categoria>();
+		//categorias = new ArrayList<Categoria>();
 		//categorias.add(new Categoria("", ""));
-		//categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
+		categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
 		filmes = new ArrayList<Filme>();
 		clientes = new ArrayList<Cliente>();
 		

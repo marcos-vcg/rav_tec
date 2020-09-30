@@ -14,19 +14,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import classes.Categoria;
-import classes.Cliente;
 import classes.Filme;
 
 @SuppressWarnings("serial")
-public class FilmeAluguel extends JInternalFrame {
+public class FilmeCadastro extends JInternalFrame {
 
 	static final int xPosition = 30, yPosition = 30;
 	private final Action salvar = new SwingAction();
 	private final Action voltar = new SwingAction_1();
 
-	public FilmeAluguel(ArrayList<Filme> cadFilme, ArrayList<String> cadGenero, ArrayList<Categoria> cadCategoria, ArrayList<Cliente> cadCliente) {
-		super("Locação de Filmes", true, // resizable
+	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<String> cadGenero, ArrayList<String> cadCategoria) {
+		super("Cadastro de Filmes", true, // resizable
 				true, // closable
 				true, // maximizable
 				true);// iconifiable

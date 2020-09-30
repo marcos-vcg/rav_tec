@@ -14,6 +14,9 @@ import javax.swing.JMenuItem;
 import classes.Categoria;
 import classes.Cliente;
 import classes.Filme;
+import telas.FilmeAluguel;
+import telas.FilmeCadastro;
+import telas.GeneroCadastro;
 
 
 class Main {

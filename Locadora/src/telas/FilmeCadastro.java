@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import classes.Categoria;
 import classes.Filme;
 
 @SuppressWarnings("serial")
@@ -23,7 +24,7 @@ public class FilmeCadastro extends JInternalFrame {
 	private final Action salvar = new SwingAction();
 	private final Action voltar = new SwingAction_1();
 
-	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<String> cadGenero, ArrayList<String> cadCategoria) {
+	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<String> cadGenero, ArrayList<Categoria> cadCategoria) {
 		super("Cadastro de Filmes", true, // resizable
 				true, // closable
 				true, // maximizable
