@@ -6,7 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value="JComboBox"/>
 		<list key="findhistory">
+			<item value="JComboBox"/>
 			<item value="public static void main(String[] args) throws IOException {"/>
 		</list>
 		<list key="replacehistory">

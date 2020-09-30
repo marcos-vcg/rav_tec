@@ -1,8 +1,0 @@
-package classes;
-
-public class Filme {
-
-	private string titulo;
-	Genero genero = new Genero();
-	
-}

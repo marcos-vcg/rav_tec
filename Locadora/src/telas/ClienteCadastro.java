@@ -23,7 +23,7 @@ public class ClienteCadastro extends JInternalFrame {
 	private final Action voltar = new SwingAction_1();
 
 	public ClienteCadastro(ArrayList<Cliente> cadCliente) {
-		super("Cadastro de Filmes", true, // resizable
+		super("Cadastro de Clientes", true, // resizable
 				true, // closable
 				true, // maximizable
 				true);// iconifiable

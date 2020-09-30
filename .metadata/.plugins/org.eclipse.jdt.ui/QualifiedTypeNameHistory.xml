@@ -33,7 +33,6 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="javax.swing.JButton"/>
-    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
@@ -48,4 +47,16 @@
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="javax.swing.JComponent"/>
     <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
+    <fullyQualifiedTypeName name="telas.Main"/>
+    <fullyQualifiedTypeName name="javax.swing.table.DefaultTableColumnModel"/>
+    <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+    <fullyQualifiedTypeName name="sun.jvm.hotspot.debugger.cdbg.LoadObject"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.nodes.extended.LoadArrayComponentHubNode"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.LoadClass"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.lir.sparc.SPARCMove.LoadDataAddressOp"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.GOTO"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.GotoInstruction"/>
+    <fullyQualifiedTypeName name="com.sun.tools.example.debug.expr.ExpressionParser.GetFrame"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
 </qualifiedTypeNameHistroy>

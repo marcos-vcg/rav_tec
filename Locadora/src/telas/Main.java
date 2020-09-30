@@ -11,16 +11,19 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import classes.Categoria;
 import classes.Cliente;
 import classes.Filme;
 import telas.FilmeAluguel;
 import telas.FilmeCadastro;
+import telas.GeneroCadastro;
 
 
 class Main {
 	JMenu menuCadastros, submenuCadastros, menuLocacao;
 	JMenuItem i1, i2, i3, i4, i5, i6, i7;
-	ArrayList<String> categorias, generos;
+	ArrayList<String> generos;
+	ArrayList<String> categorias;
 	ArrayList<Filme> filmes;
 	ArrayList<Cliente> clientes;
 	
@@ -30,6 +33,8 @@ class Main {
 	Main() {
 		
 		generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical"}));
+		//categorias = new ArrayList<Categoria>();
+		//categorias.add(new Categoria("", ""));
 		categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
 		filmes = new ArrayList<Filme>();
 		clientes = new ArrayList<Cliente>();
@@ -45,12 +50,10 @@ class Main {
 		JDesktopPane jdpGenero = new JDesktopPane();
 		i1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Genero generoFrame = new Genero(generos);
+				GeneroCadastro generoFrame = new GeneroCadastro(generos);
 				generoFrame.setVisible(true);
 				jdpGenero.add(generoFrame);
 				f.setContentPane(jdpGenero);
-				/*for(String s: generos) {
-					System.out.println(s);}*/
 			}
 		});
 
@@ -59,7 +62,7 @@ class Main {
 		final JDesktopPane jdpCategoria = new JDesktopPane();
 		i2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Categoria categoriaFrame = new Categoria(categorias);
+				CategoriaCadastro categoriaFrame = new CategoriaCadastro(categorias);
 				jdpCategoria.add(categoriaFrame);				
 				categoriaFrame.setVisible(true);
 				f.setContentPane(jdpCategoria);

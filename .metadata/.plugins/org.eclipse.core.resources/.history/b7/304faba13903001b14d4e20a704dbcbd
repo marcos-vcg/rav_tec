@@ -1,0 +1,210 @@
+package telas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
+@SuppressWarnings("serial")
+public class Genero extends JInternalFrame {
+	static final int xPosition = 140, yPosition = 80;
+	
+	public Genero(ArrayList<String> cadGenero) {
+		super("Cadastro de Gêneros", true, // resizable
+				true, // closable
+				true, // maximizable
+				true);// iconifiable
+		setSize(350, 200);
+		setLocation(xPosition, yPosition);
+		setLayout(null);
+		
+		
+		// Criar Abas
+		JTabbedPane abas = new JTabbedPane(JTabbedPane.TOP);
+		abas.setBounds(10, 11, 320, 139);
+		//tabbedPane.setSize(300, 300);
+		add(abas);
+		
+		
+		// Painéis das Abas
+		JPanel pnl_consulta = new JPanel();
+		pnl_consulta.setLayout(null);
+		//panel1.setSize(300, 300);
+		//add("Panel #1", panel1);
+		abas.addTab("Pesquisa", null, pnl_consulta, null);
+		//tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		
+		JPanel pnl_cadastro = new JPanel();
+		//panel2.setSize(200, 200);
+		//add("Panel #2", panel2);
+		abas.addTab("Cadastro", pnl_cadastro);
+		//tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		
+		
+		
+		// Aba Consulta
+		pnl_consulta.add(new JLabel("Gênero:")).setBounds(70, 18, 98, 14);
+		JComboBox cbx_genero = new JComboBox(cadGenero.toArray());
+		cbx_genero.setBounds(120, 14, 98, 22);
+		pnl_consulta.add(cbx_genero);
+		
+		
+		JLabel lbl_edit= new JLabel("Edição:");
+		pnl_consulta.add(lbl_edit).setBounds(70, 49, 98, 14);
+		lbl_edit.setVisible(false);
+		JTextField txf_genero_edit = new JTextField(10);
+		txf_genero_edit.setBounds(120, 46, 98, 22);
+		pnl_consulta.add(txf_genero_edit);
+		txf_genero_edit.setVisible(false);
+		
+		
+		
+		JButton btn_novo = new JButton("Novo");
+		btn_novo.setVisible(true);
+		btn_novo.setBounds(210, 75, 80, 25);
+		pnl_consulta.add(btn_novo);
+		btn_novo.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abas.setSelectedIndex(1);
+			}
+		});
+		
+		
+		JButton btn_excluir = new JButton("Excluir");
+		btn_excluir.setVisible(true);
+		btn_excluir.setBounds(20, 75, 80, 25);
+		pnl_consulta.add(btn_excluir);
+		btn_excluir.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				if(cbx_genero.getSelectedItem().toString().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					cadGenero.remove(cbx_genero.getSelectedItem());
+					cbx_genero.removeItemAt(cbx_genero.getSelectedIndex());
+					JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+		
+		
+		JButton btn_editar = new JButton("Editar");
+		btn_editar.setVisible(true);
+		btn_editar.setBounds(115, 75, 80, 25);
+		pnl_consulta.add(btn_editar);
+		//Action Listener mais em baixo
+		
+	
+		JButton btn_salvar = new JButton("Salvar");
+		btn_salvar.setVisible(false);
+		btn_salvar.setBounds(210, 75, 80, 25);
+		pnl_consulta.add(btn_salvar);
+		//Action Listener mais em baixo
+		
+		
+		JButton btn_cancelar = new JButton("Cancelar");
+		btn_cancelar.setVisible(false);
+		btn_cancelar.setBounds(20, 75, 90, 25);
+		pnl_consulta.add(btn_cancelar);
+		btn_cancelar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lbl_edit.setVisible(false);
+				txf_genero_edit.setVisible(false);
+				btn_novo.setVisible(true);
+				btn_excluir.setVisible(true);
+				btn_editar.setVisible(true);
+				JOptionPane.showMessageDialog(null, "Cancelado com sucesso!", "Cancelamento!", JOptionPane.WARNING_MESSAGE);
+				btn_salvar.setVisible(false);
+				btn_cancelar.setVisible(false);			
+			}
+		});
+		
+		
+		btn_editar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cbx_genero.getSelectedItem().toString().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					lbl_edit.setVisible(true);
+					txf_genero_edit.setVisible(true);
+					btn_novo.setVisible(false);
+					btn_excluir.setVisible(false);
+					btn_editar.setVisible(false);
+					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
+					btn_salvar.setVisible(true);
+					btn_cancelar.setVisible(true);
+				}	
+			}
+		});
+		
+		btn_salvar.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txf_genero_edit.getText().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					cadGenero.set(cbx_genero.getSelectedIndex(), txf_genero_edit.getText());
+					cbx_genero.setSelectedItem(txf_genero_edit.getText());
+					//cbx_genero.
+					txf_genero_edit.setText("");
+					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					lbl_edit.setVisible(false);
+					txf_genero_edit.setVisible(false);
+					btn_novo.setVisible(true);
+					btn_excluir.setVisible(true);
+					btn_editar.setVisible(true);
+					btn_salvar.setVisible(false);
+					btn_cancelar.setVisible(false);	
+				}
+			}
+		});
+		
+		// Tabela
+		/*JTable tabela = new JTable();
+		DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Generos"}, 0);
+		tabela.setModel(modelo);
+		for(String s: cadGenero) {
+			modelo.addRow(new Object[] {s.toString()});
+		}
+		tabela.getColumnModel().getColumn(0).setPreferredWidth(100);;
+		//table.addColumn(teste);
+		panel1.add(tabela);*/
+		
+		
+		
+		// Aba Cadastro
+		JLabel label = new JLabel("Novo Gênero:");
+		pnl_cadastro.add(label);
+		JTextField txf_novo_genero = new JTextField(10);
+		pnl_cadastro.add(txf_novo_genero);
+		JButton btn_cadastro = new JButton("Cadastrar");
+		pnl_cadastro.add(btn_cadastro);
+		
+		
+		btn_cadastro.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				if(txf_novo_genero.getText().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					cadGenero.add(txf_novo_genero.getText());
+					cbx_genero.addItem(txf_novo_genero.getText());
+					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					txf_novo_genero.setText("");
+				}
+			}
+		});	
+	}
+	
+	//private void btn_salvarActionPerformed (java.awt.event.ActionEvent evt) {
+	//	JOptionPane.showMessageDialog(null, "Editado com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);	}
+	
+	//dispose();
+	//private void tabPanelStateChanged(javax.swing.event.ChangeEvent evt) { if (tabbedPane.getSelectedIndex() == 1){ recuperaCfop(); } }
+}
