@@ -51,15 +51,12 @@ public class GeneroCadastro extends JInternalFrame {
 		
 		// Aba Consulta
 		pnl_consulta.add(new JLabel("Gênero:")).setBounds(70, 18, 98, 14);
-		JComboBox cbx_genero = new JComboBox(cadGenero.toArray());        //
-		/*JComboBox cbx_genero = new JComboBox();
-		for(int i = 0; i < cadGenero.size(); i++) {
-			 cbx_genero.addItem(cadGenero.get(i));
-			}*/
+		JComboBox cbx_genero = new JComboBox(cadGenero.toArray());
 		cbx_genero.setBounds(120, 14, 98, 22);
 		pnl_consulta.add(cbx_genero);
 		
-				
+		
+		
 		JLabel lbl_edit= new JLabel("Edição:");
 		pnl_consulta.add(lbl_edit).setBounds(70, 49, 98, 14);
 		lbl_edit.setVisible(false);

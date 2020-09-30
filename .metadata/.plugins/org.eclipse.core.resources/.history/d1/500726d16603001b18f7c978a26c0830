@@ -82,10 +82,7 @@ public class FilmeCadastro extends JInternalFrame {
 		lblCategoria.setBounds(212, 77, 98, 14);
 		add(lblCategoria);
 
-		JComboBox comboBoxCategoria = new JComboBox();
-		for(int i = 0; i < cadCategoria.size(); i++) {
-			comboBoxCategoria.addItem(cadCategoria.get(i).getNome());
-			}
+		JComboBox comboBoxCategoria = new JComboBox(cadCategoria.toArray());
 		comboBoxCategoria.setBounds(212, 101, 98, 22);
 		add(comboBoxCategoria);
 

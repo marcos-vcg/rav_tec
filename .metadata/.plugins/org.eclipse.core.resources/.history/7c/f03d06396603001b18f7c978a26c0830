@@ -62,7 +62,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		pnl_consulta.add(lbl_edit_preco).setBounds(200, 49, 98, 14);
 		lbl_edit_preco.setVisible(false);
 		JTextField txf_edit_preco = new JTextField(10);
-		txf_edit_preco.setBounds(250, 46, 48, 22);
+		txf_edit_preco.setBounds(250, 46, 58, 22);
 		pnl_consulta.add(txf_edit_preco);
 		txf_edit_preco.setVisible(false);
 		

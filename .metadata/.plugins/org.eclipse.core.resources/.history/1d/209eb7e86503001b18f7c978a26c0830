@@ -52,17 +52,17 @@ public class CategoriaCadastro extends JInternalFrame {
 		pnl_consulta.add(cbx_categoria).setBounds(120, 14, 98, 22);
 		
 		JLabel lbl_edit_categoria= new JLabel("Categoria:");
-		pnl_consulta.add(lbl_edit_categoria).setBounds(10, 49, 98, 14);
+		pnl_consulta.add(lbl_edit_categoria).setBounds(20, 49, 98, 14);
 		lbl_edit_categoria.setVisible(false);
 		JTextField txf_edit_categoria = new JTextField(10);
-		txf_edit_categoria.setBounds(80, 46, 98, 22);
+		txf_edit_categoria.setBounds(70, 46, 98, 22);
 		pnl_consulta.add(txf_edit_categoria);
 		txf_edit_categoria.setVisible(false);
-		JLabel lbl_edit_preco= new JLabel("Preço:");
-		pnl_consulta.add(lbl_edit_preco).setBounds(200, 49, 98, 14);
+		JLabel lbl_edit_preco= new JLabel("Categoria:");
+		pnl_consulta.add(lbl_edit_preco).setBounds(130, 49, 98, 14);
 		lbl_edit_preco.setVisible(false);
 		JTextField txf_edit_preco = new JTextField(10);
-		txf_edit_preco.setBounds(250, 46, 48, 22);
+		txf_edit_preco.setBounds(190, 46, 98, 22);
 		pnl_consulta.add(txf_edit_preco);
 		txf_edit_preco.setVisible(false);
 		

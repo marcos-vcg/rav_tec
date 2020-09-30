@@ -51,20 +51,13 @@ public class CategoriaCadastro extends JInternalFrame {
 			}
 		pnl_consulta.add(cbx_categoria).setBounds(120, 14, 98, 22);
 		
-		JLabel lbl_edit_categoria= new JLabel("Categoria:");
-		pnl_consulta.add(lbl_edit_categoria).setBounds(10, 49, 98, 14);
-		lbl_edit_categoria.setVisible(false);
-		JTextField txf_edit_categoria = new JTextField(10);
-		txf_edit_categoria.setBounds(80, 46, 98, 22);
-		pnl_consulta.add(txf_edit_categoria);
-		txf_edit_categoria.setVisible(false);
-		JLabel lbl_edit_preco= new JLabel("Preço:");
-		pnl_consulta.add(lbl_edit_preco).setBounds(200, 49, 98, 14);
-		lbl_edit_preco.setVisible(false);
-		JTextField txf_edit_preco = new JTextField(10);
-		txf_edit_preco.setBounds(250, 46, 48, 22);
-		pnl_consulta.add(txf_edit_preco);
-		txf_edit_preco.setVisible(false);
+		JLabel lbl_edit= new JLabel("Edição:");
+		pnl_consulta.add(lbl_edit).setBounds(70, 49, 98, 14);
+		lbl_edit.setVisible(false);
+		JTextField txf_categoria_edit = new JTextField(10);
+		txf_categoria_edit.setBounds(120, 46, 98, 22);
+		pnl_consulta.add(txf_categoria_edit);
+		txf_categoria_edit.setVisible(false);
 		
 		
 		
@@ -86,13 +79,13 @@ public class CategoriaCadastro extends JInternalFrame {
 		pnl_consulta.add(btn_excluir);
 		btn_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				if(cbx_categoria.getSelectedItem().toString().contentEquals("") ) {
+				if(cbx_genero.getSelectedItem().toString().contentEquals("") ) {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
 				} else {
-					cadCategoria.remove(cbx_categoria.getSelectedItem());
-					cbx_categoria.removeItemAt(cbx_categoria.getSelectedIndex());
+					cadGenero.remove(cbx_genero.getSelectedItem());
+					cbx_genero.removeItemAt(cbx_genero.getSelectedIndex());
 					JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
-					cbx_categoria.setSelectedIndex(0);
+					cbx_genero.setSelectedIndex(0);
 				}
 			}
 		});
@@ -118,10 +111,8 @@ public class CategoriaCadastro extends JInternalFrame {
 		pnl_consulta.add(btn_cancelar);
 		btn_cancelar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lbl_edit_categoria.setVisible(false);
-				lbl_edit_preco.setVisible(false);
-				txf_edit_categoria.setVisible(false);
-				txf_edit_preco.setVisible(false);
+				lbl_edit.setVisible(false);
+				txf_genero_edit.setVisible(false);
 				btn_novo.setVisible(true);
 				btn_excluir.setVisible(true);
 				btn_editar.setVisible(true);
@@ -138,10 +129,8 @@ public class CategoriaCadastro extends JInternalFrame {
 				if(cbx_categoria.getSelectedItem().toString().contentEquals("") ) {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
 				} else {
-					lbl_edit_categoria.setVisible(true);
-					lbl_edit_preco.setVisible(true);
-					txf_edit_categoria.setVisible(true);
-					txf_edit_preco.setVisible(true);
+					lbl_edit.setVisible(true);
+					txf_genero_edit.setVisible(true);
 					btn_novo.setVisible(false);
 					btn_excluir.setVisible(false);
 					btn_editar.setVisible(false);
@@ -149,8 +138,8 @@ public class CategoriaCadastro extends JInternalFrame {
 					btn_salvar.setVisible(true);
 					btn_cancelar.setVisible(true);
 					
-					txf_edit_categoria.setText(cbx_categoria.getSelectedItem().toString());
-					txf_edit_preco.setText(cadCategoria.get(cbx_categoria.getSelectedIndex()).getPreco());
+					txf_genero_edit.setText(cbx_categoria.getSelectedItem().toString());
+					//cbx_genero.getSelectedItem();
 				}	
 			}
 		});
@@ -158,27 +147,23 @@ public class CategoriaCadastro extends JInternalFrame {
 		btn_salvar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(txf_edit_categoria.getText().contentEquals("") || txf_edit_preco.getText().contentEquals("")) {
+				if(txf_genero_edit.getText().contentEquals("") ) {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
 				} else {
-					
-					cadCategoria.get(cbx_categoria.getSelectedIndex()).setNome(txf_edit_categoria.getText());
-					cadCategoria.get(cbx_categoria.getSelectedIndex()).setPreco(txf_edit_preco.getText());	
-					cbx_categoria.insertItemAt(txf_edit_categoria.getText(), cbx_categoria.getSelectedIndex());
+					cadCategoria.set(cbx_categoria.getSelectedIndex(), txf_categoria_edit.getText());
+					cbx_categoria.insertItemAt(txf_genero_edit.getText(), cbx_categoria.getSelectedIndex());
 					cbx_categoria.removeItemAt(cbx_categoria.getSelectedIndex());
 					
-					txf_edit_categoria.setText("");
+					txf_genero_edit.setText("");
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					lbl_edit_categoria.setVisible(false);
-					lbl_edit_preco.setVisible(false);
-					txf_edit_categoria.setVisible(false);
-					txf_edit_preco.setVisible(false);
+					lbl_edit.setVisible(false);
+					txf_genero_edit.setVisible(false);
 					btn_novo.setVisible(true);
 					btn_excluir.setVisible(true);
 					btn_editar.setVisible(true);
 					btn_salvar.setVisible(false);
 					btn_cancelar.setVisible(false);	
-					cbx_categoria.setSelectedIndex(0);
+					cbx_genero.setSelectedIndex(0);
 				}
 			}
 		});

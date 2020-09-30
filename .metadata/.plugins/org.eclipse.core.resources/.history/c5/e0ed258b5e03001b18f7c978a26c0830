@@ -23,7 +23,7 @@ public class Categoria {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setCpf(String preco) {
 		this.preco = preco;
 	}
 

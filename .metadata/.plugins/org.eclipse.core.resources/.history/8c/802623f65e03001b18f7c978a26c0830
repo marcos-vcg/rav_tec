@@ -32,9 +32,6 @@ class Main {
 		generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical"}));
 		categorias = new ArrayList<Categoria>();
 		categorias.add(new Categoria("", ""));
-		categorias.add(new Categoria("Lançamento", "10"));
-		categorias.add(new Categoria("Padrão", "7"));
-		categorias.add(new Categoria("Antigo", "5"));
 		//categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
 		filmes = new ArrayList<Filme>();
 		clientes = new ArrayList<Cliente>();
