@@ -16,7 +16,7 @@ import classes.Categoria;
 
 @SuppressWarnings("serial")
 public class CategoriaCadastro extends JInternalFrame {
-	static final int xPosition = 140, yPosition = 80;
+	static final int xPosition = 140, yPosition = 90;
 
 	public CategoriaCadastro(ArrayList<Categoria> cadCategoria) {
 		super("Cadastro de Categorias", true, // resizable
@@ -30,8 +30,8 @@ public class CategoriaCadastro extends JInternalFrame {
 		
 		// Criar Abas
 		JTabbedPane abas = new JTabbedPane(JTabbedPane.TOP);
-		abas.setBounds(10, 11, 320, 139);
-		add(abas);
+		add(abas).setBounds(10, 11, 320, 139);
+		
 		
 		
 		// Painéis das Abas

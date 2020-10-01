@@ -38,14 +38,14 @@ public class FilmeCadastro extends JInternalFrame {
 				true, // closable
 				true, // maximizable
 				true);// iconifiable
-		setSize(570, 355);
+		setSize(550, 300);
 		setLocation(xPosition, yPosition);
 		setLayout(null);
 
 		
 		// Criar Abas
 		JTabbedPane abas = new JTabbedPane(JTabbedPane.TOP);
-		add(abas).setBounds(10, 11, 540, 300);
+		add(abas).setBounds(10, 11, 510, 248);
 		
 		
 		// Painéis das Abas

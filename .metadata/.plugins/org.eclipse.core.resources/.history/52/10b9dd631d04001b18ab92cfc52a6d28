@@ -127,7 +127,7 @@ class Main {
 		
 		
 		f.setJMenuBar(mb);
-		f.setSize(650, 480);
+		f.setSize(650, 450);
 		f.setLayout(null);
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);

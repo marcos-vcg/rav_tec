@@ -14,9 +14,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -38,124 +36,109 @@ public class FilmeCadastro extends JInternalFrame {
 				true, // closable
 				true, // maximizable
 				true);// iconifiable
-		setSize(570, 355);
+		setSize(550, 300);
 		setLocation(xPosition, yPosition);
 		setLayout(null);
 
 		
-		// Criar Abas
-		JTabbedPane abas = new JTabbedPane(JTabbedPane.TOP);
-		add(abas).setBounds(10, 11, 540, 300);
-		
-		
-		// Painéis das Abas
-		JPanel pnl_consulta = new JPanel();
-		pnl_consulta.setLayout(null);
-		abas.addTab("Pesquisa", null, pnl_consulta, "Pesquisar Filmes");
-		JPanel pnl_cadastro = new JPanel();
-		pnl_cadastro.setLayout(null);
-		abas.addTab("Cadastro", null, pnl_cadastro, "Cadastrar Filme");
-		
-		
-		
 		
 		JLabel lblTitulo = new JLabel("Titulo:");
 		lblTitulo.setBounds(20, 11, 81, 14);
-		pnl_cadastro.add(lblTitulo);
+		add(lblTitulo);
 
 		JTextField textTitulo = new JTextField();
 		textTitulo.setBounds(20, 29, 161, 20);
-		pnl_cadastro.add(textTitulo);
+		add(textTitulo);
 		textTitulo.setColumns(10);
 
 		
 		
 		JLabel lblGenero = new JLabel("Genero:");
 		lblGenero.setBounds(212, 11, 98, 14);
-		pnl_cadastro.add(lblGenero);
+		add(lblGenero);
 
 		JComboBox comboBoxGenero = new JComboBox(cadGenero.toArray());
 		comboBoxGenero.setBounds(212, 28, 98, 22);
 		// comboBoxGenero.add(generos)
-		pnl_cadastro.add(comboBoxGenero);
+		add(comboBoxGenero);
 
 		
 		
 		JLabel lblLancamento = new JLabel("Lançamento:");
 		lblLancamento.setBounds(349, 11, 75, 14);
-		pnl_cadastro.add(lblLancamento);
+		add(lblLancamento);
 
 		JTextField textLancamento = new JTextField();
 		textLancamento.setBounds(349, 29, 75, 20);
-		pnl_cadastro.add(textLancamento);
+		add(textLancamento);
 		textLancamento.setColumns(10);
 
 		
 		
 		JLabel lblCopias = new JLabel("Cópias:");
 		lblCopias.setBounds(454, 11, 55, 14);
-		pnl_cadastro.add(lblCopias);
+		add(lblCopias);
 
 		JTextField textCopias = new JTextField();
 		textCopias.setBounds(454, 29, 55, 20);
-		pnl_cadastro.add(textCopias);
+		add(textCopias);
 		textCopias.setColumns(10);
 
 		
 		
 		JLabel lblDuracao = new JLabel("Duração:");
 		lblDuracao.setBounds(20, 77, 98, 14);
-		pnl_cadastro.add(lblDuracao);
+		add(lblDuracao);
 
 		JTextField textDuracao = new JTextField();
 		textDuracao.setBounds(20, 102, 98, 20);
-		pnl_cadastro.add(textDuracao);
+		add(textDuracao);
 		textDuracao.setColumns(10);
 
 		
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setBounds(212, 77, 98, 14);
-		pnl_cadastro.add(lblCategoria);
+		add(lblCategoria);
 
 		JComboBox comboBoxCategoria = new JComboBox();
 		for(int i = 0; i < cadCategoria.size(); i++) {
 			comboBoxCategoria.addItem(cadCategoria.get(i).getNome());
 			}
 		comboBoxCategoria.setBounds(212, 101, 98, 22);
-		pnl_cadastro.add(comboBoxCategoria);
+		add(comboBoxCategoria);
 
 		
 		
 		JLabel lblImagem = new JLabel("Imagem:");
 		lblImagem.setBounds(349, 77, 75, 14);
-		pnl_cadastro.add(lblImagem);
+		add(lblImagem);
 		
 		JButton btn_upload = new JButton("Upload");
 		btn_upload.setAction(upload);
-		pnl_cadastro.add(btn_upload).setBounds(349, 107, 75, 23);
+		add(btn_upload).setBounds(349, 107, 75, 23);
 
 
 		
 		JLabel lblSinopse = new JLabel("Sinopse:");
 		lblSinopse.setBounds(20, 165, 98, 14);
-		pnl_cadastro.add(lblSinopse);
+		add(lblSinopse);
 
 		//JEditorPane editorPaneSinopse = new JEditorPane();
 		//editorPaneSinopse.setBounds(20, 190, 290, 71);
-		//pnl_cadastro.add(editorPaneSinopse);
+		//add(editorPaneSinopse);
 		
 		JTextArea txa_sinopse = new JTextArea(10, 30);
-		pnl_cadastro.add(txa_sinopse).setBounds(20, 190, 290, 71);
+		add(txa_sinopse).setBounds(20, 190, 290, 71);
 		JScrollPane scrl_sinopse = new JScrollPane(txa_sinopse);
-		pnl_cadastro.add(scrl_sinopse).setBounds(20, 190, 290, 71);
+		add(scrl_sinopse).setBounds(20, 190, 290, 71);
 
 		
 		
 		JButton btn_cancelar = new JButton("Cancelar");
 		btn_cancelar.setAction(cancelar);
 		btn_cancelar.setBounds(335, 238, 85, 23);
-		pnl_cadastro.add(btn_cancelar);
+		add(btn_cancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -196,7 +179,7 @@ public class FilmeCadastro extends JInternalFrame {
 		});
 		btnSalvar.setAction(salvar);
 		btnSalvar.setBounds(434, 238, 75, 23);
-		pnl_cadastro.add(btnSalvar);
+		add(btnSalvar);
 	}
 
 	

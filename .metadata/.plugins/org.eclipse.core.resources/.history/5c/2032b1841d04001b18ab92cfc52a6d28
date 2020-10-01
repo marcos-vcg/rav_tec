@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class GeneroCadastro extends JInternalFrame {
-	static final int xPosition = 140, yPosition = 90;
+	static final int xPosition = 140, yPosition = 80;
 	
 	public GeneroCadastro(ArrayList<String> cadGenero) {
 		super("Cadastro de Gêneros", true, // resizable
