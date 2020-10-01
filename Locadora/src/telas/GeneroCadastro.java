@@ -7,8 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
@@ -38,13 +40,13 @@ public class GeneroCadastro extends JInternalFrame {
 		pnl_consulta.setLayout(null);
 		//panel1.setSize(300, 300);
 		//add("Panel #1", panel1);
-		abas.addTab("Pesquisa", null, pnl_consulta, null);
+		abas.addTab("Pesquisa", null, pnl_consulta, "Pesquisar Gêneros");
 		//tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
 		JPanel pnl_cadastro = new JPanel();
 		//panel2.setSize(200, 200);
 		//add("Panel #2", panel2);
-		abas.addTab("Cadastro", pnl_cadastro);
+		abas.addTab("Cadastro", null, pnl_cadastro, "Cadastrar Gêneros");
 		//tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 		
 		
@@ -55,6 +57,13 @@ public class GeneroCadastro extends JInternalFrame {
 		cbx_genero.setBounds(120, 14, 98, 22);
 		pnl_consulta.add(cbx_genero);
 		
+		/*// Testando JList com JScrollPane
+		String[] data = {"one", "two", "three", "four"};
+		JList<String> cbx_genero = new JList(cadGenero.toArray());
+		pnl_consulta.add(cbx_genero).setBounds(120, 14, 98, 40);
+		JScrollPane scrl_genero = new JScrollPane(cbx_genero);
+		pnl_consulta.add(scrl_genero).setBounds(120, 14, 98, 40);
+		*/
 		
 		
 		JLabel lbl_edit= new JLabel("Edição:");

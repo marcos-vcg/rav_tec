@@ -12,6 +12,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import classes.Categoria;
@@ -97,9 +99,14 @@ public class FilmeCadastro extends JInternalFrame {
 		lblSinopse.setBounds(20, 165, 98, 14);
 		add(lblSinopse);
 
-		JEditorPane editorPaneSinopse = new JEditorPane();
-		editorPaneSinopse.setBounds(20, 190, 290, 71);
-		add(editorPaneSinopse);
+		//JEditorPane editorPaneSinopse = new JEditorPane();
+		//editorPaneSinopse.setBounds(20, 190, 290, 71);
+		//add(editorPaneSinopse);
+		
+		JTextArea txa_sinopse = new JTextArea(10, 30);
+		add(txa_sinopse).setBounds(20, 190, 290, 71);
+		JScrollPane scrl_sinopse = new JScrollPane(txa_sinopse);
+		add(scrl_sinopse).setBounds(20, 190, 290, 71);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setAction(voltar);
@@ -123,7 +130,7 @@ public class FilmeCadastro extends JInternalFrame {
 					filme.setDuracao(textDuracao.getText());
 					filme.setCategoria(comboBoxCategoria.getSelectedItem().toString());
 					// filme.setImagem( pegar imagem );
-					filme.setSinopse(editorPaneSinopse.getText());
+					filme.setSinopse(txa_sinopse.getText());
 					cadFilme.add(filme);
 
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!",

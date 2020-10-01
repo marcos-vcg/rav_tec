@@ -37,10 +37,10 @@ public class CategoriaCadastro extends JInternalFrame {
 		// Painéis das Abas
 		JPanel pnl_consulta = new JPanel();
 		pnl_consulta.setLayout(null);
-		abas.addTab("Pesquisa", null, pnl_consulta, null);
+		abas.addTab("Pesquisa", null, pnl_consulta, "Pesquisar Categorias");
 		JPanel pnl_cadastro = new JPanel();
 		pnl_cadastro.setLayout(null);
-		abas.addTab("Cadastro", pnl_cadastro);
+		abas.addTab("Cadastro", null, pnl_cadastro, "Cadastrar Categoria");
 		
 		
 		// Aba Consulta
