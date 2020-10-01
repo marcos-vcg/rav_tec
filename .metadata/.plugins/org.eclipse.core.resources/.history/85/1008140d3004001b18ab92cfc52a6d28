@@ -60,10 +60,8 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		// Painel Consulta
 		
-		JTable tbl_filmes = new JTable(20, 6);
-		//pnl_consulta.add(tbl_filmes).setBounds(20, 11, 500, 100);
-		JScrollPane scp_filmes = new JScrollPane(tbl_filmes);
-		pnl_consulta.add(scp_filmes).setBounds(20, 11, 500, 100);
+		JTable tb_filmes = new JTable(10, 10);
+		pnl_consulta.add(tb_filmes).setBounds(20, 11, 500, 150);
 		
 		
 		
