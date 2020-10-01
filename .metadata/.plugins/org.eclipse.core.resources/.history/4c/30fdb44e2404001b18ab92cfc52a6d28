@@ -132,7 +132,7 @@ public class FilmeCadastro extends JInternalFrame {
 		pnl_cadastro.add(lbl_imagem).setBounds(349, 77, 75, 14);
 		
 		JLabel lbl_mostrar_imagem = new JLabel("");
-		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(380, 105, 85, 120);
+		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(349, 120, 100, 100);
 		
 		
 		
@@ -140,7 +140,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		JButton btn_upload = new JButton("Upload");
 		//btn_upload.setAction(upload);
-		pnl_cadastro.add(btn_upload).setBounds(410, 70, 75, 18);
+		pnl_cadastro.add(btn_upload).setBounds(420, 70, 75, 23);
 		btn_upload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -149,13 +149,9 @@ public class FilmeCadastro extends JInternalFrame {
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 				fc_upload.setFileFilter(filter);
 				fc_upload.showOpenDialog(getParent());
-				
-				// Import ImageIcon     			
-				if(fc_upload.getSelectedFile() != null) {
-					ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
-					lbl_mostrar_imagem.setIcon(iconLogo); 
-				}
-				
+				// Import ImageIcon     
+				ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
+				lbl_mostrar_imagem.setIcon(iconLogo); 
 			}		
 		});
 

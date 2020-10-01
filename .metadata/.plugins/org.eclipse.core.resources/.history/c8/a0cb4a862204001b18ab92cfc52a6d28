@@ -128,38 +128,28 @@ public class FilmeCadastro extends JInternalFrame {
 
 		
 		
-		JLabel lbl_imagem = new JLabel("Imagem:");
-		pnl_cadastro.add(lbl_imagem).setBounds(349, 77, 75, 14);
+		JLabel lblImagem = new JLabel("Imagem:");
+		lblImagem.setBounds(349, 77, 75, 14);
+		pnl_cadastro.add(lblImagem);
 		
-		JLabel lbl_mostrar_imagem = new JLabel("");
-		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(380, 105, 85, 120);
+		ImageIcon iconLogo;
 		
-		
-		
-		JFileChooser fc_upload = new JFileChooser();		
 		
 		JButton btn_upload = new JButton("Upload");
 		//btn_upload.setAction(upload);
-		pnl_cadastro.add(btn_upload).setBounds(410, 70, 75, 18);
+		pnl_cadastro.add(btn_upload).setBounds(349, 107, 75, 23);
 		btn_upload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//JFileChooser fc_upload = new JFileChooser();
+				JFileChooser fc_upload = new JFileChooser();
 				fc_upload.setDialogTitle("Procurar aquivo");
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 				fc_upload.setFileFilter(filter);
 				fc_upload.showOpenDialog(getParent());
-				
-				// Import ImageIcon     			
-				if(fc_upload.getSelectedFile() != null) {
-					ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
-					lbl_mostrar_imagem.setIcon(iconLogo); 
-				}
-				
+				// Import ImageIcon     
+				iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
 			}		
 		});
 
-		//ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
 		//lblImagem.setIcon(iconLogo);     
 		
 

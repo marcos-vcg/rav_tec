@@ -149,13 +149,9 @@ public class FilmeCadastro extends JInternalFrame {
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 				fc_upload.setFileFilter(filter);
 				fc_upload.showOpenDialog(getParent());
-				
-				// Import ImageIcon     			
-				if(fc_upload.getSelectedFile() != null) {
-					ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
-					lbl_mostrar_imagem.setIcon(iconLogo); 
-				}
-				
+				// Import ImageIcon     
+				ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
+				lbl_mostrar_imagem.setIcon(iconLogo); 
 			}		
 		});
 
