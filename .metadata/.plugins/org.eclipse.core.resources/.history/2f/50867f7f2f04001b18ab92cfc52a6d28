@@ -61,7 +61,7 @@ public class FilmeCadastro extends JInternalFrame {
 		// Painel Consulta
 		
 		JTable tb_filmes = new JTable(10, 10);
-		pnl_consulta.add(tb_filmes).setBounds(20, 11, 500, 150);
+		pnl_consulta.add(tb_filmes).setBounds(20, 11, 400, 250);
 		
 		
 		

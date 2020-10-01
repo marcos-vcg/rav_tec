@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -57,21 +56,7 @@ public class FilmeCadastro extends JInternalFrame {
 		abas.addTab("Cadastro", null, pnl_cadastro, "Cadastrar Filme");
 		
 		
-		
-		// Painel Consulta
-		
-		JTable tb_filmes = new JTable(10, 10);
-		pnl_consulta.add(tb_filmes).setBounds(20, 11, 500, 150);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// Painel Cadastro
+			
 		JLabel lbl_titulo = new JLabel("Titulo:");
 		pnl_cadastro.add(lbl_titulo).setBounds(20, 11, 81, 14);
 		JTextField txf_titulo = new JTextField(10);

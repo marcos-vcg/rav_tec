@@ -1,9 +1,5 @@
 package classes;
 
-import java.awt.image.BufferedImage;
-
-import javax.swing.Icon;
-
 public class Filme {
 
 	private String titulo;
@@ -12,7 +8,7 @@ public class Filme {
 	private String sinopse;
 	private String duracao;
 	private String lancamento;
-	private Icon imagem;
+	private String imagem;
 	private String categoria;
 
 	public Filme(String titulo, String genero, Integer copias, String lancamento) {
@@ -71,11 +67,11 @@ public class Filme {
 		this.lancamento = lancamento;
 	}
 
-	public Icon getImagem() {
+	public String getImagem() {
 		return imagem;
 	}
 
-	public void setImagem(Icon imagem) {
+	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
 
