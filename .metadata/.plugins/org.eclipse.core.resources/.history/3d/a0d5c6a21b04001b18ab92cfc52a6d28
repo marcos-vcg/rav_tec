@@ -137,7 +137,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		JButton btn_cancelar = new JButton("Cancelar");
 		btn_cancelar.setAction(cancelar);
-		btn_cancelar.setBounds(335, 238, 85, 23);
+		btn_cancelar.setBounds(335, 238, 75, 23);
 		add(btn_cancelar);
 
 		JButton btnSalvar = new JButton("Salvar");

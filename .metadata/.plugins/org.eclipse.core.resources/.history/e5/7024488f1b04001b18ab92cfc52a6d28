@@ -117,6 +117,7 @@ public class FilmeCadastro extends JInternalFrame {
 		JButton btn_upload = new JButton("Upload");
 		btn_upload.setAction(upload);
 		add(btn_upload).setBounds(349, 107, 75, 23);
+		File file;
 
 
 		
@@ -137,7 +138,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		JButton btn_cancelar = new JButton("Cancelar");
 		btn_cancelar.setAction(cancelar);
-		btn_cancelar.setBounds(335, 238, 85, 23);
+		btn_cancelar.setBounds(335, 238, 75, 23);
 		add(btn_cancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
@@ -219,8 +220,8 @@ public class FilmeCadastro extends JInternalFrame {
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 			fc_upload.setFileFilter(filter);
 			fc_upload.showOpenDialog(getParent());
-			//String arquivo = fc_upload.getSelectedFile().getAbsolutePath();
-			//File file = new File(fc_upload.getSelectedFile().getAbsoluteFile());
+			String arquivo = fc_upload.getSelectedFile().getAbsolutePath();
+			file = new File(fc_upload.getSelectedFile().getAbsoluteFile());
 			
 			// Verifica se é um arquivo válido e retorna uma mensagem
 			/* 

@@ -2,7 +2,6 @@ package telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -137,7 +136,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		JButton btn_cancelar = new JButton("Cancelar");
 		btn_cancelar.setAction(cancelar);
-		btn_cancelar.setBounds(335, 238, 85, 23);
+		btn_cancelar.setBounds(335, 238, 75, 23);
 		add(btn_cancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
@@ -190,7 +189,6 @@ public class FilmeCadastro extends JInternalFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			
 		}
 	}
 
@@ -219,8 +217,6 @@ public class FilmeCadastro extends JInternalFrame {
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 			fc_upload.setFileFilter(filter);
 			fc_upload.showOpenDialog(getParent());
-			//String arquivo = fc_upload.getSelectedFile().getAbsolutePath();
-			//File file = new File(fc_upload.getSelectedFile().getAbsoluteFile());
 			
 			// Verifica se é um arquivo válido e retorna uma mensagem
 			/* 

@@ -2,7 +2,6 @@ package telas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -116,7 +115,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		JButton btn_upload = new JButton("Upload");
 		btn_upload.setAction(upload);
-		add(btn_upload).setBounds(349, 107, 75, 23);
+		add(btn_upload).setBounds(349, 107, 75, 14);
 
 
 		
@@ -137,7 +136,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		JButton btn_cancelar = new JButton("Cancelar");
 		btn_cancelar.setAction(cancelar);
-		btn_cancelar.setBounds(335, 238, 85, 23);
+		btn_cancelar.setBounds(335, 238, 68, 23);
 		add(btn_cancelar);
 
 		JButton btnSalvar = new JButton("Salvar");
@@ -182,7 +181,6 @@ public class FilmeCadastro extends JInternalFrame {
 		add(btnSalvar);
 	}
 
-	
 	private class SwingAction_salvar extends AbstractAction {
 		public SwingAction_salvar() {
 			putValue(NAME, "Salvar");
@@ -190,11 +188,9 @@ public class FilmeCadastro extends JInternalFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			
 		}
 	}
 
-	
 	private class SwingAction_cancelar extends AbstractAction {
 		public SwingAction_cancelar() {
 			putValue(NAME, "Cancelar");
@@ -206,7 +202,6 @@ public class FilmeCadastro extends JInternalFrame {
 		}
 	}
 	
-	
 	private class SwingAction_upload extends AbstractAction {
 		public SwingAction_upload() {
 			putValue(NAME, "Upload");
@@ -214,21 +209,16 @@ public class FilmeCadastro extends JInternalFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			JFileChooser fc_upload = new JFileChooser();
-			fc_upload.setDialogTitle("Procurar aquivo");
+			JFileChooser fc_up = new JFileChooser();
+			fc_up.setDialogTitle("Procurar aquivo");
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
-			fc_upload.setFileFilter(filter);
-			fc_upload.showOpenDialog(getParent());
-			//String arquivo = fc_upload.getSelectedFile().getAbsolutePath();
-			//File file = new File(fc_upload.getSelectedFile().getAbsoluteFile());
-			
-			// Verifica se é um arquivo válido e retorna uma mensagem
-			/* 
-		    int returnVal = fc_upload.showOpenDialog(getParent());
+			//fc_up.showOpenDialog(this);
+			fc_up.setFileFilter(filter);
+		    int returnVal = fc_up.showOpenDialog(parent);
 		    if(returnVal == JFileChooser.APPROVE_OPTION) {
 		       System.out.println("You chose to open this file: " +
-		    		   fc_upload.getSelectedFile().getName());  
-		    } */
+		    		   fc_up.getSelectedFile().getName());
+		    }
 		}
 	}
 	
