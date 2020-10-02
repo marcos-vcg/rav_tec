@@ -23,7 +23,6 @@ import classes.Categoria;
 @SuppressWarnings("serial")
 public class CategoriaCadastro extends JInternalFrame {
 	static final int xPosition = 140, yPosition = 90;
-	static boolean edit = false;
 
 	public CategoriaCadastro(ArrayList<Categoria> cadCategoria) {
 		super("Cadastro de Categorias", true, // resizable
@@ -175,46 +174,6 @@ public class CategoriaCadastro extends JInternalFrame {
 		
 		
 		
-		// Aba Cadastro
-		JLabel lbl_novo_genero = new JLabel("Gênero:");
-		pnl_cadastro.add(lbl_novo_genero);
-		JTextField txf_novo_genero = new JTextField(10);
-		pnl_cadastro.add(txf_novo_genero);
-		
-		JButton btn_cadastro = new JButton("Cadastrar");
-		pnl_cadastro.add(btn_cadastro);									// Criar Novo e Edita
-		btn_cadastro.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
-				if(txf_novo_genero.getText().contentEquals("") ) {
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
-				} else if (edit) {
-					cadCategoria.set(tbl_categorias.getSelectedRow(), txf_novo_genero.getText());
-					txf_novo_genero.setText("");
-					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-					btn_cadastro.setText("Cadastrar");
-					edit = false;
-				} else {
-					cadCategoria.add(txf_novo_genero.getText());
-					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					txf_novo_genero.setText("");
-				}
-				tbl_modelo.setNumRows(0);
-				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
-			}
-		});	
-		
-		
-		btn_editar.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
-					txf_novo_genero.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), tbl_categorias.getSelectedColumn()).toString());
-					tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), tbl_categorias.getSelectedColumn());
-					abas.setSelectedIndex(1);
-					btn_cadastro.setText("Editar");
-					edit = true;
-				}	
-			}
-		);		
 		
 		
 		

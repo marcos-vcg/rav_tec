@@ -151,7 +151,7 @@ public class GeneroCadastro extends JInternalFrame {
 		pnl_cadastro.add(txf_novo_genero);
 		
 		JButton btn_cadastro = new JButton("Cadastrar");
-		pnl_cadastro.add(btn_cadastro);									// Criar Novo e Edita
+		pnl_cadastro.add(btn_cadastro).setBounds(100, 100, 90, 25);;									// Criar Novo e Edita
 		btn_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 				if(txf_novo_genero.getText().contentEquals("") ) {
