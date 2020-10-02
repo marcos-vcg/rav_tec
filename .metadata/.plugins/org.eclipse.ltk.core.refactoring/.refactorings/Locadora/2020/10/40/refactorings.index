@@ -20,3 +20,5 @@
 1601587804595	Rename local variable 'btnSalvar'
 1601588332540	Rename type 'FilmeAluguel'
 1601660396109	Rename local variable 'modelo'
+1601662842780	Move package
+1601662898561	Copy compilation unit
