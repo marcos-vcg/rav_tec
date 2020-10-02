@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -22,6 +23,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 import classes.Categoria;
 import classes.Filme;
@@ -59,15 +61,56 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		
 		// Painel Consulta
+		JLabel lbl_titulo_pesquisa = new JLabel("Titulo:");
+		pnl_consulta.add(lbl_titulo_pesquisa).setBounds(20, 11, 81, 14);
+		JTextField txf_titulo_pesquisa = new JTextField(10);
+		pnl_consulta.add(txf_titulo_pesquisa).setBounds(20, 29, 161, 20);
 		
-		JTable tbl_filmes = new JTable(20, 6);
-		//pnl_consulta.add(tbl_filmes).setBounds(20, 11, 500, 100);
+		JLabel lbl_genero_pesquisa = new JLabel("Genero:");
+		pnl_consulta.add(lbl_genero_pesquisa).setBounds(200, 11, 98, 14);
+		JTextField txf_genero_pesquisa = new JTextField(10);
+		pnl_consulta.add(txf_genero_pesquisa).setBounds(200, 28, 98, 22);
+
+		JLabel lbl_lancamento_pesquisa = new JLabel("Lançamento:");
+		pnl_consulta.add(lbl_lancamento_pesquisa).setBounds(320, 11, 75, 14);
+		JTextField txf_lancamento_pesquisa = new JTextField(10);
+		pnl_consulta.add(txf_lancamento_pesquisa).setBounds(320, 29, 75, 20);
+
+		
+		// Criar Tabela de Dados
+		DefaultTableModel tbl_modelo = new DefaultTableModel();
+		JTable tbl_filmes = new JTable(tbl_modelo);
 		JScrollPane scp_filmes = new JScrollPane(tbl_filmes);
-		pnl_consulta.add(scp_filmes).setBounds(20, 11, 500, 100);
+		pnl_consulta.add(scp_filmes).setBounds(20, 60, 500, 100);
+		
+		// Preencher Tabela de Dados
+		tbl_modelo.addColumn("Título");
+		tbl_modelo.addColumn("Gênero");
+		tbl_modelo.addColumn("Duração");
+		tbl_modelo.addColumn("Lançamento");
+		tbl_filmes.getColumnModel().getColumn(0).setPreferredWidth(180);
+		tbl_filmes.getColumnModel().getColumn(1).setPreferredWidth(80);
+		tbl_filmes.getColumnModel().getColumn(2).setPreferredWidth(40);
+		tbl_filmes.getColumnModel().getColumn(3).setPreferredWidth(80);
+		
+		tbl_modelo.setNumRows(0);
+		for (Filme f : cadFilme) {
+			tbl_modelo.addRow(new Object[]{f.getTitulo(), f.getGenero(),
+					f.getDuracao(), f.getLancamento()});
+		}
 		
 		
-		
-		
+		JButton btn_pesquisar = new JButton("Pesquisar");
+		pnl_consulta.add(btn_pesquisar).setBounds(420, 29, 100, 20);
+		btn_pesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tbl_modelo.setNumRows(0);
+				for (Filme f : cadFilme) {
+					tbl_modelo.addRow(new Object[]{f.getTitulo(), f.getGenero(),
+							f.getDuracao(), f.getLancamento()});
+				}
+			}
+		});	
 		
 		
 		

@@ -42,7 +42,9 @@ class Main {
 		JFrame f = new JFrame("Locadora");
 		JMenuBar mb = new JMenuBar();
 		menuCadastros = new JMenu("Cadastros");
+		menuCadastros.setMnemonic('C');
 		menuLocacao = new JMenu("Locação");
+		menuLocacao.setMnemonic('L');
 		submenuCadastros = new JMenu("Sub Menu");
 		
 		
