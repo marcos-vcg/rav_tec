@@ -98,7 +98,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		tbl_modelo.setNumRows(0);
 		for (Filme f : cadFilme) {
-			tbl_modelo.addRow(new Object[]{f.getTitulo(), f.getGenero().getNome(),
+			tbl_modelo.addRow(new Object[]{f.getTitulo(), f.getGenero(),
 					f.getDuracao(), f.getLancamento()});
 		}
 		
@@ -109,7 +109,7 @@ public class FilmeCadastro extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				tbl_modelo.setNumRows(0);
 				for (Filme f : cadFilme) {
-					tbl_modelo.addRow(new Object[]{f.getTitulo(), f.getGenero().getNome(),
+					tbl_modelo.addRow(new Object[]{f.getTitulo(), f.getGenero(),
 							f.getDuracao(), f.getLancamento()});
 				}
 			}
@@ -245,9 +245,10 @@ public class FilmeCadastro extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!",
 							JOptionPane.WARNING_MESSAGE);
 				} else {
-					Filme filme = new Filme(txf_titulo.getText(), cadGenero.get(cbx_genero.getSelectedIndex()),
+					Filme filme = new Filme(txf_titulo.getText(), cbx_genero.getSelectedItem().toString(),
 							Integer.parseInt(txf_copias.getText()), txf_lancamento.getText());
 					filme.setDuracao(txf_duracao.getText());
+					//filme.setCategoria(cbx_ategoria.getSelectedItem().toString());
 					filme.setCategoria(cadCategoria.get(cbx_ategoria.getSelectedIndex()));
 					filme.setImagem(lbl_mostrar_imagem.getIcon());
 					filme.setSinopse(txa_sinopse.getText());
@@ -284,7 +285,7 @@ public class FilmeCadastro extends JInternalFrame {
 			System.out.println("Filme: " + i++);
 			System.out.println("");
 			System.out.println(filme.getTitulo()); 
-			System.out.println(filme.getGenero().getNome());
+			System.out.println(filme.getGenero());
 			System.out.println(filme.getCopias());
 			System.out.println(filme.getLancamento());
 			System.out.println(filme.getDuracao());

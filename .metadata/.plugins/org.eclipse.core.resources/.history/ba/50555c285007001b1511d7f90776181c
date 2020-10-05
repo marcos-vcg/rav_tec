@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import classes.Categoria;
 import classes.Cliente;
 import classes.Filme;
-import classes.Genero;
 
 @SuppressWarnings("serial")
 public class Locacao extends JInternalFrame {
@@ -26,7 +25,7 @@ public class Locacao extends JInternalFrame {
 	private final Action salvar = new SwingAction();
 	private final Action voltar = new SwingAction_1();
 
-	public Locacao(ArrayList<Filme> cadFilme, ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria, ArrayList<Cliente> cadCliente) {
+	public Locacao(ArrayList<Filme> cadFilme, ArrayList<String> cadGenero, ArrayList<Categoria> cadCategoria, ArrayList<Cliente> cadCliente) {
 		super("Locação de Filmes", true, // resizable
 				true, // closable
 				true, // maximizable

@@ -14,13 +14,12 @@ import javax.swing.JMenuItem;
 import classes.Categoria;
 import classes.Cliente;
 import classes.Filme;
-import classes.Genero;
 
 
 class Main {
 	JMenu menuCadastros, submenuCadastros, menuLocacao;
 	JMenuItem i1, i2, i3, i4, i5, i6, i7;
-	ArrayList<Genero> generos;
+	ArrayList<String> generos;
 	ArrayList<Categoria> categorias;
 	ArrayList<Filme> filmes;
 	ArrayList<Cliente> clientes;
@@ -30,19 +29,7 @@ class Main {
 	
 	Main() {
 		
-		//generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical", "Retrô", "Infantil"}));
-		generos = new ArrayList<Genero>();
-		generos.add(new Genero(""));
-		generos.add(new Genero("Ação"));
-		generos.add(new Genero("Aventura"));
-		generos.add(new Genero("Comédia"));
-		generos.add(new Genero("Drama"));
-		generos.add(new Genero("Romance"));
-		generos.add(new Genero("Suspense"));
-		generos.add(new Genero("Terror"));
-		generos.add(new Genero("Musical"));
-		generos.add(new Genero("Retrô"));
-		generos.add(new Genero("Infantil"));
+		generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical", "Retrô", "Infantil"}));
 		
 		//categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
 		categorias = new ArrayList<Categoria>();
