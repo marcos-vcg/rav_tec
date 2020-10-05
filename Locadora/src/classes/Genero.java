@@ -1,16 +1,14 @@
 package classes;
 
-public class Categoria {
+public class Genero {
 	
 	private String nome;
-	private String preco;
 	private Integer id;
 	static int contador = 0;
 	
-	public Categoria(String nome, String preco) {
+	public Genero(String nome) {
 		super();
 		this.nome = nome;
-		this.preco = preco;
 		this.id = contador++;
 	}
 
@@ -22,13 +20,6 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public String getPreco() {
-		return preco;
-	}
-
-	public void setPreco(String preco) {
-		this.preco = preco;
-	}
 	
 	public Integer getId() {
 		return id;

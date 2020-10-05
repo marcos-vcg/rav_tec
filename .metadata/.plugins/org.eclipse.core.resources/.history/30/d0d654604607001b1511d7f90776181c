@@ -13,7 +13,7 @@ public class Filme {
 	private String duracao;
 	private String lancamento;
 	private Icon imagem;
-	private Categoria categoria;
+	private String categoria;
 
 	public Filme(String titulo, String genero, Integer copias, String lancamento) {
 		super();
@@ -79,13 +79,12 @@ public class Filme {
 		this.imagem = imagem;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategoria(String string) {
+		this.categoria = string;
 	}
-	
 
 }

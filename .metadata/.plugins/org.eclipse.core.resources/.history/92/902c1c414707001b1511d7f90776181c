@@ -241,8 +241,7 @@ public class FilmeCadastro extends JInternalFrame {
 					Filme filme = new Filme(txf_titulo.getText(), cbx_genero.getSelectedItem().toString(),
 							Integer.parseInt(txf_copias.getText()), txf_lancamento.getText());
 					filme.setDuracao(txf_duracao.getText());
-					//filme.setCategoria(cbx_ategoria.getSelectedItem().toString());
-					filme.setCategoria(cadCategoria.get(cbx_ategoria.getSelectedIndex()));
+					filme.setCategoria(cbx_ategoria.getSelectedItem().toString());
 					filme.setImagem(lbl_mostrar_imagem.getIcon());
 					filme.setSinopse(txa_sinopse.getText());
 					cadFilme.add(filme);
