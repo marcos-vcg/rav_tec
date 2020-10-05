@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -183,6 +184,8 @@ public class CategoriaCadastro extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
 					txf_nova_categoria.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 0).toString());
 					txf_novo_preco.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 1).toString());
+					
+					//tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), tbl_categorias.getSelectedColumn());
 					abas.setSelectedIndex(1);
 					btn_cadastro.setText("Editar");
 					edit = true;
@@ -190,7 +193,36 @@ public class CategoriaCadastro extends JInternalFrame {
 			}
 		);		
 		
+		
+		
 
+		
+		
+		
+		
+		// Aba Cadastro
+		
+		
+		JButton btn_cadastro_categoria = new JButton("Cadastrar");
+		pnl_cadastro.add(btn_cadastro_categoria);
+		
+		
+		
+		btn_cadastro_categoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				if(txf_nova_categoria.getText().contentEquals("") || txf_novo_preco.getText().contentEquals("") ) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+				} else {
+					Categoria cad_categoria = new Categoria(txf_nova_categoria.getText(), txf_novo_preco.getText());
+					cadCategoria.add(cad_categoria);
+					//cbx_categoria.addItem(txf_nova_categoria.getText());
+					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					txf_nova_categoria.setText("");
+					txf_novo_preco.setText("");
+				}
+			}
+		});
 		
 	}
 	

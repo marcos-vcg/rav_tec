@@ -175,7 +175,7 @@ public class GeneroCadastro extends JInternalFrame {
 		
 		btn_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Edição Inválida!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
 					txf_novo_genero.setText(tbl_generos.getValueAt(tbl_generos.getSelectedRow(), tbl_generos.getSelectedColumn()).toString());
 					tbl_generos.getValueAt(tbl_generos.getSelectedRow(), tbl_generos.getSelectedColumn());
 					abas.setSelectedIndex(1);
