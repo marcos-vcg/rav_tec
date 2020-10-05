@@ -14,8 +14,6 @@ public class Filme {
 	private String lancamento;
 	private Icon imagem;
 	private Categoria categoria;
-	private Integer id;
-	static int contador = 0;
 
 	public Filme(String titulo, Genero genero, Integer copias, String lancamento) {
 		super();
@@ -23,7 +21,6 @@ public class Filme {
 		this.genero = genero;
 		this.copias = copias;
 		this.lancamento = lancamento;
-		this.id = contador++;
 	}
 
 	public String getTitulo() {
@@ -90,8 +87,5 @@ public class Filme {
 		this.categoria = categoria;
 	}
 	
-	public Integer getId() {
-		return id;
-	}
 
 }
