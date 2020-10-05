@@ -1,17 +1,14 @@
 package telas;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -27,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import classes.Categoria;
 import classes.Filme;
+
 
 @SuppressWarnings("serial")
 public class FilmeCadastro extends JInternalFrame {
@@ -142,37 +140,55 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		
 		JLabel lbl_duracao = new JLabel("Duração:");
-		pnl_cadastro.add(lbl_duracao).setBounds(20, 77, 98, 14);
+		pnl_cadastro.add(lbl_duracao).setBounds(20, 65, 98, 14);
 		JTextField txf_duracao = new JTextField(10);
-		pnl_cadastro.add(txf_duracao).setBounds(20, 102, 98, 20);
+		pnl_cadastro.add(txf_duracao).setBounds(20, 90, 98, 20);
 		
 		
 		JLabel lbl_categoria = new JLabel("Categoria:");
-		pnl_cadastro.add(lbl_categoria).setBounds(212, 77, 98, 14);
+		pnl_cadastro.add(lbl_categoria).setBounds(212, 65, 98, 14);
 		JComboBox cbx_ategoria = new JComboBox();
 		for(int i = 0; i < cadCategoria.size(); i++) {
 			cbx_ategoria.addItem(cadCategoria.get(i).getNome());   }
-		pnl_cadastro.add(cbx_ategoria).setBounds(212, 101, 98, 22);
+		pnl_cadastro.add(cbx_ategoria).setBounds(212, 90, 98, 22);
 
 		
 		JLabel lbl_imagem = new JLabel("Imagem:");
-		pnl_cadastro.add(lbl_imagem).setBounds(349, 77, 75, 14);
+		pnl_cadastro.add(lbl_imagem).setBounds(349, 65, 75, 14);
+		JTextField txf_imagem = new JTextField(10);
+		pnl_cadastro.add(txf_imagem).setBounds(349, 90, 150, 20);
 		JLabel lbl_mostrar_imagem = new JLabel("");
-		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(380, 105, 85, 120);
-		JFileChooser fc_upload = new JFileChooser();		
+		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(380, 120, 80, 110);
+		//JFileChooser fc_upload = new JFileChooser();		
 		JButton btn_upload = new JButton("Upload");
-		pnl_cadastro.add(btn_upload).setBounds(410, 70, 75, 18);
+		pnl_cadastro.add(btn_upload).setBounds(410, 65, 75, 18);
 		btn_upload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//JFileChooser fc_upload = new JFileChooser();
+				JFileChooser fc_upload = new JFileChooser();
 				fc_upload.setDialogTitle("Procurar aquivo");
+				fc_upload.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
 				fc_upload.setFileFilter(filter);
-				fc_upload.showOpenDialog(getParent());
-				// Import ImageIcon     			
+				//fc_upload.showOpenDialog(getParent());
+				
+				// Import ImageIcon   
 				if(fc_upload.getSelectedFile() != null) {
-					ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getAbsolutePath());
-					lbl_mostrar_imagem.setIcon(iconLogo); 	}
+					ImageIcon iconLogo = new ImageIcon(fc_upload.getSelectedFile().getPath());
+					/* Mostra a imagem cortada.
+							lbl_mostrar_imagem.setIcon(iconLogo);  */    
+					// Mostra Imagem Redimensionada
+					lbl_mostrar_imagem.setIcon(new ImageIcon(iconLogo.getImage().getScaledInstance(lbl_mostrar_imagem.getWidth(),lbl_mostrar_imagem.getHeight(), Image.SCALE_DEFAULT)));
+					txf_imagem.setText(fc_upload.getSelectedFile().getAbsolutePath());   }
+				
+				// Outra forma  
+				/*
+				int option = fc_upload.showOpenDialog(getParent());
+				if(option == JFileChooser.APPROVE_OPTION) {
+					File file = fc_upload.getSelectedFile();
+					txf_imagem.setText(file.getPath());
+					lbl_mostrar_imagem.setIcon(new ImageIcon(file.getPath()));	}     
+				*/
+				
 			}		
 		});  
 		
