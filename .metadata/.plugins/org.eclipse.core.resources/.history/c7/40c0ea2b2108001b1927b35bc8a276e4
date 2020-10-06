@@ -76,7 +76,6 @@ public class GeneroCadastro extends JInternalFrame {
 		DefaultTableModel tbl_modelo = new DefaultTableModel();
 		JTable tbl_generos = new JTable(tbl_modelo);
 		
-		// Não estou usando ainda
 		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tbl_modelo);
 		tbl_generos.setRowSorter(sorter);
 		//USAR => sorter.setRowFilter(RowFilter.regexFilter(text));

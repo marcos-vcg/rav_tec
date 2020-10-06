@@ -76,7 +76,6 @@ public class GeneroCadastro extends JInternalFrame {
 		DefaultTableModel tbl_modelo = new DefaultTableModel();
 		JTable tbl_generos = new JTable(tbl_modelo);
 		
-		// Não estou usando ainda
 		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tbl_modelo);
 		tbl_generos.setRowSorter(sorter);
 		//USAR => sorter.setRowFilter(RowFilter.regexFilter(text));
@@ -165,7 +164,7 @@ public class GeneroCadastro extends JInternalFrame {
 				} else if (edit) {
 					String palavra = txf_novo_genero.getText();
 					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
-					cadGenero.get(tbl_generos.getSelectedRow()).setNome(palavra);
+					cadGenero.get(tbl_generos.getSelectedRow()-1).setNome(palavra);
 					txf_novo_genero.setText("");
 					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
 					abas.setSelectedIndex(0);

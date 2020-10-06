@@ -19,14 +19,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
-import javax.swing.RowSorter;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 import classes.Filme;
 import classes.Genero;
@@ -75,13 +72,7 @@ public class GeneroCadastro extends JInternalFrame {
 		// Criar Tabela de Dados
 		DefaultTableModel tbl_modelo = new DefaultTableModel();
 		JTable tbl_generos = new JTable(tbl_modelo);
-		
-		// Não estou usando ainda
-		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(tbl_modelo);
-		tbl_generos.setRowSorter(sorter);
-		//USAR => sorter.setRowFilter(RowFilter.regexFilter(text));
-		
-	    JScrollPane scp_generos = new JScrollPane(tbl_generos);
+		JScrollPane scp_generos = new JScrollPane(tbl_generos);
 		pnl_consulta.add(scp_generos).setBounds(40, 90, 120, 100);		
 		
 		// Preencher Tabela de Dados
@@ -104,15 +95,11 @@ public class GeneroCadastro extends JInternalFrame {
 						tbl_modelo.addRow(new Object[]{genero.getNome()});
 					}
 				} else {
-					
-					//sorter.setRowFilter(RowFilter.regexFilter(txf_genero_pesquisa.getText().toLowerCase()));
-					
-					cadGenero.sort(Comparator.comparing(Genero::getNome));
+					//cadGenero.sort(Comparator.comparing(Genero::getNome));
 					for (Genero genero : cadGenero) {
 						if(genero.getNome().toLowerCase().contains(txf_genero_pesquisa.getText().toLowerCase())) {
 							tbl_modelo.addRow(new Object[]{genero.getNome()});	} 
 					}
-					
 				}	
 			}
 		});	
@@ -204,7 +191,7 @@ public class GeneroCadastro extends JInternalFrame {
 		        //int indexRowModel = tbl_generos.getRowSorter().convertRowIndexToModel(rowSel);
 		        //Condutor condutor = tbl_modelo.getCondutor(indexRowModel);
 		        //cadGenero.remove(indexRowModel);
-				
+		        
 				cadGenero.remove(tbl_generos.getSelectedRow());
 				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
 				tbl_modelo.setNumRows(0);
