@@ -5,7 +5,7 @@ public class Categoria {
 	private String nome;
 	private String preco;
 	private Integer id;
-	static int contador = 0;
+	static Integer contador = 0;
 	
 	public Categoria(String nome, String preco) {
 		super();

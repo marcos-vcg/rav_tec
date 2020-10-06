@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -78,6 +80,7 @@ public class GeneroCadastro extends JInternalFrame {
 		tbl_generos.getColumnModel().getColumn(0).setPreferredWidth(100);	
 
 		tbl_modelo.setNumRows(0);
+		cadGenero.sort(Comparator.comparing(Genero::getNome));
 		for (Genero genero : cadGenero) {tbl_modelo.addRow(new Object[]{genero.getNome()});}
 		
 		
@@ -91,6 +94,7 @@ public class GeneroCadastro extends JInternalFrame {
 						tbl_modelo.addRow(new Object[]{genero.getNome()});
 					}
 				} else {
+					cadGenero.sort(Comparator.comparing(Genero::getNome));
 					for (Genero genero : cadGenero) {
 						if(genero.getNome().toLowerCase().contains(txf_genero_pesquisa.getText().toLowerCase())) {
 							tbl_modelo.addRow(new Object[]{genero.getNome()});	} 
@@ -108,28 +112,12 @@ public class GeneroCadastro extends JInternalFrame {
 		JButton btn_excluir = new JButton("Excluir");
 		btn_excluir.setEnabled(false);
 		pnl_consulta.add(btn_excluir).setBounds(210, 130, 80, 25);
-		btn_excluir.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				if(!tbl_generos.isRowSelected(tbl_generos.getSelectedRow())/*cbx_genero.getSelectedItem().toString().contentEquals("")*/ ) {
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
-				} else {
-					cadGenero.remove(tbl_generos.getSelectedRow());
-					JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
-					tbl_modelo.setNumRows(0);
-					for (Genero genero : cadGenero) {tbl_modelo.addRow(new Object[]{genero.getNome()});}
-				}
-			}
-		});		     //tbl_modelo.getValueAt(tbl_generos.getSelectedRow(), 0);
+		
 		
 		JButton btn_novo = new JButton("Novo");
 		btn_novo.setVisible(true);
 		pnl_consulta.add(btn_novo).setBounds(210, 170, 80, 25);		
-		btn_novo.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abas.setSelectedIndex(1);
-				//txf_novo_genero.setText(txf_genero_pesquisa.getText());
-			}
-		});
+		
 		
 		
 		// Percebe Ação de Clicar na tabela
@@ -156,19 +144,28 @@ public class GeneroCadastro extends JInternalFrame {
 		btn_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 				if(txf_novo_genero.getText().contentEquals("") ) {
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Ação Cancelada!", JOptionPane.WARNING_MESSAGE);
+					abas.setSelectedIndex(0);
+					btn_cadastro.setText("Cadastrar");
+					edit = false;
 				} else if (edit) {
-					cadGenero.get(tbl_generos.getSelectedRow()).setNome(txf_novo_genero.getText());
+					String palavra = txf_novo_genero.getText();
+					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
+					cadGenero.get(tbl_generos.getSelectedRow()).setNome(palavra);
 					txf_novo_genero.setText("");
 					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+					abas.setSelectedIndex(0);
 					btn_cadastro.setText("Cadastrar");
 					edit = false;
 				} else {
-					cadGenero.add(new Genero(txf_novo_genero.getText()));
+					String palavra = txf_novo_genero.getText();
+					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
+					cadGenero.add(new Genero(palavra));
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
 					txf_novo_genero.setText("");
 				}
 				tbl_modelo.setNumRows(0);
+				cadGenero.sort(Comparator.comparing(Genero::getNome));
 				for (Genero genero : cadGenero) {tbl_modelo.addRow(new Object[]{genero.getNome()});}
 			}
 		});	
@@ -176,16 +173,40 @@ public class GeneroCadastro extends JInternalFrame {
 		
 		btn_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
 					txf_novo_genero.setText(tbl_generos.getValueAt(tbl_generos.getSelectedRow(), tbl_generos.getSelectedColumn()).toString());
 					tbl_generos.getValueAt(tbl_generos.getSelectedRow(), tbl_generos.getSelectedColumn());
 					abas.setSelectedIndex(1);
 					btn_cadastro.setText("Editar");
 					edit = true;
-				}	
+			}	
+		});
+		
+		btn_excluir.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				//if(!tbl_generos.isRowSelected(tbl_generos.getSelectedRow())/*cbx_genero.getSelectedItem().toString().contentEquals("")*/ ) {					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
+				cadGenero.remove(tbl_generos.getSelectedRow());
+				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+				tbl_modelo.setNumRows(0);
+				for (Genero genero : cadGenero) {tbl_modelo.addRow(new Object[]{genero.getNome()});}
+				
+				txf_novo_genero.setText("");
+				btn_cadastro.setText("Cadastrar");
+				edit = false;
+				
 			}
-		);
+		});		     //tbl_modelo.getValueAt(tbl_generos.getSelectedRow(), 0);
+		
+		btn_novo.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txf_novo_genero.setText("");
+				abas.setSelectedIndex(1);
+				btn_cadastro.setText("Cadastrar");
+				edit = false;
+			}
+		});
 		
 			
 	}
+	
 }

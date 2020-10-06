@@ -9,13 +9,18 @@ public class Cliente {
 	private String nascimento;
 	private String endereco;
 	private String foto;
-	private String dependentes;
+	private Dependente dependente1;
+	private Dependente dependente2;
+	private Dependente dependente3;
+	private Integer id;
+	static Integer contador = 0;
 
 	public Cliente(String nome, String cpf, String telefone) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		this.id = contador++;
 	}
 
 	public String getNome() {
@@ -74,12 +79,28 @@ public class Cliente {
 		this.foto = foto;
 	}
 
-	public String getDependentes() {
-		return dependentes;
+	public Dependente getDependente1() {
+		return dependente1;
 	}
 
-	public void setDependentes(String dependentes) {
-		this.dependentes = dependentes;
+	public void setDependente1(Dependente dependente1) {
+		this.dependente1 = dependente1;
+	}
+	
+	public Dependente getDependente2() {
+		return dependente2;
+	}
+
+	public void setDependente2(Dependente dependente2) {
+		this.dependente2 = dependente2;
+	}
+	
+	public Dependente getDependente3() {
+		return dependente3;
+	}
+
+	public void setDependente3(Dependente dependente3) {
+		this.dependente3 = dependente3;
 	}
 
 }

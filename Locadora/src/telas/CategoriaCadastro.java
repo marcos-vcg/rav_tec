@@ -2,6 +2,7 @@ package telas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -18,6 +19,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import classes.Categoria;
+import classes.Genero;
 
 @SuppressWarnings("serial")
 public class CategoriaCadastro extends JInternalFrame {
@@ -68,6 +70,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		tbl_categorias.getColumnModel().getColumn(1).setPreferredWidth(50);	
 
 		tbl_modelo.setNumRows(0);
+		cadCategoria.sort(Comparator.comparing(Categoria::getNome));
 		for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
 		
 		
@@ -100,28 +103,12 @@ public class CategoriaCadastro extends JInternalFrame {
 		JButton btn_excluir = new JButton("Excluir");
 		btn_excluir.setEnabled(false);
 		pnl_consulta.add(btn_excluir).setBounds(210, 130, 80, 25);
-		btn_excluir.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				if(!tbl_categorias.isRowSelected(tbl_categorias.getSelectedRow())/*cbx_genero.getSelectedItem().toString().contentEquals("")*/ ) {
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Exclusão Inválida!", JOptionPane.WARNING_MESSAGE);
-				} else {
-					cadCategoria.remove(tbl_categorias.getSelectedRow());
-					JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
-					tbl_modelo.setNumRows(0);
-					for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
-				}
-			}
-		});		     //tbl_modelo.getValueAt(tbl_generos.getSelectedRow(), 0);
+		
 		
 		JButton btn_novo = new JButton("Novo");
 		btn_novo.setVisible(true);
 		pnl_consulta.add(btn_novo).setBounds(210, 170, 80, 25);		
-		btn_novo.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				abas.setSelectedIndex(1);
-				//txf_novo_genero.setText(txf_genero_pesquisa.getText());
-			}
-		});
+		
 		
 		
 		// Percebe Ação de Clicar na tabela
@@ -156,23 +143,32 @@ public class CategoriaCadastro extends JInternalFrame {
 		btn_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 				if(txf_nova_categoria.getText().contentEquals("") || txf_novo_preco.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Ação Inválida!", JOptionPane.WARNING_MESSAGE);
+					abas.setSelectedIndex(0);
+					btn_cadastro.setText("Cadastrar");
+					edit = false;
 				} else if (edit) {
-					cadCategoria.get(tbl_categorias.getSelectedRow()).setNome(txf_nova_categoria.getText());
+					String palavra = txf_nova_categoria.getText();
+					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
+					cadCategoria.get(tbl_categorias.getSelectedRow()).setNome(palavra);
 					cadCategoria.get(tbl_categorias.getSelectedRow()).setPreco(txf_novo_preco.getText());
 					txf_nova_categoria.setText("");
 					txf_novo_preco.setText("");
 					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+					abas.setSelectedIndex(0);
 					btn_cadastro.setText("Cadastrar");
 					edit = false;
 				} else {
-					Categoria novaCategoria = new Categoria(txf_nova_categoria.getText(), txf_novo_preco.getText());
+					String palavra = txf_nova_categoria.getText();
+					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
+					Categoria novaCategoria = new Categoria(palavra, txf_novo_preco.getText());
 					cadCategoria.add(novaCategoria);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
 					txf_nova_categoria.setText("");
 					txf_novo_preco.setText("");
 				}
 				tbl_modelo.setNumRows(0);
+				cadCategoria.sort(Comparator.comparing(Categoria::getNome));
 				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
 			}
 		});	
@@ -180,7 +176,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		
 		btn_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
 					txf_nova_categoria.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 0).toString());
 					txf_novo_preco.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 1).toString());
 					abas.setSelectedIndex(1);
@@ -190,7 +186,31 @@ public class CategoriaCadastro extends JInternalFrame {
 			}
 		);		
 		
+		btn_excluir.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
 
+				cadCategoria.remove(tbl_categorias.getSelectedRow());
+				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+				tbl_modelo.setNumRows(0);
+				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
+				
+				txf_nova_categoria.setText("");
+				txf_novo_preco.setText("");
+				btn_cadastro.setText("Cadastrar");
+				edit = false;
+			}
+		});		     //tbl_modelo.getValueAt(tbl_generos.getSelectedRow(), 0);
+
+		btn_novo.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txf_nova_categoria.setText("");
+				txf_novo_preco.setText("");
+				abas.setSelectedIndex(1);
+				btn_cadastro.setText("Cadastrar");
+				edit = false;
+				//txf_novo_genero.setText(txf_genero_pesquisa.getText());
+			}
+		});
 		
 	}
 	
