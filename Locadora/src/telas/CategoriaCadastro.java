@@ -19,7 +19,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import classes.Categoria;
-import classes.Genero;
 
 @SuppressWarnings("serial")
 public class CategoriaCadastro extends JInternalFrame {
@@ -52,10 +51,10 @@ public class CategoriaCadastro extends JInternalFrame {
 		
 		// Aba Consulta
 		pnl_consulta.add(new JLabel("Categoria:")).setBounds(20, 18, 98, 14);
-		
 		JTextField txf_categoria_pesquisa = new JTextField(10);
 		pnl_consulta.add(txf_categoria_pesquisa).setBounds(90, 16, 98, 22);
-		
+		JButton btn_pesquisar = new JButton("Pesquisar");
+		pnl_consulta.add(btn_pesquisar).setBounds(200, 16, 100, 20);
 		
 		// Criar Tabela de Dados
 		DefaultTableModel tbl_modelo = new DefaultTableModel();
@@ -63,36 +62,18 @@ public class CategoriaCadastro extends JInternalFrame {
 		JScrollPane scp_categorias = new JScrollPane(tbl_categorias);
 		pnl_consulta.add(scp_categorias).setBounds(30, 90, 150, 100);		
 		
-		// Preencher Tabela de Dados
+		// Inserir Colunas da Tabela de Dados
+		tbl_modelo.addColumn("Id");
 		tbl_modelo.addColumn("Categoria");
 		tbl_modelo.addColumn("Preço");
-		tbl_categorias.getColumnModel().getColumn(0).setPreferredWidth(100);	
-		tbl_categorias.getColumnModel().getColumn(1).setPreferredWidth(50);	
+		tbl_categorias.getColumnModel().getColumn(0).setPreferredWidth(20);
+		tbl_categorias.getColumnModel().getColumn(1).setPreferredWidth(100);	
+		tbl_categorias.getColumnModel().getColumn(2).setPreferredWidth(45);	
 
+		// Monta Tabela
 		tbl_modelo.setNumRows(0);
 		cadCategoria.sort(Comparator.comparing(Categoria::getNome));
-		for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
-		
-		
-		JButton btn_pesquisar = new JButton("Pesquisar");
-		pnl_consulta.add(btn_pesquisar).setBounds(200, 16, 100, 20);
-		btn_pesquisar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tbl_modelo.setNumRows(0);
-				if(txf_categoria_pesquisa.getText().contentEquals("")) {
-					for (Categoria categoria : cadCategoria) {
-						tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});
-					}
-				} else {
-					for (Categoria categoria : cadCategoria) {
-						if(categoria.getNome().toLowerCase().contains(txf_categoria_pesquisa.getText().toLowerCase())) {
-							tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});	} 
-					}
-				}	
-			}
-		});	
-		
-		
+		for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getId(), categoria.getNome(), categoria.getPreco()});}
 		
 		
 		// Botões de Ação
@@ -111,6 +92,24 @@ public class CategoriaCadastro extends JInternalFrame {
 		
 		
 		
+
+		
+		// Aba Cadastro
+		pnl_cadastro.add(new JLabel("Categoria:")).setBounds(55, 18, 98, 14);
+		JTextField txf_nova_categoria = new JTextField(10);
+		pnl_cadastro.add(txf_nova_categoria).setBounds(150, 14, 98, 22);
+		
+		pnl_cadastro.add(new JLabel("Preço:")).setBounds(55, 38, 98, 14);;
+		JTextField txf_novo_preco = new JTextField(10);
+		pnl_cadastro.add(txf_novo_preco).setBounds(150, 44, 98, 22);
+		
+		JButton btn_cadastro = new JButton("Cadastrar");
+		pnl_cadastro.add(btn_cadastro).setBounds(120, 80, 98, 22);							
+		
+		
+		
+		
+		
 		// Percebe Ação de Clicar na tabela
 		tbl_categorias.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -121,78 +120,52 @@ public class CategoriaCadastro extends JInternalFrame {
                 btn_excluir.setEnabled(!lsm.isSelectionEmpty());
             }
         });
+				
+				
 		
-		
-		
-		
-		
-		
-		// Aba Cadastro
-		
-		pnl_cadastro.add(new JLabel("Categoria:")).setBounds(55, 18, 98, 14);
-		JTextField txf_nova_categoria = new JTextField(10);
-		pnl_cadastro.add(txf_nova_categoria).setBounds(150, 14, 98, 22);
-		
-		pnl_cadastro.add(new JLabel("Preço:")).setBounds(55, 38, 98, 14);;
-		JTextField txf_novo_preco = new JTextField(10);
-		pnl_cadastro.add(txf_novo_preco).setBounds(150, 44, 98, 22);
-		
-		
-		JButton btn_cadastro = new JButton("Cadastrar");
-		pnl_cadastro.add(btn_cadastro).setBounds(120, 80, 98, 22);							// Criar Novo e Edita
-		btn_cadastro.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
-				if(txf_nova_categoria.getText().contentEquals("") || txf_novo_preco.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Ação Inválida!", JOptionPane.WARNING_MESSAGE);
-					abas.setSelectedIndex(0);
-					btn_cadastro.setText("Cadastrar");
-					edit = false;
-				} else if (edit) {
-					String palavra = txf_nova_categoria.getText();
-					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
-					cadCategoria.get(tbl_categorias.getSelectedRow()).setNome(palavra);
-					cadCategoria.get(tbl_categorias.getSelectedRow()).setPreco(txf_novo_preco.getText());
-					txf_nova_categoria.setText("");
-					txf_novo_preco.setText("");
-					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-					abas.setSelectedIndex(0);
-					btn_cadastro.setText("Cadastrar");
-					edit = false;
-				} else {
-					String palavra = txf_nova_categoria.getText();
-					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1));
-					Categoria novaCategoria = new Categoria(palavra, txf_novo_preco.getText());
-					cadCategoria.add(novaCategoria);
-					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					txf_nova_categoria.setText("");
-					txf_novo_preco.setText("");
-				}
+		// Ações dos Botões
+		btn_pesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Remonta Tabela
 				tbl_modelo.setNumRows(0);
-				cadCategoria.sort(Comparator.comparing(Categoria::getNome));
-				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
+				if(txf_categoria_pesquisa.getText().contentEquals("")) {
+					for (Categoria categoria : cadCategoria) {
+						tbl_modelo.addRow(new Object[]{categoria.getId(), categoria.getNome(), categoria.getPreco()});
+					}
+				} else {
+					// Filtra a Tabela
+					for (Categoria categoria : cadCategoria) {
+						if(categoria.getNome().toLowerCase().contains(txf_categoria_pesquisa.getText().toLowerCase())) {
+							tbl_modelo.addRow(new Object[]{categoria.getId(), categoria.getNome(), categoria.getPreco()});	} 
+					}
+				}	
 			}
 		});	
 		
 		
+		
 		btn_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					//JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
-					txf_nova_categoria.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 0).toString());
-					txf_novo_preco.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 1).toString());
-					abas.setSelectedIndex(1);
-					btn_cadastro.setText("Editar");
-					edit = true;
-				}	
-			}
-		);		
+				
+				//JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
+				txf_nova_categoria.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 1).toString());
+				txf_novo_preco.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 2).toString());
+				abas.setSelectedIndex(1);
+				btn_cadastro.setText("Editar");
+				edit = true;
+			}	
+		});		
 		
 		btn_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				cadCategoria.remove(tbl_categorias.getSelectedRow());
-				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusçao Efetuado!", JOptionPane.WARNING_MESSAGE);
+				Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_categorias.getSelectedRow(), 0);
+				for(int i = 0; i < cadCategoria.size(); i++) { if (cadCategoria.get(i).getId() == idSelected) {cadCategoria.remove(i);}  }
+				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusão Efetuada!", JOptionPane.WARNING_MESSAGE);
+				
 				tbl_modelo.setNumRows(0);
-				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getNome(), categoria.getPreco()});}
+				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getId(), categoria.getNome(), categoria.getPreco()});}
 				
 				txf_nova_categoria.setText("");
 				txf_novo_preco.setText("");
@@ -211,6 +184,47 @@ public class CategoriaCadastro extends JInternalFrame {
 				//txf_novo_genero.setText(txf_genero_pesquisa.getText());
 			}
 		});
+		
+		
+		
+		// Criar e Editar
+		btn_cadastro.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+				if(txf_nova_categoria.getText().contentEquals("") || txf_novo_preco.getText().contentEquals("")) {
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Ação Inválida!", JOptionPane.WARNING_MESSAGE);
+					abas.setSelectedIndex(0);
+					btn_cadastro.setText("Cadastrar");
+					edit = false;
+				} else if (edit) {
+					String palavra = txf_nova_categoria.getText();
+					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
+					
+					Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_categorias.getSelectedRow(), 0);
+					for(int i = 0; i < cadCategoria.size(); i++) { if (cadCategoria.get(i).getId() == idSelected) {cadCategoria.get(i).setNome(palavra); cadCategoria.get(i).setPreco(txf_novo_preco.getText());}  }
+					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+					
+					
+					txf_nova_categoria.setText("");
+					txf_novo_preco.setText("");
+					
+					abas.setSelectedIndex(0);
+					btn_cadastro.setText("Cadastrar");
+					edit = false;
+				} else {
+					String palavra = txf_nova_categoria.getText();
+					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
+					Categoria novaCategoria = new Categoria(palavra, txf_novo_preco.getText());
+					cadCategoria.add(novaCategoria);
+					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+					txf_nova_categoria.setText("");
+					txf_novo_preco.setText("");
+				}
+				tbl_modelo.setNumRows(0);
+				cadCategoria.sort(Comparator.comparing(Categoria::getNome));
+				for (Categoria categoria : cadCategoria) {tbl_modelo.addRow(new Object[]{categoria.getId(), categoria.getNome(), categoria.getPreco()});}
+			}
+		});	
+		
 		
 	}
 	
