@@ -160,7 +160,7 @@ public class GeneroCadastro extends JInternalFrame {
 				
 				//cadGenero.remove(tbl_generos.getSelectedRow());   // Troca por remoção através do ID
 				Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_generos.getSelectedRow(), 0);
-				for(int i = 0; i < cadGenero.size(); i++) { if (cadGenero.get(i).getId() == idSelected) {cadGenero.remove(i);}  }
+				for(int i = 0; i < cadGenero.size(); i++) { if (cadGenero.get(i).getId() == idSelected) {cadGenero.get(i).setNome(""); cadGenero.remove(i);}  }
 				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusão Efetuada!", JOptionPane.WARNING_MESSAGE);
 				
 				// Remonta Tabela

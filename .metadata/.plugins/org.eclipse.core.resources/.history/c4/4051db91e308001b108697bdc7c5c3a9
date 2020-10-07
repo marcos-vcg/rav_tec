@@ -139,9 +139,9 @@ public class FilmeCadastro extends JInternalFrame {
 		pnl_cadastro.add(cbx_genero).setBounds(250, 28, 98, 22);
 			
 		
-		pnl_cadastro.add(new JLabel("*Cópias:")).setBounds(380, 11, 55, 14);
+		pnl_cadastro.add(new JLabel("*Cópias:")).setBounds(420, 11, 55, 14);
 		JTextField txf_copias = new JTextField(10);
-		pnl_cadastro.add(txf_copias).setBounds(380, 29, 55, 20);
+		pnl_cadastro.add(txf_copias).setBounds(420, 29, 55, 20);
 		
 		
 		pnl_cadastro.add(new JLabel("Duração:")).setBounds(20, 65, 98, 14);
@@ -163,11 +163,11 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		pnl_cadastro.add(new JLabel("Imagem:")).setBounds(380, 65, 75, 14);
 		JTextField txf_imagem = new JTextField(5);
-		pnl_cadastro.add(txf_imagem).setBounds(380, 90, 135, 20);
+		pnl_cadastro.add(txf_imagem).setBounds(380, 90, 130, 20);
 		JLabel lbl_mostrar_imagem = new JLabel("");
-		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(410, 120, 80, 110);
+		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(390, 120, 80, 110);
 		JButton btn_upload = new JButton("Upload");
-		pnl_cadastro.add(btn_upload).setBounds(440, 65, 75, 18);
+		pnl_cadastro.add(btn_upload).setBounds(430, 65, 75, 18);
 		
 		
 		btn_upload.addActionListener(new ActionListener() {
@@ -214,14 +214,14 @@ public class FilmeCadastro extends JInternalFrame {
 		
 	
 	
-		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 135, 98, 14);
+		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 165, 98, 14);
 		//JEditorPane editorPaneSinopse = new JEditorPane();
 		//editorPaneSinopse.setBounds(20, 190, 290, 71);
 		//pnl_cadastro.add(editorPaneSinopse);
 		JTextArea txa_sinopse = new JTextArea(10, 30);
 		//pnl_cadastro.add(txa_sinopse).setBounds(20, 190, 290, 71);
 		JScrollPane scrl_sinopse = new JScrollPane(txa_sinopse);
-		pnl_cadastro.add(scrl_sinopse).setBounds(20, 160, 290, 100);
+		pnl_cadastro.add(scrl_sinopse).setBounds(20, 190, 290, 71);
 
 		
 		

@@ -60,7 +60,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		DefaultTableModel tbl_modelo = new DefaultTableModel();
 		JTable tbl_categorias = new JTable(tbl_modelo);
 		JScrollPane scp_categorias = new JScrollPane(tbl_categorias);
-		pnl_consulta.add(scp_categorias).setBounds(20, 90, 170, 100);		
+		pnl_consulta.add(scp_categorias).setBounds(30, 90, 150, 100);		
 		
 		// Inserir Colunas da Tabela de Dados
 		tbl_modelo.addColumn("Id");

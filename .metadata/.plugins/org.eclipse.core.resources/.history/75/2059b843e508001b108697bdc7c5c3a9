@@ -47,10 +47,10 @@ class Main {
 		//categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
 		categorias = new ArrayList<Categoria>();
 		categorias.add(new Categoria("", ""));
-		categorias.add(new Categoria("Lançamento", "10,00"));
-		categorias.add(new Categoria("Atual", "7,50"));
-		categorias.add(new Categoria("Intermediário", "5,00"));
-		categorias.add(new Categoria("Antigo", "2,50"));
+		categorias.add(new Categoria("Lançamento", "10"));
+		categorias.add(new Categoria("Atual", "7"));
+		categorias.add(new Categoria("Intermediário", "5"));
+		categorias.add(new Categoria("Antigo", "2"));
 		
 		
 		filmes = new ArrayList<Filme>();

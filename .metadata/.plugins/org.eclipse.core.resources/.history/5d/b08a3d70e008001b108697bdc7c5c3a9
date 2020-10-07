@@ -60,7 +60,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		DefaultTableModel tbl_modelo = new DefaultTableModel();
 		JTable tbl_categorias = new JTable(tbl_modelo);
 		JScrollPane scp_categorias = new JScrollPane(tbl_categorias);
-		pnl_consulta.add(scp_categorias).setBounds(20, 90, 170, 100);		
+		pnl_consulta.add(scp_categorias).setBounds(30, 90, 150, 100);		
 		
 		// Inserir Colunas da Tabela de Dados
 		tbl_modelo.addColumn("Id");
@@ -148,6 +148,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		btn_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//JOptionPane.showMessageDialog(null, "Informe o novo nome!", "Modo Edição!", JOptionPane.WARNING_MESSAGE);
 				txf_nova_categoria.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 1).toString());
 				txf_novo_preco.setText(tbl_categorias.getValueAt(tbl_categorias.getSelectedRow(), 2).toString());
 				abas.setSelectedIndex(1);
@@ -171,7 +172,7 @@ public class CategoriaCadastro extends JInternalFrame {
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
 			}
-		});		    
+		});		     //tbl_modelo.getValueAt(tbl_generos.getSelectedRow(), 0);
 
 		btn_novo.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,7 +181,7 @@ public class CategoriaCadastro extends JInternalFrame {
 				abas.setSelectedIndex(1);
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
-				
+				//txf_novo_genero.setText(txf_genero_pesquisa.getText());
 			}
 		});
 		

@@ -214,14 +214,14 @@ public class FilmeCadastro extends JInternalFrame {
 		
 	
 	
-		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 135, 98, 14);
+		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 165, 98, 14);
 		//JEditorPane editorPaneSinopse = new JEditorPane();
 		//editorPaneSinopse.setBounds(20, 190, 290, 71);
 		//pnl_cadastro.add(editorPaneSinopse);
 		JTextArea txa_sinopse = new JTextArea(10, 30);
 		//pnl_cadastro.add(txa_sinopse).setBounds(20, 190, 290, 71);
 		JScrollPane scrl_sinopse = new JScrollPane(txa_sinopse);
-		pnl_cadastro.add(scrl_sinopse).setBounds(20, 160, 290, 100);
+		pnl_cadastro.add(scrl_sinopse).setBounds(20, 190, 290, 71);
 
 		
 		

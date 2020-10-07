@@ -131,17 +131,17 @@ public class FilmeCadastro extends JInternalFrame {
 		pnl_cadastro.add(txf_titulo).setBounds(20, 29, 200, 20);
 		
 		
-		pnl_cadastro.add(new JLabel("*Genero:")).setBounds(250, 11, 98, 14);
+		pnl_cadastro.add(new JLabel("*Genero:")).setBounds(230, 11, 98, 14);
 		//JComboBox cbx_genero = new JComboBox(cadGenero.toArray());
 		JComboBox<String> cbx_genero = new JComboBox<>();
 		for(int i = 0; i < cadGenero.size(); i++) {
 			cbx_genero.addItem(cadGenero.get(i).getNome());   }
-		pnl_cadastro.add(cbx_genero).setBounds(250, 28, 98, 22);
+		pnl_cadastro.add(cbx_genero).setBounds(230, 28, 98, 22);
 			
 		
-		pnl_cadastro.add(new JLabel("*Cópias:")).setBounds(380, 11, 55, 14);
+		pnl_cadastro.add(new JLabel("*Cópias:")).setBounds(454, 11, 55, 14);
 		JTextField txf_copias = new JTextField(10);
-		pnl_cadastro.add(txf_copias).setBounds(380, 29, 55, 20);
+		pnl_cadastro.add(txf_copias).setBounds(454, 29, 55, 20);
 		
 		
 		pnl_cadastro.add(new JLabel("Duração:")).setBounds(20, 65, 98, 14);
@@ -149,25 +149,25 @@ public class FilmeCadastro extends JInternalFrame {
 		pnl_cadastro.add(txf_duracao).setBounds(20, 90, 90, 20);
 		
 		
-		pnl_cadastro.add(new JLabel("Lançamento:")).setBounds(130, 65, 75, 14);
+		pnl_cadastro.add(new JLabel("Lançamento:")).setBounds(150, 75, 75, 14);
 		JTextField txf_lancamento = new JTextField(10);
-		pnl_cadastro.add(txf_lancamento).setBounds(130, 90, 90, 20);
+		pnl_cadastro.add(txf_lancamento).setBounds(150, 75, 90, 20);
 		
 	
-		pnl_cadastro.add(new JLabel("Categoria:")).setBounds(250, 65, 98, 14);
+		pnl_cadastro.add(new JLabel("Categoria:")).setBounds(230, 65, 98, 14);
 		JComboBox<String> cbx_categoria = new JComboBox<>();
 		for(int i = 0; i < cadCategoria.size(); i++) {
 			cbx_categoria.addItem(cadCategoria.get(i).getNome());   }
-		pnl_cadastro.add(cbx_categoria).setBounds(250, 90, 98, 22);
+		pnl_cadastro.add(cbx_categoria).setBounds(230, 90, 98, 22);
 
 		
-		pnl_cadastro.add(new JLabel("Imagem:")).setBounds(380, 65, 75, 14);
-		JTextField txf_imagem = new JTextField(5);
-		pnl_cadastro.add(txf_imagem).setBounds(380, 90, 135, 20);
+		pnl_cadastro.add(new JLabel("Imagem:")).setBounds(349, 65, 75, 14);
+		JTextField txf_imagem = new JTextField(10);
+		pnl_cadastro.add(txf_imagem).setBounds(349, 90, 150, 20);
 		JLabel lbl_mostrar_imagem = new JLabel("");
-		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(410, 120, 80, 110);
+		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(380, 120, 80, 110);
 		JButton btn_upload = new JButton("Upload");
-		pnl_cadastro.add(btn_upload).setBounds(440, 65, 75, 18);
+		pnl_cadastro.add(btn_upload).setBounds(410, 65, 75, 18);
 		
 		
 		btn_upload.addActionListener(new ActionListener() {
@@ -214,14 +214,14 @@ public class FilmeCadastro extends JInternalFrame {
 		
 	
 	
-		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 135, 98, 14);
+		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 165, 98, 14);
 		//JEditorPane editorPaneSinopse = new JEditorPane();
 		//editorPaneSinopse.setBounds(20, 190, 290, 71);
 		//pnl_cadastro.add(editorPaneSinopse);
 		JTextArea txa_sinopse = new JTextArea(10, 30);
 		//pnl_cadastro.add(txa_sinopse).setBounds(20, 190, 290, 71);
 		JScrollPane scrl_sinopse = new JScrollPane(txa_sinopse);
-		pnl_cadastro.add(scrl_sinopse).setBounds(20, 160, 290, 100);
+		pnl_cadastro.add(scrl_sinopse).setBounds(20, 190, 290, 71);
 
 		
 		
