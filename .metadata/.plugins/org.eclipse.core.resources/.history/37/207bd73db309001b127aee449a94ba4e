@@ -224,18 +224,16 @@ public class ClienteCadastro extends JInternalFrame {
 				} else {
 					// Filtra a Tabela
 					for (Cliente c : cadCliente) {
-                        if(!nome.isEmpty()) {
-                        	if(!c.getNome().toLowerCase().contains(nome)) {
-                        		continue;
-                        	} 	
+						boolean filtro = false;
+                        if(!nome.isEmpty() && c.getNome().toLowerCase().contains(nome)) {
+                        	filtro = true;
                         }
-                        if(!cpf.isEmpty()) {
-                        	if(!c.getCpf().toLowerCase().contains(cpf)) {
-                        		continue;
-                        	} 
+                        if(!cpf.isEmpty() && c.getCpf().toLowerCase().contains(cpf)) {
+                        	filtro = true;
                         }
-
-                        tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});
+                        if(filtro) {
+                        	tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});
+                        }
 					}
 				}	
 			}

@@ -217,25 +217,15 @@ public class ClienteCadastro extends JInternalFrame {
 				
 				// Remonta Tabela
 				tbl_modelo.setNumRows(0);
-				String nome = txf_nome_pesquisa.getText().toLowerCase();
-				String cpf = txf_cpf_pesquisa.getText().toLowerCase();
-				if(nome.isEmpty() && cpf.isEmpty()) {
+				if(txf_nome_pesquisa.getText().contentEquals("") && txf_cpf_pesquisa.getText().contentEquals("")) {
 					for (Cliente c : cadCliente) {tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});  }
 				} else {
 					// Filtra a Tabela
 					for (Cliente c : cadCliente) {
-                        if(!nome.isEmpty()) {
-                        	if(!c.getNome().toLowerCase().contains(nome)) {
-                        		continue;
-                        	} 	
-                        }
-                        if(!cpf.isEmpty()) {
-                        	if(!c.getCpf().toLowerCase().contains(cpf)) {
-                        		continue;
-                        	} 
-                        }
-
-                        tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});
+						if(c.getNome().toLowerCase().contains(txf_nome_pesquisa.getText().toLowerCase()) || 
+								c.getCpf().toLowerCase().contains(txf_cpf_pesquisa.getText().toLowerCase())  ) {
+							
+							tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	} 
 					}
 				}	
 			}

@@ -285,6 +285,8 @@ public class FilmeCadastro extends JInternalFrame {
 				if(!(txf_titulo_pesquisa.getText().contentEquals("")) || 
 						!(txf_genero_pesquisa.getText().contentEquals("")) || 
 						!(txf_lancamento_pesquisa.getText().contentEquals("")) ) {
+					
+					
 
 					// Filtra a Tabela
 					for (Filme f : cadFilme) {
@@ -297,7 +299,7 @@ public class FilmeCadastro extends JInternalFrame {
 					}
 					
 				} else {
-					// Preenchimento Padrão
+					
 					for (Filme f : cadFilme) {
 						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
 					}	

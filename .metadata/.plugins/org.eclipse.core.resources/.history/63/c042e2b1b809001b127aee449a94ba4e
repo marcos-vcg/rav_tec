@@ -226,16 +226,17 @@ public class ClienteCadastro extends JInternalFrame {
 					for (Cliente c : cadCliente) {
                         if(!nome.isEmpty()) {
                         	if(!c.getNome().toLowerCase().contains(nome)) {
-                        		continue;
-                        	} 	
+                        		break;
+                        	} 
+                        		
                         }
                         if(!cpf.isEmpty()) {
                         	if(!c.getCpf().toLowerCase().contains(cpf)) {
-                        		continue;
+                        		break;
                         	} 
                         }
 
-                        tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});
+                        	tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});
 					}
 				}	
 			}
