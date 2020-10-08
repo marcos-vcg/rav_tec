@@ -383,6 +383,9 @@ public class ClienteCadastro extends JInternalFrame {
 		});
 		
 		
+
+		
+		
 	}
 
 		

@@ -247,7 +247,7 @@ public class ClienteCadastro extends JInternalFrame {
 						txf_endereco.setText(cadCliente.get(i).getNascimento());
 						//txf_imagem.setText(cadFilme.get(i).getImagem().toString());
 						lbl_mostrar_imagem.setIcon(cadCliente.get(i).getImagem());
-						//txa_dependentes.setText(cadCliente.get(i).getDependente1());
+						txa_dependentes.setText(cadCliente.get(i).getDependente1());
 					}  
 				}
 				
@@ -329,7 +329,7 @@ public class ClienteCadastro extends JInternalFrame {
 							cadCliente.get(i).setNascimento(txf_nascimento.getText());
 							cadCliente.get(i).setEndereco(txf_endereco.getText());
 							cadCliente.get(i).setImagem(lbl_mostrar_imagem.getIcon());
-							//cadCliente.get(i).setDependente1(txa_dependentes.getText());
+							cadCliente.get(i).setDependente1(txa_dependentes.getText());
 							
 						}  
 					}
@@ -359,7 +359,7 @@ public class ClienteCadastro extends JInternalFrame {
 					novoCliente.setNascimento(txf_nascimento.getText());
 					novoCliente.setEndereco(txf_endereco.getText());
 					novoCliente.setImagem(lbl_mostrar_imagem.getIcon());
-					//novoCliente.setDependente1(txa_dependentes.getText());
+					novoCliente.setDependente1(txa_dependentes.getText());
 					cadCliente.add(novoCliente);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
 					
@@ -381,6 +381,9 @@ public class ClienteCadastro extends JInternalFrame {
 				
 			}
 		});
+		
+		
+
 		
 		
 	}
