@@ -259,55 +259,18 @@ public class FilmeCadastro extends JInternalFrame {
 				
 				// Remonta Tabela
 				tbl_modelo.setNumRows(0);
-				
-				/*
-				if((txf_titulo_pesquisa.getText().contentEquals("")) && 
-						(txf_genero_pesquisa.getText().contentEquals("")) && 
-						(txf_lancamento_pesquisa.getText().contentEquals("")) ) {
-					
-					for (Filme f : cadFilme) {
-						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
-					}
-					
+				if(txf_titulo_pesquisa.getText().contentEquals("") && txf_genero_pesquisa.getText().contentEquals("") && txf_lancamento_pesquisa.getText().contentEquals("")) {
+					for (Filme f : cadFilme) {tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  }
 				} else {
 					// Filtra a Tabela
 					for (Filme f : cadFilme) {
-						if((f.getTitulo().toLowerCase().contains(txf_titulo_pesquisa.getText().toLowerCase())) || 
-								(f.getGenero().getNome().toLowerCase().contains(txf_genero_pesquisa.getText().toLowerCase())) || 
-								(f.getLancamento().toLowerCase().contains(txf_lancamento_pesquisa.getText().toLowerCase())) ) {
+						if(f.getTitulo().toLowerCase().contains(txf_titulo_pesquisa.getText().toLowerCase()) || 
+								f.getGenero().getNome().toLowerCase().contains(txf_genero_pesquisa.getText().toLowerCase()) || 
+								f.getLancamento().toLowerCase().contains(txf_lancamento_pesquisa.getText().toLowerCase()) ) {
 							
-							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
-						} 
-					}	
-				}*/
-				
-				
-				if(!(txf_titulo_pesquisa.getText().isEmpty()) || 
-						!(txf_genero_pesquisa.getText().isEmpty()) || 
-						!(txf_lancamento_pesquisa.getText().isEmpty()) ) {
-					
-					// Filtra a Tabela
-					for (Filme f : cadFilme) {
-						if((f.getTitulo().toLowerCase().contains(txf_titulo_pesquisa.getText().toLowerCase())) || 
-								(f.getGenero().getNome().toLowerCase().contains(txf_genero_pesquisa.getText().toLowerCase())) || 
-								(f.getLancamento().toLowerCase().contains(txf_lancamento_pesquisa.getText().toLowerCase())) ) {
-							
-							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
-						} 
-					}	
-					
-				} else {
-					
-					for (Filme f : cadFilme) {
-						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
+							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	} 
 					}
-					
-					
-					
-				}
-				
-				
-				
+				}	
 			}
 		});	
 		
