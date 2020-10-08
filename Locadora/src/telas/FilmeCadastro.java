@@ -66,6 +66,9 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		
 		
+		
+		
+		
 		// Aba Consulta
 		pnl_consulta.add(new JLabel("Titulo:")).setBounds(20, 11, 81, 14);
 		JTextField txf_titulo_pesquisa = new JTextField(10);
@@ -96,9 +99,9 @@ public class FilmeCadastro extends JInternalFrame {
 		tbl_modelo.addColumn("Duração");
 		tbl_modelo.addColumn("Lançamento");
 		tbl_filmes.getColumnModel().getColumn(0).setPreferredWidth(20);
-		tbl_filmes.getColumnModel().getColumn(1).setPreferredWidth(200);
+		tbl_filmes.getColumnModel().getColumn(1).setPreferredWidth(220);
 		tbl_filmes.getColumnModel().getColumn(2).setPreferredWidth(60);
-		tbl_filmes.getColumnModel().getColumn(3).setPreferredWidth(30);
+		tbl_filmes.getColumnModel().getColumn(3).setPreferredWidth(50);
 		tbl_filmes.getColumnModel().getColumn(4).setPreferredWidth(70);
 		
 		// Monta Tabela
@@ -136,7 +139,7 @@ public class FilmeCadastro extends JInternalFrame {
 		JComboBox<String> cbx_genero = new JComboBox<>();
 		for(int i = 0; i < cadGenero.size(); i++) {
 			cbx_genero.addItem(cadGenero.get(i).getNome());   }
-		pnl_cadastro.add(cbx_genero).setBounds(250, 28, 98, 22);
+		pnl_cadastro.add(cbx_genero).setBounds(250, 28, 100, 22);
 			
 		
 		pnl_cadastro.add(new JLabel("*Cópias:")).setBounds(380, 11, 55, 14);
@@ -165,7 +168,7 @@ public class FilmeCadastro extends JInternalFrame {
 		JTextField txf_imagem = new JTextField(5);
 		pnl_cadastro.add(txf_imagem).setBounds(380, 90, 135, 20);
 		JLabel lbl_mostrar_imagem = new JLabel("");
-		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(410, 120, 80, 110);
+		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(405, 120, 90, 110);
 		JButton btn_upload = new JButton("Upload");
 		pnl_cadastro.add(btn_upload).setBounds(440, 65, 75, 18);
 		
@@ -215,11 +218,10 @@ public class FilmeCadastro extends JInternalFrame {
 	
 	
 		pnl_cadastro.add(new JLabel("Sinopse:")).setBounds(20, 135, 98, 14);
-		//JEditorPane editorPaneSinopse = new JEditorPane();
-		//editorPaneSinopse.setBounds(20, 190, 290, 71);
-		//pnl_cadastro.add(editorPaneSinopse);
+		//JEditorPane edp_sinopse = new JEditorPane();
+		//pnl_cadastro.add(edp_sinopse).setBounds(20, 190, 290, 71);
+		//;
 		JTextArea txa_sinopse = new JTextArea(10, 30);
-		//pnl_cadastro.add(txa_sinopse).setBounds(20, 190, 290, 71);
 		JScrollPane scrl_sinopse = new JScrollPane(txa_sinopse);
 		pnl_cadastro.add(scrl_sinopse).setBounds(20, 160, 290, 100);
 
@@ -263,8 +265,8 @@ public class FilmeCadastro extends JInternalFrame {
 					// Filtra a Tabela
 					for (Filme f : cadFilme) {
 						if(f.getTitulo().toLowerCase().contains(txf_titulo_pesquisa.getText().toLowerCase()) || 
-								f.getGenero().getNome().toLowerCase().contains(txf_titulo_pesquisa.getText().toLowerCase()) || 
-								f.getLancamento().toLowerCase().contains(txf_titulo_pesquisa.getText().toLowerCase()) ) {
+								f.getGenero().getNome().toLowerCase().contains(txf_genero_pesquisa.getText().toLowerCase()) || 
+								f.getLancamento().toLowerCase().contains(txf_lancamento_pesquisa.getText().toLowerCase()) ) {
 							
 							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	} 
 					}

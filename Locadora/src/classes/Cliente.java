@@ -1,5 +1,7 @@
 package classes;
 
+import javax.swing.Icon;
+
 public class Cliente {
 	
 	private String nome;
@@ -8,12 +10,12 @@ public class Cliente {
 	private String email;
 	private String nascimento;
 	private String endereco;
-	private String foto;
+	private Icon imagem;
 	private Dependente dependente1;
 	private Dependente dependente2;
 	private Dependente dependente3;
 	private Integer id;
-	static Integer contador = 0;
+	static int contador = 0;
 
 	public Cliente(String nome, String cpf, String telefone) {
 		super();
@@ -71,12 +73,12 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	public String getFoto() {
-		return foto;
+	public Icon getImagem() {
+		return imagem;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setImagem(Icon imagem) {
+		this.imagem = imagem;
 	}
 
 	public Dependente getDependente1() {
@@ -103,4 +105,8 @@ public class Cliente {
 		this.dependente3 = dependente3;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+	
 }

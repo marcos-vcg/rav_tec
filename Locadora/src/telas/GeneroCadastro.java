@@ -66,7 +66,7 @@ public class GeneroCadastro extends JInternalFrame {
 		pnl_consulta.add(scp_generos).setBounds(40, 90, 120, 100);		
 		
 		// Inserir Colunas da Tabela de Dados
-		tbl_modelo.addColumn("Id");
+		tbl_modelo.addColumn("ID");
 		tbl_modelo.addColumn("Gênero");
 		tbl_generos.getColumnModel().getColumn(0).setPreferredWidth(20);
 		tbl_generos.getColumnModel().getColumn(1).setPreferredWidth(100);

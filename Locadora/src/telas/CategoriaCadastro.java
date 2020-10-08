@@ -63,7 +63,7 @@ public class CategoriaCadastro extends JInternalFrame {
 		pnl_consulta.add(scp_categorias).setBounds(20, 90, 170, 100);		
 		
 		// Inserir Colunas da Tabela de Dados
-		tbl_modelo.addColumn("Id");
+		tbl_modelo.addColumn("ID");
 		tbl_modelo.addColumn("Categoria");
 		tbl_modelo.addColumn("Preço");
 		tbl_categorias.getColumnModel().getColumn(0).setPreferredWidth(20);
