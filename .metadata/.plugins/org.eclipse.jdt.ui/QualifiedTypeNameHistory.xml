@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="javax.swing.JButton"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -35,7 +34,6 @@
     <fullyQualifiedTypeName name="javax.swing.filechooser.FileNameExtensionFilter"/>
     <fullyQualifiedTypeName name="telas.FilmeCadastro"/>
     <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
-    <fullyQualifiedTypeName name="javax.swing.Icon"/>
     <fullyQualifiedTypeName name="javax.swing.JTable"/>
     <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
     <fullyQualifiedTypeName name="javax.swing.event.ListSelectionEvent"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="javax.swing.table.TableRowSorter"/>
     <fullyQualifiedTypeName name="javax.swing.RowSorter"/>
     <fullyQualifiedTypeName name="javax.swing.RowFilter"/>
+    <fullyQualifiedTypeName name="javax.swing.Icon"/>
+    <fullyQualifiedTypeName name="telas.ClienteCadastro"/>
 </qualifiedTypeNameHistroy>

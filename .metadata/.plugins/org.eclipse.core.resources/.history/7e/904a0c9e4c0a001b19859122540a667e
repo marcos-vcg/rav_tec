@@ -481,7 +481,7 @@ public class FilmeCadastro extends JInternalFrame {
 	}
 	
 	// Não estou usando
-	public void imprimirFilmes(ArrayList<Filme> cadFilme) {
+	public static void imprimirFilmes(ArrayList<Filme> cadFilme) {
 		System.out.println("Total de Filmes: " + cadFilme.size());
 		int i = 1;
 		for(Filme filme: cadFilme) { 
