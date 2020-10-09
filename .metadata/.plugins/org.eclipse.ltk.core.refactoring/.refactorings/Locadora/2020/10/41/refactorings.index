@@ -23,3 +23,7 @@
 1602180414945	Rename local variable 'txa_sinopse'
 1602182016961	Rename local variable 'novoFilme'
 1602268806767	Encapsulate field 'dependentes'
+1602273922092	Rename method 'preencherTabela'
+1602278438890	Rename method 'setarTabela'
+1602282209087	Rename local variable 'idDependenteSelected'
+1602282790315	Rename field 'dependente'

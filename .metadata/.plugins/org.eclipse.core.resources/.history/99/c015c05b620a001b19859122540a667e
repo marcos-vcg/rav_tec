@@ -56,12 +56,14 @@ public class FilmeCadastro extends JInternalFrame {
 	JScrollPane scrl_sinopse;
 	JButton btn_cancelar, btn_cadastro;
 
+	
 	ArrayList<Filme> cadFilme;	
 	ArrayList<Genero> cadGenero;
 	ArrayList<Categoria> cadCategoria;
 
 	
-		
+	
+	
 	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria) {
 		super("Cadastro de Filmes", true, // resizable
 				true, // closable
@@ -71,9 +73,11 @@ public class FilmeCadastro extends JInternalFrame {
 		setLocation(xPosition, yPosition);
 		setLayout(null);
 
+		
 		this.cadFilme = cadFilme;
 		this.cadGenero = cadGenero;
 		this.cadCategoria = cadCategoria;
+		
 		
 		setarElementos (cadGenero, cadCategoria);
 		adicionarListeners();
@@ -81,10 +85,7 @@ public class FilmeCadastro extends JInternalFrame {
 		limparComponentes();	
 		
 	}
-		
-	
 		/*
-		
 		// Ações dos Botões
 		btn_pesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -219,9 +220,12 @@ public class FilmeCadastro extends JInternalFrame {
 				preencherTabela(cadFilme);				
 			}
 		});
-			
+		
+		
 		*/
 		
+		
+	
 
 	
 	

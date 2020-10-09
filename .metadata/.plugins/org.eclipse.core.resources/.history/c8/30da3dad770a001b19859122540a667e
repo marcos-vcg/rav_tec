@@ -66,8 +66,7 @@ public class ClienteCadastro extends JInternalFrame {
 	JButton btnVoltar, btn_cadastro;
 	JButton btn_tbl_cadastro, btn_tbl_editar, btn_tbl_excluir;
 	
-	int idSelected, clienteSelecionado;
-	Dependente dependenteSelecionado;
+	Integer idSelected, clienteSelecionado;
 	
 	
 	public ClienteCadastro(ArrayList<Cliente> cadCliente) {
@@ -188,16 +187,16 @@ public class ClienteCadastro extends JInternalFrame {
 		pnl_cadastro.add(btn_upload).setBounds(440, 65, 75, 18);
 		
 		
-		// Dependentes
+		
 		pnl_cadastro.add(new JLabel("Dependentes:")).setBounds(20, 120, 98, 14);
 		
 		pnl_cadastro.add(new JLabel("Nome:")).setBounds(20, 140, 70, 14);
 		txf_dependente = new JTextField(10);
-		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 120, 20);
+		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 100, 20);
 		
-		pnl_cadastro.add(new JLabel("Grau:")).setBounds(200, 140, 98, 14);
+		pnl_cadastro.add(new JLabel("Grau:")).setBounds(180, 140, 98, 14);
 		cbx_grau = new JComboBox<>(Grau.values());
-		pnl_cadastro.add(cbx_grau).setBounds(240, 138, 90, 22);
+		pnl_cadastro.add(cbx_grau).setBounds(220, 138, 80, 22);
 		
 		
 		// Criar Tabela de Dados
@@ -224,17 +223,11 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		// Botões Tabela Detalhe
 		btn_tbl_cadastro = new JButton("Cadastrar");
-		btn_tbl_cadastro.setEnabled(false);
 		pnl_cadastro.add(btn_tbl_cadastro).setBounds(230, 180, 100, 18);
-		
 		btn_tbl_editar = new JButton("Editar");
-		btn_tbl_editar.setEnabled(false);
 		pnl_cadastro.add(btn_tbl_editar).setBounds(230, 210, 100, 18);
-		
 		btn_tbl_excluir = new JButton("Excluir");
-		btn_tbl_excluir.setEnabled(false);
 		pnl_cadastro.add(btn_tbl_excluir).setBounds(230, 240, 100, 18);
-		
 		
 		
 		
@@ -250,27 +243,13 @@ public class ClienteCadastro extends JInternalFrame {
                 //altera os botoes para ativados somente se houver linha selecionada
                 btn_editar.setEnabled(!lsm.isSelectionEmpty());
                 btn_excluir.setEnabled(!lsm.isSelectionEmpty());
-                btn_tbl_cadastro.setEnabled(!lsm.isSelectionEmpty());
                 
-                idSelected = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+                idSelected = (Integer) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
 				for(int i = 0; i < cadCliente.size(); i++) { 
 					if (cadCliente.get(i).getId() == idSelected) {
 						clienteSelecionado = i;
 					}
 				}
-            }
-        });
-		
-		
-		tbl_dependentes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-                //altera os botoes para ativados somente se houver linha selecionada
-                btn_tbl_editar.setEnabled(!lsm.isSelectionEmpty());
-                btn_tbl_excluir.setEnabled(!lsm.isSelectionEmpty());
-                
-                dependenteSelecionado = cadCliente.get(tbl_dependentes.getSelectedRow()).getDependentes().get(tbl_dependentes.getSelectedRow());
             }
         });
 		
@@ -454,7 +433,7 @@ public class ClienteCadastro extends JInternalFrame {
 					cadCliente.get(clienteSelecionado).getDependentes().add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
 					//cadCliente.get(i).getDependentes().get(i).setNome(txf_dependente.getText().toString());
 				}else {
-					JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Máximo de Dependentes é de 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
 				}
 				//cadCliente.get(i).getDependentes().setNome(txf_dependente.getText().toString());
 				//cadCliente.get(i).getDependentes().get(i).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
@@ -466,20 +445,15 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_tbl_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				dependenteSelecionado.setNome(txf_dependente.getText().toString());
-				dependenteSelecionado.setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
 				
-				txf_dependente.setText(dependenteSelecionado.getNome());
-				cbx_grau.setSelectedItem()
-				
-				setarTabelaDetalhe();	
+				setarTabelaDetalhe ();	
 			}
 		});	
 		
 		btn_tbl_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				cadCliente.get(clienteSelecionado).getDependentes().remove(tbl_dependentes.getSelectedRow());
+				
 				setarTabelaDetalhe ();	
 			}
 		});	

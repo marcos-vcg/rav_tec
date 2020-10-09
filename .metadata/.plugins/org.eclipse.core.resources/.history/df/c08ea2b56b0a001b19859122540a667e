@@ -52,22 +52,10 @@ public class ClienteCadastro extends JInternalFrame {
 	DefaultTableModel tbl_modelo;
 	JTable tbl_clientes;
 	JScrollPane scp_tbl_clientes;
-	JButton btn_editar, btn_excluir, btn_novo;
 	
-	JTextField txf_nome, txf_cpf, txf_telefone, txf_email, txf_nascimento, txf_endereco, txf_imagem, txf_dependente ;
-	JLabel lbl_mostrar_imagem;
-	JButton btn_upload;
-	JComboBox<Grau> cbx_grau;
 	
-	DefaultTableModel tbl_modelo_dep;
-	JTable tbl_dependentes;
-	JScrollPane scp_tbl_dependentes;
 	
-	JButton btnVoltar, btn_cadastro;
-	JButton btn_tbl_cadastro, btn_tbl_editar, btn_tbl_excluir;
 	
-	int idSelected, clienteSelecionado;
-	Dependente dependenteSelecionado;
 	
 	
 	public ClienteCadastro(ArrayList<Cliente> cadCliente) {
@@ -82,197 +70,78 @@ public class ClienteCadastro extends JInternalFrame {
 		this.cadCliente = cadCliente;
 		
 		setarElementos();
-		adicionarListeners();
-		setarTabelaMestre();
-		limparComponentes();
+		preencherTabela();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-	}
+		
+		
 
-
-	
-	
-	private void setarElementos () {
-		
-		// Criar Abas
-		abas = new JTabbedPane(JTabbedPane.TOP);
-		add(abas).setBounds(10, 11, 540, 300);
-		
-		
-		// Painéis das Abas
-		pnl_consulta = new JPanel();
-		pnl_consulta.setLayout(null);
-		abas.addTab("Pesquisa", null, pnl_consulta, "Pesquisar Clientes");
-		
-		pnl_cadastro = new JPanel();
-		pnl_cadastro.setLayout(null);
-		abas.addTab("Cadastro", null, pnl_cadastro, "Cadastrar Clientes");
-		
-		// Aba Consulta
-		pnl_consulta.add(new JLabel("Nome:")).setBounds(20, 11, 81, 14);
-		txf_nome_pesquisa = new JTextField(10);
-		pnl_consulta.add(txf_nome_pesquisa).setBounds(20, 29, 220, 20);
-
-		pnl_consulta.add(new JLabel("CPF:")).setBounds(270, 11, 120, 14);
-		txf_cpf_pesquisa = new JTextField(10);
-		pnl_consulta.add(txf_cpf_pesquisa).setBounds(270, 29, 120, 20);
-		
-		btn_pesquisar = new JButton("Pesquisar");
-		pnl_consulta.add(btn_pesquisar).setBounds(420, 29, 100, 20);
-		
-		
-		// Criar Tabela de Dados
-		tbl_modelo = new DefaultTableModel();
-		tbl_clientes = new JTable(tbl_modelo);
-		scp_tbl_clientes = new JScrollPane(tbl_clientes);
-		pnl_consulta.add(scp_tbl_clientes).setBounds(20, 60, 500, 100);
-		
-		// Preencher Tabela de Dados
-		tbl_modelo.addColumn("ID");
-		tbl_modelo.addColumn("Nome");
-		tbl_modelo.addColumn("CPF");
-		tbl_modelo.addColumn("Email");
-		tbl_clientes.getColumnModel().getColumn(0).setPreferredWidth(20);
-		tbl_clientes.getColumnModel().getColumn(1).setPreferredWidth(220);
-		tbl_clientes.getColumnModel().getColumn(2).setPreferredWidth(80);
-		tbl_clientes.getColumnModel().getColumn(3).setPreferredWidth(80);		
 		
 		
 		// Botões de Ação
-		btn_editar = new JButton("Editar");
+		JButton btn_editar = new JButton("Editar");
 		btn_editar.setEnabled(false);
 		pnl_consulta.add(btn_editar).setBounds(230, 225, 80, 25);		
 		
-		btn_excluir = new JButton("Excluir");
+		JButton btn_excluir = new JButton("Excluir");
 		btn_excluir.setEnabled(false);
 		pnl_consulta.add(btn_excluir).setBounds(330, 225, 80, 25);
 		
-		btn_novo = new JButton("Novo");
+		JButton btn_novo = new JButton("Novo");
 		btn_novo.setVisible(true);
 		pnl_consulta.add(btn_novo).setBounds(430, 225, 80, 25);		
+		
+
+		
 		
 		
 		
 		// Aba Cadastro
 		pnl_cadastro.add(new JLabel("*Nome:")).setBounds(20, 11, 81, 14);
-		txf_nome = new JTextField(10);
+		JTextField txf_nome = new JTextField(10);
 		pnl_cadastro.add(txf_nome).setBounds(20, 29, 230, 20);
 
 		pnl_cadastro.add(new JLabel("*CPF:")).setBounds(270, 11, 98, 14);
-		txf_cpf = new JTextField(10);
+		JTextField txf_cpf = new JTextField(10);
 		pnl_cadastro.add(txf_cpf).setBounds(270, 29, 110, 20);
 		
 		pnl_cadastro.add(new JLabel("*Telefone:")).setBounds(400, 11, 100, 14);
-		txf_telefone = new JTextField(10);
+		JTextField txf_telefone = new JTextField(10);
 		pnl_cadastro.add(txf_telefone).setBounds(400, 29, 115, 20);
+		
 		
 
 		pnl_cadastro.add(new JLabel("Email:")).setBounds(20, 65, 55, 14);
-		txf_email = new JTextField(10);
+		JTextField txf_email = new JTextField(10);
 		pnl_cadastro.add(txf_email).setBounds(20, 90, 120, 20);
 
 		pnl_cadastro.add(new JLabel("Nascimento:")).setBounds(160, 65, 90, 14);
-		txf_nascimento = new JTextField(10);
+		JTextField txf_nascimento = new JTextField(10);
 		pnl_cadastro.add(txf_nascimento).setBounds(160, 90, 90, 20);
 	
+
 		
 		pnl_cadastro.add(new JLabel("Endereço:")).setBounds(270, 65, 90, 14);
-		txf_endereco = new JTextField(10);
+		JTextField txf_endereco = new JTextField(10);
 		pnl_cadastro.add(txf_endereco).setBounds(270, 90, 110, 20);
 		
 		pnl_cadastro.add(new JLabel("Foto:")).setBounds(400, 65, 75, 14);
-		txf_imagem = new JTextField(5);
+		JTextField txf_imagem = new JTextField(5);
 		pnl_cadastro.add(txf_imagem).setBounds(400, 90, 115, 20);
-		lbl_mostrar_imagem = new JLabel("");
+		JLabel lbl_mostrar_imagem = new JLabel("");
 		pnl_cadastro.add(lbl_mostrar_imagem).setBounds(415, 120, 90, 110);
-		btn_upload = new JButton("Upload");
+		JButton btn_upload = new JButton("Upload");
 		pnl_cadastro.add(btn_upload).setBounds(440, 65, 75, 18);
-		
-		
-		// Dependentes
-		pnl_cadastro.add(new JLabel("Dependentes:")).setBounds(20, 120, 98, 14);
-		
-		pnl_cadastro.add(new JLabel("Nome:")).setBounds(20, 140, 70, 14);
-		txf_dependente = new JTextField(10);
-		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 120, 20);
-		
-		pnl_cadastro.add(new JLabel("Grau:")).setBounds(200, 140, 98, 14);
-		cbx_grau = new JComboBox<>(Grau.values());
-		pnl_cadastro.add(cbx_grau).setBounds(240, 138, 90, 22);
-		
-		
-		// Criar Tabela de Dados
-		tbl_modelo_dep = new DefaultTableModel();
-		tbl_dependentes = new JTable(tbl_modelo_dep);
-		scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
-		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
-		
-		// Colunas da Tabela
-		tbl_modelo_dep.addColumn("Nome");
-		tbl_modelo_dep.addColumn("Grau");
-		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(80);
-		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(40);
-		
-		
-		// Botões de Ação
-		btnVoltar = new JButton("Cancelar");
-		//pnl_cadastro.add(btnVoltar).setBounds(325, 238, 85, 23);
-		btnVoltar.setAction(cancelar);
-
-		btn_cadastro = new JButton("Cadastrar");
-		pnl_cadastro.add(btn_cadastro).setBounds(424, 238, 100, 23);
-		
-		
-		// Botões Tabela Detalhe
-		btn_tbl_cadastro = new JButton("Cadastrar");
-		btn_tbl_cadastro.setEnabled(false);
-		pnl_cadastro.add(btn_tbl_cadastro).setBounds(230, 180, 100, 18);
-		
-		btn_tbl_editar = new JButton("Editar");
-		btn_tbl_editar.setEnabled(false);
-		pnl_cadastro.add(btn_tbl_editar).setBounds(230, 210, 100, 18);
-		
-		btn_tbl_excluir = new JButton("Excluir");
-		btn_tbl_excluir.setEnabled(false);
-		pnl_cadastro.add(btn_tbl_excluir).setBounds(230, 240, 100, 18);
-		
-		
-		
-		
-	}
-	
-	private void adicionarListeners() {
-		
-		// Percebe Ação de Clicar na tabela
-		tbl_clientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-                //altera os botoes para ativados somente se houver linha selecionada
-                btn_editar.setEnabled(!lsm.isSelectionEmpty());
-                btn_excluir.setEnabled(!lsm.isSelectionEmpty());
-                btn_tbl_cadastro.setEnabled(!lsm.isSelectionEmpty());
-                
-                idSelected = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
-				for(int i = 0; i < cadCliente.size(); i++) { 
-					if (cadCliente.get(i).getId() == idSelected) {
-						clienteSelecionado = i;
-					}
-				}
-            }
-        });
-		
-		
-		tbl_dependentes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-                //altera os botoes para ativados somente se houver linha selecionada
-                btn_tbl_editar.setEnabled(!lsm.isSelectionEmpty());
-                btn_tbl_excluir.setEnabled(!lsm.isSelectionEmpty());
-                
-                dependenteSelecionado = cadCliente.get(tbl_dependentes.getSelectedRow()).getDependentes().get(tbl_dependentes.getSelectedRow());
-            }
-        });
 		
 		
 		btn_upload.addActionListener(new ActionListener() {
@@ -297,7 +166,85 @@ public class ClienteCadastro extends JInternalFrame {
 		}); 
 		
 		
+		
+		
+		pnl_cadastro.add(new JLabel("Dependentes:")).setBounds(20, 120, 98, 14);
+		
+		pnl_cadastro.add(new JLabel("Nome:")).setBounds(20, 140, 70, 14);
+		JTextField txf_dependente = new JTextField(10);
+		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 100, 20);
+		
+		pnl_cadastro.add(new JLabel("Grau:")).setBounds(180, 140, 98, 14);
+		JComboBox<Grau> cbx_grau = new JComboBox<>(Grau.values());
+		pnl_cadastro.add(cbx_grau).setBounds(220, 138, 80, 22);
+		
+		
+		// Criar Tabela de Dados
+		DefaultTableModel tbl_modelo_dep = new DefaultTableModel();
+		JTable tbl_dependentes = new JTable(tbl_modelo_dep);
+		JScrollPane scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
+		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
+		
+		// Colunas da Tabela
+		tbl_modelo_dep.addColumn("Nome");
+		tbl_modelo_dep.addColumn("Grau");
 
+		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(80);
+		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(40);
+	
+		
+		
+		// Preenche Tabela
+		//tbl_modelo.setNumRows(0);
+		//cadCliente.get(index).sort(Comparator.comparing(Cliente::getNome));
+		//for (Cliente d : cadCliente.get(index) { tbl_modelo.addRow(new Object[]{d.getDependentes().get(0).getNome(), d.getDependentes().get(0).getGrau() });	}
+		
+		
+		
+		
+		
+		
+		
+		JTextArea txa_dependentes = new JTextArea(10, 30);
+		JScrollPane scrl_sinopse = new JScrollPane(txa_dependentes);
+		//pnl_cadastro.add(scrl_sinopse).setBounds(20, 160, 290, 100);
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// Botões de Ação
+		JButton btnVoltar = new JButton("Cancelar");
+		//pnl_cadastro.add(btnVoltar).setBounds(325, 238, 85, 23);
+		btnVoltar.setAction(cancelar);
+
+		JButton btn_cadastro = new JButton("Cadastrar");
+		pnl_cadastro.add(btn_cadastro).setBounds(424, 238, 100, 23);
+		
+		
+
+		
+		// Percebe Ação de Clicar na tabela
+		tbl_clientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+                //altera os botoes para ativados somente se houver linha selecionada
+                btn_editar.setEnabled(!lsm.isSelectionEmpty());
+                btn_excluir.setEnabled(!lsm.isSelectionEmpty());
+            }
+        });
 		
 		
 		
@@ -306,12 +253,12 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_pesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// Limpa Tabela
+				// Remonta Tabela
 				tbl_modelo.setNumRows(0);
 				String nome = txf_nome_pesquisa.getText().toLowerCase();
 				String cpf = txf_cpf_pesquisa.getText().toLowerCase();
 				if(nome.isEmpty() && cpf.isEmpty()) {
-					setarTabelaMestre();
+					for (Cliente c : cadCliente) {tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});  }
 				} else {
 					// Filtra a Tabela
 					for (Cliente c : cadCliente) {
@@ -369,8 +316,19 @@ public class ClienteCadastro extends JInternalFrame {
 				for(int i = 0; i < cadCliente.size(); i++) { if (cadCliente.get(i).getId() == idSelected) {cadCliente.remove(i);}  }
 				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusão Efetuada!", JOptionPane.WARNING_MESSAGE);
 				
-				setarTabelaMestre();
-				limparComponentes ();				
+				tbl_modelo.setNumRows(0);
+				for (Cliente c : cadCliente) {tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});}
+				
+				txf_nome.setText("");
+				txf_cpf.setText("");
+				txf_telefone.setText("");
+				txf_email.setText("");
+				txf_nascimento.setText("");
+				txf_endereco.setText("");
+				txf_imagem.setText("");
+				lbl_mostrar_imagem.setText("");
+				txa_dependentes.setText("");
+				
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
 			}
@@ -378,7 +336,16 @@ public class ClienteCadastro extends JInternalFrame {
 
 		btn_novo.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limparComponentes ();				
+				txf_nome.setText("");
+				txf_cpf.setText("");
+				txf_telefone.setText("");
+				txf_email.setText("");
+				txf_nascimento.setText("");
+				txf_endereco.setText("");
+				txf_imagem.setText("");
+				lbl_mostrar_imagem.setText("");
+				txa_dependentes.setText("");
+				
 				abas.setSelectedIndex(1);
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
@@ -420,7 +387,18 @@ public class ClienteCadastro extends JInternalFrame {
 					}
 					
 					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes ();
+					
+					
+					txf_nome.setText("");
+					txf_cpf.setText("");
+					txf_telefone.setText("");
+					txf_email.setText("");
+					txf_nascimento.setText("");
+					txf_endereco.setText("");
+					txf_imagem.setText("");
+					lbl_mostrar_imagem.setIcon(null);
+					txa_dependentes.setText("");
+					
 					abas.setSelectedIndex(0);
 					btn_cadastro.setText("Cadastrar");
 					edit = false;
@@ -436,7 +414,17 @@ public class ClienteCadastro extends JInternalFrame {
 					//novoCliente.setDependente1(txa_dependentes.getText());
 					cadCliente.add(novoCliente);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes ();					
+					
+					txf_nome.setText("");
+					txf_cpf.setText("");
+					txf_telefone.setText("");
+					txf_email.setText("");
+					txf_nascimento.setText("");
+					txf_endereco.setText("");
+					txf_imagem.setText("");
+					lbl_mostrar_imagem.setText("");
+					txa_dependentes.setText("");
+					
 				}
 				
 				tbl_modelo.setNumRows(0);
@@ -447,72 +435,78 @@ public class ClienteCadastro extends JInternalFrame {
 		});
 		
 		
-		btn_tbl_cadastro.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-		
-				if(cadCliente.get(clienteSelecionado).getDependentes().size()<3) {
-					cadCliente.get(clienteSelecionado).getDependentes().add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
-					//cadCliente.get(i).getDependentes().get(i).setNome(txf_dependente.getText().toString());
-				}else {
-					JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
-				}
-				//cadCliente.get(i).getDependentes().setNome(txf_dependente.getText().toString());
-				//cadCliente.get(i).getDependentes().get(i).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
-										
-				setarTabelaDetalhe ();				
-			}
-		});	
-		
-		btn_tbl_editar.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+	}
 
-				dependenteSelecionado.setNome(txf_dependente.getText().toString());
-				dependenteSelecionado.setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
-				
-				txf_dependente.setText(dependenteSelecionado.getNome());
-				cbx_grau.setSelectedItem()
-				
-				setarTabelaDetalhe();	
-			}
-		});	
+	
+	
+	
+	
+	private void setarElementos () {
 		
-		btn_tbl_excluir.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+		// Criar Abas
+		abas = new JTabbedPane(JTabbedPane.TOP);
+		add(abas).setBounds(10, 11, 540, 300);
+		
+		
+		// Painéis das Abas
+		pnl_consulta = new JPanel();
+		pnl_consulta.setLayout(null);
+		abas.addTab("Pesquisa", null, pnl_consulta, "Pesquisar Clientes");
+		
+		pnl_cadastro = new JPanel();
+		pnl_cadastro.setLayout(null);
+		abas.addTab("Cadastro", null, pnl_cadastro, "Cadastrar Clientes");
+		
+		// Aba Consulta
+		pnl_consulta.add(new JLabel("Nome:")).setBounds(20, 11, 81, 14);
+		txf_nome_pesquisa = new JTextField(10);
+		pnl_consulta.add(txf_nome_pesquisa).setBounds(20, 29, 220, 20);
 
-				cadCliente.get(clienteSelecionado).getDependentes().remove(tbl_dependentes.getSelectedRow());
-				setarTabelaDetalhe ();	
-			}
-		});	
+		pnl_consulta.add(new JLabel("CPF:")).setBounds(270, 11, 120, 14);
+		txf_cpf_pesquisa = new JTextField(10);
+		pnl_consulta.add(txf_cpf_pesquisa).setBounds(270, 29, 120, 20);
+		
+		btn_pesquisar = new JButton("Pesquisar");
+		pnl_consulta.add(btn_pesquisar).setBounds(420, 29, 100, 20);
+		
+		
+		// Criar Tabela de Dados
+		tbl_modelo = new DefaultTableModel();
+		tbl_clientes = new JTable(tbl_modelo);
+		scp_tbl_clientes = new JScrollPane(tbl_clientes);
+		pnl_consulta.add(scp_tbl_clientes).setBounds(20, 60, 500, 100);
+		
+		// Preencher Tabela de Dados
+		tbl_modelo.addColumn("ID");
+		tbl_modelo.addColumn("Nome");
+		tbl_modelo.addColumn("CPF");
+		tbl_modelo.addColumn("Email");
+		tbl_clientes.getColumnModel().getColumn(0).setPreferredWidth(20);
+		tbl_clientes.getColumnModel().getColumn(1).setPreferredWidth(220);
+		tbl_clientes.getColumnModel().getColumn(2).setPreferredWidth(80);
+		tbl_clientes.getColumnModel().getColumn(3).setPreferredWidth(80);		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}
 	
-	private void setarTabelaMestre() {
+	
+	private void preencherTabela() {
 		// Monta Tabela
 		tbl_modelo.setNumRows(0);
 		cadCliente.sort(Comparator.comparing(Cliente::getNome));
 		for (Cliente c : cadCliente) { tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	}
 	}
 	
-	private void setarTabelaDetalhe () {
-		tbl_modelo_dep.setNumRows(0);
-		cadCliente.get(clienteSelecionado).getDependentes().sort(Comparator.comparing(Dependente::getNome));
-		for (Dependente d : cadCliente.get(clienteSelecionado).getDependentes()) { 
-			tbl_modelo_dep.addRow(new Object[]{d.getNome(), d.getGrau() });	
-		}
-	}
-	
 	
 	private void limparComponentes () {
-		txf_nome.setText("");
-		txf_cpf.setText("");
-		txf_telefone.setText("");
-		txf_email.setText("");
-		txf_nascimento.setText("");
-		txf_endereco.setText("");
-		txf_imagem.setText("");
-		lbl_mostrar_imagem.setIcon(null);
-		tbl_modelo_dep.setNumRows(0);
+		
 	}
 
 	private class SwingAction_1 extends AbstractAction {

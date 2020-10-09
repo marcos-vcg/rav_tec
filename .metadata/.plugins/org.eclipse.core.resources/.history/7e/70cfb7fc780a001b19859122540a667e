@@ -66,8 +66,7 @@ public class ClienteCadastro extends JInternalFrame {
 	JButton btnVoltar, btn_cadastro;
 	JButton btn_tbl_cadastro, btn_tbl_editar, btn_tbl_excluir;
 	
-	int idSelected, clienteSelecionado;
-	Dependente dependenteSelecionado;
+	Integer idSelected, clienteSelecionado, dependenteSelecionado;
 	
 	
 	public ClienteCadastro(ArrayList<Cliente> cadCliente) {
@@ -193,11 +192,11 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		pnl_cadastro.add(new JLabel("Nome:")).setBounds(20, 140, 70, 14);
 		txf_dependente = new JTextField(10);
-		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 120, 20);
+		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 100, 20);
 		
-		pnl_cadastro.add(new JLabel("Grau:")).setBounds(200, 140, 98, 14);
+		pnl_cadastro.add(new JLabel("Grau:")).setBounds(180, 140, 98, 14);
 		cbx_grau = new JComboBox<>(Grau.values());
-		pnl_cadastro.add(cbx_grau).setBounds(240, 138, 90, 22);
+		pnl_cadastro.add(cbx_grau).setBounds(220, 138, 100, 22);
 		
 		
 		// Criar Tabela de Dados
@@ -252,7 +251,7 @@ public class ClienteCadastro extends JInternalFrame {
                 btn_excluir.setEnabled(!lsm.isSelectionEmpty());
                 btn_tbl_cadastro.setEnabled(!lsm.isSelectionEmpty());
                 
-                idSelected = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+                idSelected = (Integer) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
 				for(int i = 0; i < cadCliente.size(); i++) { 
 					if (cadCliente.get(i).getId() == idSelected) {
 						clienteSelecionado = i;
@@ -270,7 +269,12 @@ public class ClienteCadastro extends JInternalFrame {
                 btn_tbl_editar.setEnabled(!lsm.isSelectionEmpty());
                 btn_tbl_excluir.setEnabled(!lsm.isSelectionEmpty());
                 
-                dependenteSelecionado = cadCliente.get(tbl_dependentes.getSelectedRow()).getDependentes().get(tbl_dependentes.getSelectedRow());
+                idSelected = (Integer) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+				for(int i = 0; i < cadCliente.size(); i++) { 
+					if (cadCliente.get(i).getId() == idSelected) {
+						dependenteSelecionado = i;
+					}
+				}
             }
         });
 		
@@ -466,12 +470,7 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_tbl_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				dependenteSelecionado.setNome(txf_dependente.getText().toString());
-				dependenteSelecionado.setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
-				
-				txf_dependente.setText(dependenteSelecionado.getNome());
-				cbx_grau.setSelectedItem()
-				
+				cadCliente.get(clienteSelecionado).getDependentes().get(index).setNome(txf_dependente.getText().toString());
 				setarTabelaDetalhe();	
 			}
 		});	
@@ -479,7 +478,7 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_tbl_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				cadCliente.get(clienteSelecionado).getDependentes().remove(tbl_dependentes.getSelectedRow());
+				
 				setarTabelaDetalhe ();	
 			}
 		});	
