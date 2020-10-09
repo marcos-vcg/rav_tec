@@ -22,3 +22,4 @@
 1602180207735	Rename field 'foto'
 1602180414945	Rename local variable 'txa_sinopse'
 1602182016961	Rename local variable 'novoFilme'
+1602268806767	Encapsulate field 'dependentes'

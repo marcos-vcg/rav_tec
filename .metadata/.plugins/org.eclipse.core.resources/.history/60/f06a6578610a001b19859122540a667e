@@ -32,6 +32,7 @@ import classes.Filme;
 import classes.Genero;
 
 
+
 @SuppressWarnings("serial")
 public class FilmeCadastro extends JInternalFrame {
 
@@ -55,13 +56,10 @@ public class FilmeCadastro extends JInternalFrame {
 	JTextArea txa_sinopse;
 	JScrollPane scrl_sinopse;
 	JButton btn_cancelar, btn_cadastro;
-
-	
 	ArrayList<Filme> cadFilme;	
 	ArrayList<Genero> cadGenero;
 	ArrayList<Categoria> cadCategoria;
 
-	
 	
 	
 	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria) {
@@ -82,9 +80,8 @@ public class FilmeCadastro extends JInternalFrame {
 		setarElementos (cadGenero, cadCategoria);
 		adicionarListeners();
 		preencherTabela(cadFilme);
-		limparComponentes();	
+		limparComponentes();
 		
-	}
 		/*
 		// Ações dos Botões
 		btn_pesquisar.addActionListener(new ActionListener() {
@@ -225,7 +222,7 @@ public class FilmeCadastro extends JInternalFrame {
 		*/
 		
 		
-	
+	}
 
 	
 	

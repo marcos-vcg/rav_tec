@@ -181,37 +181,15 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		
 		
-		pnl_cadastro.add(new JLabel("Dependentes:")).setBounds(20, 120, 98, 14);
+		pnl_cadastro.add(new JLabel("Dependentes:")).setBounds(20, 135, 98, 14);
 		
-		pnl_cadastro.add(new JLabel("Nome:")).setBounds(20, 140, 70, 14);
+		pnl_cadastro.add(new JLabel("Nome:")).setBounds(20, 155, 70, 14);
 		JTextField txf_dependente = new JTextField(10);
-		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 100, 20);
+		pnl_cadastro.add(txf_dependente).setBounds(60, 155, 100, 20);
 		
-		pnl_cadastro.add(new JLabel("Grau:")).setBounds(180, 140, 98, 14);
+		pnl_cadastro.add(new JLabel("Grau:")).setBounds(180, 155, 98, 14);
 		JComboBox<Grau> cbx_grau = new JComboBox<>(Grau.values());
-		pnl_cadastro.add(cbx_grau).setBounds(220, 138, 80, 22);
-		
-		
-		// Criar Tabela de Dados
-		DefaultTableModel tbl_modelo_dep = new DefaultTableModel();
-		JTable tbl_dependentes = new JTable(tbl_modelo_dep);
-		JScrollPane scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
-		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
-		
-		// Colunas da Tabela
-		tbl_modelo_dep.addColumn("Nome");
-		tbl_modelo_dep.addColumn("Grau");
-
-		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(80);
-		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(40);
-	
-		
-		
-		// Preenche Tabela
-		tbl_modelo.setNumRows(0);
-		cadCliente.sort(Comparator.comparing(Cliente::getNome));
-		for (Cliente c : cadCliente) { tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	}
-		
+		pnl_cadastro.add(cbx_grau).setBounds(210, 155, 100, 22);
 		
 		
 		
@@ -222,21 +200,9 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		// Botões de Ação
 		JButton btnVoltar = new JButton("Cancelar");
-		//pnl_cadastro.add(btnVoltar).setBounds(325, 238, 85, 23);
+		pnl_cadastro.add(btnVoltar).setBounds(325, 238, 85, 23);
 		btnVoltar.setAction(cancelar);
 
 		JButton btn_cadastro = new JButton("Cadastrar");

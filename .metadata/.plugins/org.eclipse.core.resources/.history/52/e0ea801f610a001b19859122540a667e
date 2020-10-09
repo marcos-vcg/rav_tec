@@ -198,7 +198,7 @@ public class ClienteCadastro extends JInternalFrame {
 		JScrollPane scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
 		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
 		
-		// Colunas da Tabela
+		// Preencher Tabela de Dados
 		tbl_modelo_dep.addColumn("Nome");
 		tbl_modelo_dep.addColumn("Grau");
 
@@ -207,7 +207,7 @@ public class ClienteCadastro extends JInternalFrame {
 	
 		
 		
-		// Preenche Tabela
+		// Monta Tabela
 		tbl_modelo.setNumRows(0);
 		cadCliente.sort(Comparator.comparing(Cliente::getNome));
 		for (Cliente c : cadCliente) { tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	}

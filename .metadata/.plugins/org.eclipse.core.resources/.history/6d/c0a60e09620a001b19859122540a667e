@@ -55,13 +55,10 @@ public class FilmeCadastro extends JInternalFrame {
 	JTextArea txa_sinopse;
 	JScrollPane scrl_sinopse;
 	JButton btn_cancelar, btn_cadastro;
-
-	
 	ArrayList<Filme> cadFilme;	
 	ArrayList<Genero> cadGenero;
 	ArrayList<Categoria> cadCategoria;
 
-	
 	
 	
 	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria) {

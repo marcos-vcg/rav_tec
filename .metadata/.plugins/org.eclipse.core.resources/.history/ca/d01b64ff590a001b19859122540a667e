@@ -32,6 +32,7 @@ import classes.Filme;
 import classes.Genero;
 
 
+
 @SuppressWarnings("serial")
 public class FilmeCadastro extends JInternalFrame {
 
@@ -55,13 +56,8 @@ public class FilmeCadastro extends JInternalFrame {
 	JTextArea txa_sinopse;
 	JScrollPane scrl_sinopse;
 	JButton btn_cancelar, btn_cadastro;
+			
 
-	
-	ArrayList<Filme> cadFilme;	
-	ArrayList<Genero> cadGenero;
-	ArrayList<Categoria> cadCategoria;
-
-	
 	
 	
 	public FilmeCadastro(ArrayList<Filme> cadFilme, ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria) {
@@ -74,18 +70,12 @@ public class FilmeCadastro extends JInternalFrame {
 		setLayout(null);
 
 		
-		this.cadFilme = cadFilme;
-		this.cadGenero = cadGenero;
-		this.cadCategoria = cadCategoria;
-		
-		
 		setarElementos (cadGenero, cadCategoria);
 		adicionarListeners();
 		preencherTabela(cadFilme);
-		limparComponentes();	
+		limparComponentes();
 		
-	}
-		/*
+		
 		// Ações dos Botões
 		btn_pesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -222,10 +212,10 @@ public class FilmeCadastro extends JInternalFrame {
 		});
 		
 		
-		*/
 		
 		
-	
+		
+	}
 
 	
 	
@@ -409,143 +399,6 @@ public class FilmeCadastro extends JInternalFrame {
 		});  
 		
 		
-		// Ações dos Botões
-		btn_pesquisar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				// Reseta Tabela
-				tbl_modelo.setNumRows(0);
-				String titulo = txf_titulo_pesquisa.getText().toLowerCase();
-				String genero = txf_genero_pesquisa.getText().toLowerCase();
-				String lancamento = txf_lancamento_pesquisa.getText().toLowerCase();
-				
-				// Condição se houver exclusivamente todos os campos pesquisados
-				if(titulo.isEmpty() && genero.isEmpty() && lancamento.isEmpty()) {
-					preencherTabela(cadFilme);
-				} else {
-					for (Filme f : cadFilme) {
-	
-						if(!titulo.isEmpty() && !f.getTitulo().toLowerCase().contains(titulo)) continue; 	
-						if(!genero.isEmpty() && !f.getGenero().getNome().toLowerCase().contains(genero)) continue; 
-                        if(!lancamento.isEmpty() && !f.getLancamento().toLowerCase().contains(lancamento)) continue; 
-						
-						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
-					}
-				}								
-			}
-		});	
-		
-		
-		
-		btn_editar.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_filmes.getSelectedRow(), 0);
-				for(int i = 0; i < cadFilme.size(); i++) { 
-					if (cadFilme.get(i).getId() == idSelected) {
-						txf_titulo.setText(cadFilme.get(i).getTitulo());
-						cbx_genero.setSelectedItem(cadFilme.get(i).getGenero().getNome());
-						txf_copias.setText(cadFilme.get(i).getCopias().toString());
-						txf_duracao.setText(cadFilme.get(i).getDuracao());
-						txf_lancamento.setText(cadFilme.get(i).getLancamento());
-						cbx_categoria.setSelectedItem(cadFilme.get(i).getCategoria().getNome());
-						//txf_imagem.setText(cadFilme.get(i).getImagem().toString());
-						lbl_mostrar_imagem.setIcon(cadFilme.get(i).getImagem());
-						txa_sinopse.setText(cadFilme.get(i).getSinopse());
-					}  
-				}
-				
-				abas.setSelectedIndex(1);
-				btn_cadastro.setText("Editar");
-				edit = true;
-			}	
-		});		
-		
-		
-		btn_excluir.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-
-				Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_filmes.getSelectedRow(), 0);
-				for(int i = 0; i < cadFilme.size(); i++) { if (cadFilme.get(i).getId() == idSelected) {cadFilme.remove(i);}  }
-				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusão Efetuada!", JOptionPane.WARNING_MESSAGE);
-				
-				preencherTabela(cadFilme);				
-				limparComponentes ();
-				btn_cadastro.setText("Cadastrar");
-				edit = false;
-			}
-		});		  
-
-		
-		btn_novo.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				limparComponentes ();
-				abas.setSelectedIndex(1);
-				btn_cadastro.setText("Cadastrar");
-				edit = false;
-			}
-		});
-		
-		
-		
-		// Criar e Editar
-		btn_cadastro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if (txf_titulo.getText().contentEquals("")
-						|| cbx_genero.getSelectedItem().toString().contentEquals("")
-						|| txf_copias.getText().contentEquals("")) {
-
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
-					abas.setSelectedIndex(0);
-					btn_cadastro.setText("Cadastrar");
-					edit = false;
-				} else if (edit) {
-					String palavra = txf_titulo.getText();
-					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
-					
-					Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_filmes.getSelectedRow(), 0);
-					for(int i = 0; i < cadFilme.size(); i++) { 
-						if (cadFilme.get(i).getId() == idSelected) {
-							
-							cadFilme.get(i).setTitulo(palavra); 
-							cadFilme.get(i).setGenero(cadGenero.get(cbx_genero.getSelectedIndex()));
-							cadFilme.get(i).setCopias(Integer.parseInt(txf_copias.getText()));
-							cadFilme.get(i).setDuracao(txf_duracao.getText());
-							cadFilme.get(i).setLancamento(txf_lancamento.getText());
-							cadFilme.get(i).setCategoria(cadCategoria.get(cbx_categoria.getSelectedIndex()));
-							cadFilme.get(i).setImagem(lbl_mostrar_imagem.getIcon());
-							cadFilme.get(i).setSinopse(txa_sinopse.getText());
-							
-						}  
-					}
-					
-					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes();
-					abas.setSelectedIndex(0);
-					btn_cadastro.setText("Cadastrar");
-					edit = false;
-				} else {
-					
-					String palavra = txf_titulo.getText();
-					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
-					Filme novoFilme = new Filme(palavra, cadGenero.get(cbx_genero.getSelectedIndex()), Integer.parseInt(txf_copias.getText()) );
-					novoFilme.setDuracao(txf_duracao.getText());
-					novoFilme.setLancamento(txf_lancamento.getText());
-					novoFilme.setCategoria(cadCategoria.get(cbx_categoria.getSelectedIndex()));
-					novoFilme.setImagem(lbl_mostrar_imagem.getIcon());
-					novoFilme.setSinopse(txa_sinopse.getText());
-					cadFilme.add(novoFilme);
-					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes();
-				}
-				
-				preencherTabela(cadFilme);				
-			}
-		});
-				
-		
 		
 		
 		
@@ -554,7 +407,6 @@ public class FilmeCadastro extends JInternalFrame {
 	
 	
 	private void limparComponentes () {
-		
 		txf_titulo.setText("");
 		cbx_genero.setSelectedIndex(0);
 		txf_copias.setText("");
@@ -567,7 +419,7 @@ public class FilmeCadastro extends JInternalFrame {
 	}
 	
 	private void preencherTabela (ArrayList<Filme> cadFilme) {
-		
+		// Monta Tabela
 		tbl_modelo.setNumRows(0);
 		cadFilme.sort(Comparator.comparing(Filme::getLancamento));
 		for (Filme f : cadFilme) { tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	}

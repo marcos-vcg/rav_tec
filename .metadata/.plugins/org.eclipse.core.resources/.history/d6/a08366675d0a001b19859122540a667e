@@ -195,19 +195,21 @@ public class ClienteCadastro extends JInternalFrame {
 		// Criar Tabela de Dados
 		DefaultTableModel tbl_modelo_dep = new DefaultTableModel();
 		JTable tbl_dependentes = new JTable(tbl_modelo_dep);
-		JScrollPane scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
-		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
+		JScrollPane scp_tbl_dep = new JScrollPane(tbl_dependentes);
+		pnl_cadastro.add(scp_tbl_dep).setBounds(20, 160, 200, 70);
 		
-		// Colunas da Tabela
-		tbl_modelo_dep.addColumn("Nome");
-		tbl_modelo_dep.addColumn("Grau");
-
-		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(80);
-		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(40);
-	
+		// Preencher Tabela de Dados
+		tbl_modelo.addColumn("ID");
+		tbl_modelo.addColumn("Nome");
+		tbl_modelo.addColumn("CPF");
+		tbl_modelo.addColumn("Email");
+		tbl_clientes.getColumnModel().getColumn(0).setPreferredWidth(20);
+		tbl_clientes.getColumnModel().getColumn(1).setPreferredWidth(220);
+		tbl_clientes.getColumnModel().getColumn(2).setPreferredWidth(80);
+		tbl_clientes.getColumnModel().getColumn(3).setPreferredWidth(80);		
 		
 		
-		// Preenche Tabela
+		// Monta Tabela
 		tbl_modelo.setNumRows(0);
 		cadCliente.sort(Comparator.comparing(Cliente::getNome));
 		for (Cliente c : cadCliente) { tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	}
