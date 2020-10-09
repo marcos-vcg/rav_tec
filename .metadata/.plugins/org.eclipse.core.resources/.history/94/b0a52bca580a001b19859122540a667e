@@ -70,17 +70,21 @@ public class FilmeCadastro extends JInternalFrame {
 		setLayout(null);
 
 		
-		setarElementos (cadGenero, cadCategoria);
-		adicionarListeners();
-		preencherTabela(cadFilme);
-		limparComponentes();
 		
+		
+		setarElementos (cadGenero, cadCategoria);
+		adicionarListeners ();
+		preencherTabela(cadFilme);
+		limparComponentes ();
+		
+		
+	
 		
 		// Ações dos Botões
 		btn_pesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// Reseta Tabela
+				// Remonta Tabela
 				tbl_modelo.setNumRows(0);
 				String titulo = txf_titulo_pesquisa.getText().toLowerCase();
 				String genero = txf_genero_pesquisa.getText().toLowerCase();
@@ -88,7 +92,9 @@ public class FilmeCadastro extends JInternalFrame {
 				
 				// Condição se houver exclusivamente todos os campos pesquisados
 				if(titulo.isEmpty() && genero.isEmpty() && lancamento.isEmpty()) {
-					preencherTabela(cadFilme);
+					for (Filme f : cadFilme) { 
+						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
+					}
 				} else {
 					for (Filme f : cadFilme) {
 	
@@ -98,9 +104,30 @@ public class FilmeCadastro extends JInternalFrame {
 						
 						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
 					}
-				}								
+				}
+				
+				
+				/*
+				// Condição se houver qualquer dos campos preenchidos
+				if(titulo.isEmpty() && genero.isEmpty() && lancamento.isEmpty()) {
+					for (Filme f : cadFilme) { 
+						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
+					}
+				} else {
+					for (Filme f : cadFilme) {
+						if((!titulo.isEmpty() && f.getTitulo().toLowerCase().contains(titulo)) || 
+								(!genero.isEmpty() && f.getGenero().getNome().toLowerCase().contains(genero)) || 
+								(!lancamento.isEmpty() && f.getLancamento().toLowerCase().contains(lancamento)) ) {
+							
+							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
+						} 
+					}
+				}
+				*/
+								
 			}
 		});	
+		
 		
 		
 		btn_editar.addActionListener( new ActionListener() {
@@ -127,7 +154,6 @@ public class FilmeCadastro extends JInternalFrame {
 			}	
 		});		
 		
-		
 		btn_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
@@ -135,18 +161,35 @@ public class FilmeCadastro extends JInternalFrame {
 				for(int i = 0; i < cadFilme.size(); i++) { if (cadFilme.get(i).getId() == idSelected) {cadFilme.remove(i);}  }
 				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusão Efetuada!", JOptionPane.WARNING_MESSAGE);
 				
-				preencherTabela(cadFilme);				
-				limparComponentes ();
+				tbl_modelo.setNumRows(0);
+				for (Filme f : cadFilme) {tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});}
+				
+				txf_titulo.setText("");
+				cbx_genero.setSelectedIndex(0);
+				txf_copias.setText("");
+				txf_duracao.setText("");
+				txf_lancamento.setText("");
+				cbx_categoria.setSelectedIndex(0);
+				txf_imagem.setText("");
+				lbl_mostrar_imagem.setText("");
+				txa_sinopse.setText("");
+				
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
 			}
 		});		  
 
-		
 		btn_novo.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				limparComponentes ();
+				txf_titulo.setText("");
+				cbx_genero.setSelectedIndex(0);
+				txf_copias.setText("");
+				txf_duracao.setText("");
+				txf_lancamento.setText("");
+				cbx_categoria.setSelectedIndex(0);
+				txf_imagem.setText("");
+				lbl_mostrar_imagem.setIcon(null);
+				txa_sinopse.setText("");
 				abas.setSelectedIndex(1);
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
@@ -188,7 +231,18 @@ public class FilmeCadastro extends JInternalFrame {
 					}
 					
 					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes();
+					
+					
+					txf_titulo.setText("");
+					cbx_genero.setSelectedIndex(0);
+					txf_copias.setText("");
+					txf_duracao.setText("");
+					txf_lancamento.setText("");
+					cbx_categoria.setSelectedIndex(0);
+					txf_imagem.setText("");
+					lbl_mostrar_imagem.setText("");
+					txa_sinopse.setText("");
+					
 					abas.setSelectedIndex(0);
 					btn_cadastro.setText("Cadastrar");
 					edit = false;
@@ -204,10 +258,23 @@ public class FilmeCadastro extends JInternalFrame {
 					novoFilme.setSinopse(txa_sinopse.getText());
 					cadFilme.add(novoFilme);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes();
+					
+					txf_titulo.setText("");
+					cbx_genero.setSelectedIndex(0);
+					txf_copias.setText("");
+					txf_duracao.setText("");
+					txf_lancamento.setText("");
+					cbx_categoria.setSelectedIndex(0);
+					txf_imagem.setText("");
+					lbl_mostrar_imagem.setText("");
+					txa_sinopse.setText("");
+					
 				}
 				
-				preencherTabela(cadFilme);				
+				tbl_modelo.setNumRows(0);
+				cadFilme.sort(Comparator.comparing(Filme::getLancamento));
+				for (Filme f : cadFilme) { tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	}
+				
 			}
 		});
 		
@@ -217,8 +284,6 @@ public class FilmeCadastro extends JInternalFrame {
 		
 	}
 
-	
-	
 	
 	private void setarElementos (ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria) {
 		// Criar Abas
@@ -414,15 +479,15 @@ public class FilmeCadastro extends JInternalFrame {
 		txf_lancamento.setText("");
 		cbx_categoria.setSelectedIndex(0);
 		txf_imagem.setText("");
-		lbl_mostrar_imagem.setIcon(null);
+		lbl_mostrar_imagem.setText("");
 		txa_sinopse.setText("");
 	}
 	
 	private void preencherTabela (ArrayList<Filme> cadFilme) {
 		// Monta Tabela
-		tbl_modelo.setNumRows(0);
-		cadFilme.sort(Comparator.comparing(Filme::getLancamento));
-		for (Filme f : cadFilme) { tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	}
+				tbl_modelo.setNumRows(0);
+				cadFilme.sort(Comparator.comparing(Filme::getLancamento));
+				for (Filme f : cadFilme) { tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	}
 	}
 	
 	private class SwingAction_cancelar extends AbstractAction {

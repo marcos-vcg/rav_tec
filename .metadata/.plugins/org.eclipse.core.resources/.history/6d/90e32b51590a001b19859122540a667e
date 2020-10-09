@@ -70,17 +70,21 @@ public class FilmeCadastro extends JInternalFrame {
 		setLayout(null);
 
 		
+		
+		
 		setarElementos (cadGenero, cadCategoria);
 		adicionarListeners();
 		preencherTabela(cadFilme);
 		limparComponentes();
 		
 		
+	
+		
 		// Ações dos Botões
 		btn_pesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// Reseta Tabela
+				// Remonta Tabela
 				tbl_modelo.setNumRows(0);
 				String titulo = txf_titulo_pesquisa.getText().toLowerCase();
 				String genero = txf_genero_pesquisa.getText().toLowerCase();
@@ -88,7 +92,9 @@ public class FilmeCadastro extends JInternalFrame {
 				
 				// Condição se houver exclusivamente todos os campos pesquisados
 				if(titulo.isEmpty() && genero.isEmpty() && lancamento.isEmpty()) {
-					preencherTabela(cadFilme);
+					for (Filme f : cadFilme) { 
+						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
+					}
 				} else {
 					for (Filme f : cadFilme) {
 	
@@ -98,9 +104,30 @@ public class FilmeCadastro extends JInternalFrame {
 						
 						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
 					}
-				}								
+				}
+				
+				
+				/*
+				// Condição se houver qualquer dos campos preenchidos
+				if(titulo.isEmpty() && genero.isEmpty() && lancamento.isEmpty()) {
+					for (Filme f : cadFilme) { 
+						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
+					}
+				} else {
+					for (Filme f : cadFilme) {
+						if((!titulo.isEmpty() && f.getTitulo().toLowerCase().contains(titulo)) || 
+								(!genero.isEmpty() && f.getGenero().getNome().toLowerCase().contains(genero)) || 
+								(!lancamento.isEmpty() && f.getLancamento().toLowerCase().contains(lancamento)) ) {
+							
+							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
+						} 
+					}
+				}
+				*/
+								
 			}
 		});	
+		
 		
 		
 		btn_editar.addActionListener( new ActionListener() {
@@ -127,7 +154,6 @@ public class FilmeCadastro extends JInternalFrame {
 			}	
 		});		
 		
-		
 		btn_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
@@ -142,7 +168,6 @@ public class FilmeCadastro extends JInternalFrame {
 			}
 		});		  
 
-		
 		btn_novo.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
