@@ -262,24 +262,6 @@ public class FilmeCadastro extends JInternalFrame {
 				String titulo = txf_titulo_pesquisa.getText().toLowerCase();
 				String genero = txf_genero_pesquisa.getText().toLowerCase();
 				String lancamento = txf_lancamento_pesquisa.getText().toLowerCase();
-				
-				if(titulo.isEmpty() && genero.isEmpty() && lancamento.isEmpty()) {
-					for (Filme f : cadFilme) { 
-						tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});  
-					}
-				} else {
-					for (Filme f : cadFilme) {
-						if((f.getTitulo().toLowerCase().contains(titulo)) || 
-								(f.getGenero().getNome().toLowerCase().contains(genero)) || 
-								(f.getLancamento().toLowerCase().contains(lancamento)) ) {
-							
-							tbl_modelo.addRow(new Object[]{f.getId(), f.getTitulo(), f.getGenero().getNome(), f.getDuracao(), f.getLancamento()});	
-						} 
-					}
-				}
-				
-				
-				
 				/*
 				if((txf_titulo_pesquisa.getText().contentEquals("")) && 
 						(txf_genero_pesquisa.getText().contentEquals("")) && 
@@ -390,8 +372,9 @@ public class FilmeCadastro extends JInternalFrame {
 				txf_lancamento.setText("");
 				cbx_categoria.setSelectedIndex(0);
 				txf_imagem.setText("");
-				lbl_mostrar_imagem.setIcon(null);
+				lbl_mostrar_imagem.setText("");
 				txa_sinopse.setText("");
+				
 				abas.setSelectedIndex(1);
 				btn_cadastro.setText("Cadastrar");
 				edit = false;

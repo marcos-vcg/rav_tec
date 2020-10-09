@@ -127,7 +127,7 @@ public class FilmeCadastro extends JInternalFrame {
 		
 		
 		
-		
+		Filme novoFilme = null;
 		// Aba Cadastro
 		pnl_cadastro.add(new JLabel("*Titulo:")).setBounds(20, 11, 81, 14);
 		JTextField txf_titulo = new JTextField(10);
@@ -390,8 +390,10 @@ public class FilmeCadastro extends JInternalFrame {
 				txf_lancamento.setText("");
 				cbx_categoria.setSelectedIndex(0);
 				txf_imagem.setText("");
-				lbl_mostrar_imagem.setIcon(null);
+				lbl_mostrar_imagem.setText("");
+				
 				txa_sinopse.setText("");
+				
 				abas.setSelectedIndex(1);
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
@@ -452,7 +454,7 @@ public class FilmeCadastro extends JInternalFrame {
 					
 					String palavra = txf_titulo.getText();
 					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
-					Filme novoFilme = new Filme(palavra, cadGenero.get(cbx_genero.getSelectedIndex()), Integer.parseInt(txf_copias.getText()) );
+					novoFilme = new Filme(palavra, cadGenero.get(cbx_genero.getSelectedIndex()), Integer.parseInt(txf_copias.getText()) );
 					novoFilme.setDuracao(txf_duracao.getText());
 					novoFilme.setLancamento(txf_lancamento.getText());
 					novoFilme.setCategoria(cadCategoria.get(cbx_categoria.getSelectedIndex()));
