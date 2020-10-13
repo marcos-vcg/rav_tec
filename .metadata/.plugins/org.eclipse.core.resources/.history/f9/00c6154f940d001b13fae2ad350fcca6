@@ -483,8 +483,7 @@ public class ClienteCadastro extends JInternalFrame {
 							
 						
 						}
-						tbl_modelo_dep.setNumRows(0);
-						for (Dependente d: temp) { tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()}); }
+						
 					}
 					
 					btn_tbl_cadastro.setText("Cadastrar");
@@ -492,8 +491,7 @@ public class ClienteCadastro extends JInternalFrame {
 					
 					txf_dependente.setText("");	
 					cbx_grau.setSelectedIndex(0);
-					
-					
+//					
 					
 					
 				} else {
