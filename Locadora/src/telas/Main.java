@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -128,7 +127,7 @@ class Main {
 		mb.add(menuCadastros);
 		
 		
-		i7 = new JMenuItem("Nova");
+		i7 = new JMenuItem("Nova/Consulta");
 		final JDesktopPane jdpNova = new JDesktopPane();
 		i7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

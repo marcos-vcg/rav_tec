@@ -11,7 +11,6 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -20,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -28,11 +26,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
-import classes.Categoria;
 import classes.Cliente;
 import classes.Dependente;
-import classes.Filme;
-import classes.Genero;
 import classes.Grau;
 
 @SuppressWarnings("serial")
@@ -199,16 +194,16 @@ public class ClienteCadastro extends JInternalFrame {
 		txf_dependente = new JTextField(10);
 		pnl_cadastro.add(txf_dependente).setBounds(60, 140, 120, 20);
 		
-		pnl_cadastro.add(new JLabel("Grau:")).setBounds(200, 140, 98, 14);
+		pnl_cadastro.add(new JLabel("Grau:")).setBounds(210, 140, 98, 14);
 		cbx_grau = new JComboBox<>(Grau.values());
-		pnl_cadastro.add(cbx_grau).setBounds(240, 138, 90, 22);
+		pnl_cadastro.add(cbx_grau).setBounds(250, 138, 90, 22);
 		
 		
 		// Criar Tabela de Dados
 		tbl_modelo_dep = new DefaultTableModel();
 		tbl_dependentes = new JTable(tbl_modelo_dep);
 		scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
-		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
+		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 190, 200, 70);
 		
 		// Colunas da Tabela
 		tbl_modelo_dep.addColumn("ID");
@@ -231,15 +226,15 @@ public class ClienteCadastro extends JInternalFrame {
 		// Botões Tabela Detalhe
 		btn_tbl_cadastro = new JButton("Cadastrar");
 		//btn_tbl_cadastro.setEnabled(false);
-		pnl_cadastro.add(btn_tbl_cadastro).setBounds(230, 180, 100, 18);
+		pnl_cadastro.add(btn_tbl_cadastro).setBounds(240, 180, 100, 18);
 		
 		btn_tbl_editar = new JButton("Editar");
 		btn_tbl_editar.setEnabled(false);
-		pnl_cadastro.add(btn_tbl_editar).setBounds(230, 210, 100, 18);
+		pnl_cadastro.add(btn_tbl_editar).setBounds(240, 210, 100, 18);
 		
 		btn_tbl_excluir = new JButton("Excluir");
 		btn_tbl_excluir.setEnabled(false);
-		pnl_cadastro.add(btn_tbl_excluir).setBounds(230, 240, 100, 18);
+		pnl_cadastro.add(btn_tbl_excluir).setBounds(240, 240, 100, 18);
 		
 		
 		
