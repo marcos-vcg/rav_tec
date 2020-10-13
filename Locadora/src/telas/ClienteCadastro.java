@@ -40,7 +40,9 @@ public class ClienteCadastro extends JInternalFrame {
 
 	static final int xPosition = 30, yPosition = 30;
 	private final Action cancelar = new SwingAction_1();
-	static boolean edit = false;
+	private boolean edit = false;
+	private boolean editdependente = false;
+	
 	
 	ArrayList<Cliente> cadCliente;
 
@@ -66,8 +68,10 @@ public class ClienteCadastro extends JInternalFrame {
 	JButton btnVoltar, btn_cadastro;
 	JButton btn_tbl_cadastro, btn_tbl_editar, btn_tbl_excluir;
 	
-	int idSelected, clienteSelecionado;
-	Dependente dependenteSelecionado;
+	int idClienteSelecionado, idDependenteSelecionado; 
+	ArrayList<Dependente> temp = new ArrayList<>();
+	//clienteSelecionado;
+	//Dependente dependenteSelecionado;
 	
 	
 	public ClienteCadastro(ArrayList<Cliente> cadCliente) {
@@ -207,10 +211,12 @@ public class ClienteCadastro extends JInternalFrame {
 		pnl_cadastro.add(scp_tbl_dependentes).setBounds(20, 180, 200, 70);
 		
 		// Colunas da Tabela
+		tbl_modelo_dep.addColumn("ID");
 		tbl_modelo_dep.addColumn("Nome");
 		tbl_modelo_dep.addColumn("Grau");
-		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(80);
-		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(40);
+		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(10);
+		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(80);
+		tbl_dependentes.getColumnModel().getColumn(2).setPreferredWidth(40);
 		
 		
 		// Botões de Ação
@@ -224,7 +230,7 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		// Botões Tabela Detalhe
 		btn_tbl_cadastro = new JButton("Cadastrar");
-		btn_tbl_cadastro.setEnabled(false);
+		//btn_tbl_cadastro.setEnabled(false);
 		pnl_cadastro.add(btn_tbl_cadastro).setBounds(230, 180, 100, 18);
 		
 		btn_tbl_editar = new JButton("Editar");
@@ -250,14 +256,8 @@ public class ClienteCadastro extends JInternalFrame {
                 //altera os botoes para ativados somente se houver linha selecionada
                 btn_editar.setEnabled(!lsm.isSelectionEmpty());
                 btn_excluir.setEnabled(!lsm.isSelectionEmpty());
-                btn_tbl_cadastro.setEnabled(!lsm.isSelectionEmpty());
-                
-                idSelected = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
-				for(int i = 0; i < cadCliente.size(); i++) { 
-					if (cadCliente.get(i).getId() == idSelected) {
-						clienteSelecionado = i;
-					}
-				}
+                //btn_tbl_cadastro.setEnabled(!lsm.isSelectionEmpty());
+				
             }
         });
 		
@@ -269,8 +269,7 @@ public class ClienteCadastro extends JInternalFrame {
                 //altera os botoes para ativados somente se houver linha selecionada
                 btn_tbl_editar.setEnabled(!lsm.isSelectionEmpty());
                 btn_tbl_excluir.setEnabled(!lsm.isSelectionEmpty());
-                
-                dependenteSelecionado = cadCliente.get(tbl_dependentes.getSelectedRow()).getDependentes().get(tbl_dependentes.getSelectedRow());
+   
             }
         });
 		
@@ -352,7 +351,7 @@ public class ClienteCadastro extends JInternalFrame {
 						
 						tbl_modelo_dep.setNumRows(0);
 						cadCliente.get(i).getDependentes().sort(Comparator.comparing(Dependente::getNome));
-						for (Dependente d : cadCliente.get(i).getDependentes()) { tbl_modelo_dep.addRow(new Object[]{d.getNome(), d.getGrau() });	}
+						for (Dependente d : cadCliente.get(i).getDependentes()) { tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau() });	}
 					}  
 				}
 				
@@ -433,10 +432,16 @@ public class ClienteCadastro extends JInternalFrame {
 					novoCliente.setNascimento(txf_nascimento.getText());
 					novoCliente.setEndereco(txf_endereco.getText());
 					novoCliente.setImagem(lbl_mostrar_imagem.getIcon());
-					//novoCliente.setDependente1(txa_dependentes.getText());
+					
+					for(Dependente d: temp) {
+						novoCliente.getDependentes().add(new Dependente(d.getNome(), d.getGrau()));
+					}
+					
+					//novoCliente.setDependentes(temp);
 					cadCliente.add(novoCliente);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
-					limparComponentes ();					
+					limparComponentes ();	
+					temp = new ArrayList<>();
 				}
 				
 				tbl_modelo.setNumRows(0);
@@ -449,37 +454,98 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		btn_tbl_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
+				
+				//idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+				
+				if (txf_dependente.getText().contentEquals("") || Grau.valueOf(cbx_grau.getSelectedItem().toString()).getDescricao().contentEquals("") ){
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+				} else if(editdependente){
+					
+					idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+					idDependenteSelecionado = (int) tbl_modelo_dep.getValueAt(tbl_dependentes.getSelectedRow(), 0);
+					for(int i = 0; i < cadCliente.size(); i++) { 
+						if (cadCliente.get(i).getId() == idClienteSelecionado) {
+							
+							cadCliente.get(i).getDependentes().get(idDependenteSelecionado).setNome(txf_dependente.getText().toString());
+							cadCliente.get(i).getDependentes().get(idDependenteSelecionado).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
+							JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+							
+						}
+					}
+					
+					btn_tbl_cadastro.setText("Cadastrar");
+					editdependente = false;
+					
+					txf_dependente.setText("");	
+					cbx_grau.setSelectedIndex(0);
+					setarTabelaDetalhe();	
+					
+				} else {
+					
+					if(tbl_clientes.getSelectedRow() != -1) {
+						idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+						for(int i = 0; i < cadCliente.size(); i++) { 
+							if (cadCliente.get(i).getId() == idClienteSelecionado) {
 		
-				if(cadCliente.get(clienteSelecionado).getDependentes().size()<3) {
-					cadCliente.get(clienteSelecionado).getDependentes().add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
-					//cadCliente.get(i).getDependentes().get(i).setNome(txf_dependente.getText().toString());
-				}else {
-					JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
-				}
-				//cadCliente.get(i).getDependentes().setNome(txf_dependente.getText().toString());
-				//cadCliente.get(i).getDependentes().get(i).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
-										
-				setarTabelaDetalhe ();				
+								if(cadCliente.get(i).getDependentes().size()<3) {
+									cadCliente.get(i).getDependentes().add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
+									JOptionPane.showMessageDialog(null, "O Dependente Foi Cadastrado!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+									
+									txf_dependente.setText("");	
+									cbx_grau.setSelectedIndex(0);
+									setarTabelaDetalhe();
+								}else {
+									JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
+								}
+								
+							}
+						} 
+					} else {
+							
+						if(temp.size()<3) {
+							temp.add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
+							JOptionPane.showMessageDialog(null, "O Dependente Foi Cadastrado!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+							
+							txf_dependente.setText("");	
+							cbx_grau.setSelectedIndex(0);
+							
+							tbl_modelo_dep.setNumRows(0);
+							for (Dependente d: temp) { tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()}); }
+							
+						}else {
+							JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
+						}
+							
+					}
+					
+				}  		
 			}
 		});	
 		
 		btn_tbl_editar.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				dependenteSelecionado.setNome(txf_dependente.getText().toString());
-				dependenteSelecionado.setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
+				btn_tbl_cadastro.setText("Salvar");
+				editdependente = true;
 				
-				txf_dependente.setText(dependenteSelecionado.getNome());
-				cbx_grau.setSelectedItem()
-				
-				setarTabelaDetalhe();	
 			}
 		});	
 		
 		btn_tbl_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				cadCliente.get(clienteSelecionado).getDependentes().remove(tbl_dependentes.getSelectedRow());
+				idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+				idDependenteSelecionado = (int) tbl_modelo_dep.getValueAt(tbl_dependentes.getSelectedRow(), 0);
+				
+				for(int i = 0; i < cadCliente.size(); i++) { 
+					if (cadCliente.get(i).getId() == idClienteSelecionado) {
+						
+						for(int j = 0; j < cadCliente.get(i).getDependentes().size(); j++) { if (cadCliente.get(i).getDependentes().get(j).getId() == idDependenteSelecionado) {cadCliente.get(i).getDependentes().remove(j);}  }
+					}
+				}
+				
+				txf_dependente.setText("");	
+				cbx_grau.setSelectedIndex(0);
 				setarTabelaDetalhe ();	
 			}
 		});	
@@ -496,10 +562,20 @@ public class ClienteCadastro extends JInternalFrame {
 	
 	private void setarTabelaDetalhe () {
 		tbl_modelo_dep.setNumRows(0);
-		cadCliente.get(clienteSelecionado).getDependentes().sort(Comparator.comparing(Dependente::getNome));
-		for (Dependente d : cadCliente.get(clienteSelecionado).getDependentes()) { 
-			tbl_modelo_dep.addRow(new Object[]{d.getNome(), d.getGrau() });	
+		idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+		
+		for(int i = 0; i < cadCliente.size(); i++) { 
+			if (cadCliente.get(i).getId() == idClienteSelecionado) {
+				cadCliente.get(i).getDependentes().sort(Comparator.comparing(Dependente::getNome));
+				for (Dependente d : cadCliente.get(i).getDependentes()) { 
+					tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()});	
+				}
+			}
 		}
+		
+		
+		
+		
 	}
 	
 	
@@ -513,6 +589,9 @@ public class ClienteCadastro extends JInternalFrame {
 		txf_imagem.setText("");
 		lbl_mostrar_imagem.setIcon(null);
 		tbl_modelo_dep.setNumRows(0);
+		
+		txf_dependente.setText("");	
+		cbx_grau.setSelectedIndex(0);
 	}
 
 	private class SwingAction_1 extends AbstractAction {

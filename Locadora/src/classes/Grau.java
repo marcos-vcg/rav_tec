@@ -2,7 +2,7 @@ package classes;
 
 public enum Grau {
 
-	AVO("Avo"), PAI("Pai"), FILHO("Filho"), TIO("Tio"), SOBRINHO("Sobrinho"), CONJUJE("Cônjuje");
+	Selecione(""), AVO("Avo"), PAI("Pai"), FILHO("Filho"), TIO("Tio"), SOBRINHO("Sobrinho"), CONJUJE("Cônjuje");
 	
 	private String descricao;
 	
