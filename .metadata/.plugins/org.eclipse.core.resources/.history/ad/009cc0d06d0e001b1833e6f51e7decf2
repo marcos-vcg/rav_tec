@@ -80,14 +80,6 @@ public class LocacaoCadastro extends JInternalFrame {
 	
 	private void setarElementos () {
 		
-		idClienteSelecionado = -1;
-		indexClienteSelecionado = -1;
-		idLocacaoSelecionada = -1;
-		indexLocacaoSelecionada = -1;
-		idFilmeSelecionado = -1;
-		indexFilmeSelecionado = -1;
-		
-		
 		teste = new JPanel();
 		add(teste).setBounds(10, 11, 200, 200);
 		teste.setVisible(false);
@@ -347,9 +339,7 @@ public class LocacaoCadastro extends JInternalFrame {
 		                	JOptionPane.showMessageDialog(null, "Locação efetuada com sucesso!", "Locação Efetuada!", JOptionPane.WARNING_MESSAGE);
 		                	setarTabelaLocacoes();	
 		                	escolherFilme.doDefaultCloseAction();
-		                } else {
-		                	JOptionPane.showMessageDialog(null, "Todas as cópias alugadas!", "Locação não Efetuada!", JOptionPane.WARNING_MESSAGE);
-		                }
+		                }		
 		               
 		            }
 		        });		  		
@@ -374,29 +364,20 @@ public class LocacaoCadastro extends JInternalFrame {
 	}
 	
 	private void setarTabelaLocacoes () {
-		
-		if(idClienteSelecionado != -1) {
-			tbl_modelo_locacoes.setNumRows(0);
-			cadCliente.get(indexClienteSelecionado).getLocacoes().sort(Comparator.comparing(Locacao::getFilme));
-			String situacao = "";
-			for (Locacao l : cadCliente.get(indexClienteSelecionado).getLocacoes()) { 
-				if(l.getDevolucao() != null) {
-					situacao = "Devolvido";
-				}else if((l.getLocacao().getDay() - new Date().getDay())> 15) {
-					situacao = "Atrasado";
-				}else {
-					situacao = "No Prazo";
-				}
-				
-				tbl_modelo_locacoes.addRow(new Object[]{l.getId(), l.getFilme(), l.getGenero().getNome(), l.getLocacao(), l.getDevolucao(), situacao});	
+		tbl_modelo_locacoes.setNumRows(0);
+		cadCliente.get(indexClienteSelecionado).getLocacoes().sort(Comparator.comparing(Locacao::getFilme));
+		String situacao = "";
+		for (Locacao l : cadCliente.get(indexClienteSelecionado).getLocacoes()) { 
+			if(l.getDevolucao() != null) {
+				situacao = "Devolvido";
+			}else if((l.getLocacao().getDay() - new Date().getDay())> 15) {
+				situacao = "Atrasado";
+			}else {
+				situacao = "No Prazo";
 			}
-		} else { 
-			tbl_modelo_locacoes.setNumRows(0); 
-		}
-		
-		
-		
-		
+			
+			tbl_modelo_locacoes.addRow(new Object[]{l.getId(), l.getFilme(), l.getGenero().getNome(), l.getLocacao(), l.getDevolucao(), situacao});	
+		}	
 	}
 	
 	
