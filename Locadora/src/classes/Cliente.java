@@ -14,7 +14,7 @@ public class Cliente {
 	private String endereco;
 	private Icon imagem;
 	private ArrayList<Dependente> dependentes = new ArrayList<>();
-	private ArrayList<Locacao> locacoes;
+	private ArrayList<Locacao> locacoes = new ArrayList<>();
 	private Integer id;
 	static int contador = 0;
 

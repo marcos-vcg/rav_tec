@@ -18,12 +18,12 @@ public class Locacao {
 		this.id = contador++;
 	}
 
-	public String getNome() {
+	public String getFilme() {
 		return filme;
 	}
 
-	public void setNome(String nome) {
-		this.filme = nome;
+	public void setFilme(String filme) {
+		this.filme = filme;
 	}
 	
 	public Genero getGenero() {

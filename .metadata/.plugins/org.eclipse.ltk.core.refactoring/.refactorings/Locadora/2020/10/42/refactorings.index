@@ -16,3 +16,5 @@
 1602696723420	Rename method 'setarTabelaDetalhe'
 1602698336845	Rename field 'nome'
 1602699402512	Encapsulate field 'locacoes'
+1602700567968	Rename type 'Locacao'
+1602710166891	Rename field 'scp_tbl_dependentes'
