@@ -14,7 +14,6 @@ public class Cliente {
 	private String endereco;
 	private Icon imagem;
 	private ArrayList<Dependente> dependentes = new ArrayList<>();
-	private ArrayList<Locacao> locacoes;
 	private Integer id;
 	static int contador = 0;
 
@@ -90,18 +89,10 @@ public class Cliente {
 		this.dependentes = dependentes;
 	}
 
-	public ArrayList<Locacao> getLocacoes() {
-		return locacoes;
-	}
-
-	public void setLocacoes(ArrayList<Locacao> locacoes) {
-		this.locacoes = locacoes;
-	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	
 		
 }

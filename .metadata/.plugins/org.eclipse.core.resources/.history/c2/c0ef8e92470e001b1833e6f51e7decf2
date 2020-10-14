@@ -1,0 +1,36 @@
+package classes;
+
+public class Locacao {
+	
+	private String filme;
+	private Grau grau;
+	private Integer id;
+	static int contador = 0;
+	
+	public Locacao(String nome, Grau grau) {
+		super();
+		this.filme = nome;
+		this.grau = grau;
+		this.id = contador++;
+	}
+
+	public String getNome() {
+		return filme;
+	}
+
+	public void setNome(String nome) {
+		this.filme = nome;
+	}
+	
+	public Grau getGrau() {
+		return grau;
+	}
+
+	public void setGrau(Grau grau) {
+		this.grau = grau;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+}

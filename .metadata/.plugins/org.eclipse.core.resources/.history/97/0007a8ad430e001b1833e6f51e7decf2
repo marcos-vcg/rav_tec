@@ -116,7 +116,7 @@ public class Locacao extends JInternalFrame {
 		tbl_modelo_clientes = new DefaultTableModel();
 		tbl_clientes = new JTable(tbl_modelo_clientes);
 		scp_tbl_clientes = new JScrollPane(tbl_clientes);
-		pnl_clientes.add(scp_tbl_clientes).setBounds(20, 60, 370, 200);
+		pnl_clientes.add(scp_tbl_clientes).setBounds(20, 60, 350, 200);
 		
 		// Preencher Tabela de Dados
 		tbl_modelo_clientes.addColumn("ID");
@@ -155,11 +155,11 @@ public class Locacao extends JInternalFrame {
 		tbl_modelo_locacoes.addColumn("Devolução");
 		tbl_modelo_locacoes.addColumn("Status");
 		tbl_locacoes.getColumnModel().getColumn(0).setPreferredWidth(10);
-		tbl_locacoes.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tbl_locacoes.getColumnModel().getColumn(2).setPreferredWidth(50);
-		tbl_locacoes.getColumnModel().getColumn(3).setPreferredWidth(50);
-		tbl_locacoes.getColumnModel().getColumn(4).setPreferredWidth(50);
-		tbl_locacoes.getColumnModel().getColumn(5).setPreferredWidth(50);
+		tbl_locacoes.getColumnModel().getColumn(1).setPreferredWidth(80);
+		tbl_locacoes.getColumnModel().getColumn(2).setPreferredWidth(40);
+		tbl_locacoes.getColumnModel().getColumn(3).setPreferredWidth(40);
+		tbl_locacoes.getColumnModel().getColumn(4).setPreferredWidth(40);
+		tbl_locacoes.getColumnModel().getColumn(5).setPreferredWidth(40);
 		
 		
 		// Botões Tabela Detalhe
@@ -192,12 +192,6 @@ public class Locacao extends JInternalFrame {
                     lbl_cpf_selecionado.setText(tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 2).toString() );
                     
                 }
-                
-                for(int i = 0; i < cadCliente.size(); i++) { 
-					if (cadCliente.get(i).getId() == idClienteSelecionado) {
-						indexClienteSelecionado = i;
-					} else {indexClienteSelecionado = -1;}
-				}
                 
                 btn_locacoes.setEnabled(!lsm.isSelectionEmpty());
                 btn_tbl_locacao.setEnabled(!lsm.isSelectionEmpty());
@@ -255,17 +249,24 @@ public class Locacao extends JInternalFrame {
 		
 		btn_tbl_locacao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				if(true) {
-					JOptionPane.showMessageDialog(null, "Locação efetuada com sucesso!", "Locação Efetuada!", JOptionPane.WARNING_MESSAGE);
-					setarTabelaLocacoes();	
-				}				  		
+				
+				for(int i = 0; i < cadCliente.size(); i++) { 
+					if (cadCliente.get(i).getId() == idClienteSelecionado) {
+						
+						
+						
+					
+						JOptionPane.showMessageDialog(null, "Locação efetuada com sucesso!", "Locação Efetuada!", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+				setarTabelaLocacoes();					  		
 			}
 		});	
 		
 		
 		btn_tbl_devolucao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				// Setar como devolvido
+				
 			}
 		});	
 		
@@ -282,13 +283,16 @@ public class Locacao extends JInternalFrame {
 	
 	private void setarTabelaLocacoes () {
 		tbl_modelo_locacoes.setNumRows(0);
-	
-		cadCliente.get(indexClienteSelecionado).getDependentes().sort(Comparator.comparing(Dependente::getNome));
-		for (Dependente d : cadCliente.get(indexClienteSelecionado).getDependentes()) { 
-			tbl_modelo_locacoes.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()});	
-		}
-			
-			
+		idClienteSelecionado = (int) tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 0);
+		
+		for(int i = 0; i < cadCliente.size(); i++) { 
+			if (cadCliente.get(i).getId() == idClienteSelecionado) {
+				cadCliente.get(i).getDependentes().sort(Comparator.comparing(Dependente::getNome));
+				for (Dependente d : cadCliente.get(i).getDependentes()) { 
+					tbl_modelo_locacoes.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()});	
+				}
+			}
+		}	
 	}
 	
 	

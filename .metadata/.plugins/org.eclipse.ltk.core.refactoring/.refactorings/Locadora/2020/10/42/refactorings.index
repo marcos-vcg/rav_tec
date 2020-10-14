@@ -14,3 +14,5 @@
 1602696490805	Rename field 'tbl_dependentes'
 1602696711266	Rename method 'setarTabelaMestre'
 1602696723420	Rename method 'setarTabelaDetalhe'
+1602698336845	Rename field 'nome'
+1602699402512	Encapsulate field 'locacoes'
