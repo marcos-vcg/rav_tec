@@ -48,13 +48,13 @@ public class Locacao extends JInternalFrame {
 	JButton btn_pesquisar, btn_locacoes;
 	
 	DefaultTableModel tbl_modelo_clientes, tbl_modelo_locacoes;
-	JTable tbl_clientes, tbl_locacoes;
+	JTable tbl_clientes, tbl_dependentes;
 	JScrollPane scp_tbl_clientes, scp_tbl_dependentes;
 
 	JLabel lbl_nome_selecionado, lbl_cpf_selecionado;
 	JButton btn_tbl_locacao, btn_tbl_devolucao;
 	
-	int idClienteSelecionado, indexClienteSelecionado, idLocacaoSelecionada, indexLocacaoSelecionada; 
+	int idClienteSelecionado; 
 	ArrayList<Dependente> temp = new ArrayList<>();
 	//clienteSelecionado;
 	//Dependente dependenteSelecionado;
@@ -127,10 +127,11 @@ public class Locacao extends JInternalFrame {
 		tbl_modelo_clientes.addColumn("ID");
 		tbl_modelo_clientes.addColumn("Nome");
 		tbl_modelo_clientes.addColumn("CPF");
+		//tbl_modelo.addColumn("Email");
 		tbl_clientes.getColumnModel().getColumn(0).setPreferredWidth(20);
 		tbl_clientes.getColumnModel().getColumn(1).setPreferredWidth(150);
 		tbl_clientes.getColumnModel().getColumn(2).setPreferredWidth(60);
-		
+		//tbl_clientes.getColumnModel().getColumn(3).setPreferredWidth(80);		
 		
 		
 		
@@ -141,18 +142,23 @@ public class Locacao extends JInternalFrame {
 		pnl_locacoes.add(new JLabel("Nome:")).setBounds(20, 11, 81, 14);
 		lbl_nome_selecionado = new JLabel("");
 		pnl_locacoes.add(lbl_nome_selecionado).setBounds(20, 29, 230, 20);
+		
 
 		pnl_locacoes.add(new JLabel("CPF:")).setBounds(270, 11, 98, 14);
 		lbl_cpf_selecionado = new JLabel("");
 		pnl_locacoes.add(lbl_cpf_selecionado).setBounds(270, 29, 110, 20);
+		
 
+	
+		
+		
 		// Locações
 		pnl_locacoes.add(new JLabel("Locações:")).setBounds(20, 60, 98, 14);		
 		
 		// Criar Tabela de Dados
 		tbl_modelo_locacoes = new DefaultTableModel();
-		tbl_locacoes = new JTable(tbl_modelo_locacoes);
-		scp_tbl_dependentes = new JScrollPane(tbl_locacoes);
+		tbl_dependentes = new JTable(tbl_modelo_locacoes);
+		scp_tbl_dependentes = new JScrollPane(tbl_dependentes);
 		pnl_locacoes.add(scp_tbl_dependentes).setBounds(20, 80, 500, 150);
 		
 		// Colunas da Tabela
@@ -162,12 +168,12 @@ public class Locacao extends JInternalFrame {
 		tbl_modelo_locacoes.addColumn("Locação");
 		tbl_modelo_locacoes.addColumn("Devolução");
 		tbl_modelo_locacoes.addColumn("Status");
-		tbl_locacoes.getColumnModel().getColumn(0).setPreferredWidth(10);
-		tbl_locacoes.getColumnModel().getColumn(1).setPreferredWidth(80);
-		tbl_locacoes.getColumnModel().getColumn(2).setPreferredWidth(40);
-		tbl_locacoes.getColumnModel().getColumn(3).setPreferredWidth(40);
-		tbl_locacoes.getColumnModel().getColumn(4).setPreferredWidth(40);
-		tbl_locacoes.getColumnModel().getColumn(5).setPreferredWidth(40);
+		tbl_dependentes.getColumnModel().getColumn(0).setPreferredWidth(10);
+		tbl_dependentes.getColumnModel().getColumn(1).setPreferredWidth(80);
+		tbl_dependentes.getColumnModel().getColumn(2).setPreferredWidth(40);
+		tbl_dependentes.getColumnModel().getColumn(3).setPreferredWidth(40);
+		tbl_dependentes.getColumnModel().getColumn(4).setPreferredWidth(40);
+		tbl_dependentes.getColumnModel().getColumn(5).setPreferredWidth(40);
 		
 		
 		// Botões Tabela Detalhe
@@ -178,9 +184,13 @@ public class Locacao extends JInternalFrame {
 		btn_tbl_devolucao = new JButton("Devolução");
 		btn_tbl_devolucao.setEnabled(false);
 		pnl_locacoes.add(btn_tbl_devolucao).setBounds(20, 238, 120, 23);
+		
+		
+		
+		
+		
+		
 	}
-	
-	
 	
 	private void adicionarListeners() {
 		
@@ -193,12 +203,9 @@ public class Locacao extends JInternalFrame {
                 if(lsm.isSelectionEmpty()) {
                 	lbl_nome_selecionado.setText("");
                 	lbl_cpf_selecionado.setText("");
-                	idClienteSelecionado = -1;
                 }else {
-                	idClienteSelecionado = (int) tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 0);
                 	lbl_nome_selecionado.setText(tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 1).toString() );
                     lbl_cpf_selecionado.setText(tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 2).toString() );
-                    
                 }
                 
                 btn_locacoes.setEnabled(!lsm.isSelectionEmpty());
@@ -207,17 +214,11 @@ public class Locacao extends JInternalFrame {
         });
 		
 		
-		tbl_locacoes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		tbl_dependentes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                 //altera os botoes para ativados somente se houver linha selecionada
-                if(lsm.isSelectionEmpty()) {
-                	idLocacaoSelecionada = -1;
-                }else {
-                	idLocacaoSelecionada = (int) tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 0);                   
-                }
-                
                 btn_tbl_devolucao.setEnabled(!lsm.isSelectionEmpty());
             }
         });
@@ -239,7 +240,7 @@ public class Locacao extends JInternalFrame {
                         if(!nome.isEmpty() && !c.getNome().toLowerCase().contains(nome)) continue;
                         if(!cpf.isEmpty() && !c.getCpf().toLowerCase().contains(cpf)) continue;
                         
-                        tbl_modelo_clientes.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf()});
+                        tbl_modelo_clientes.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});
 					}
 				}	
 			}
@@ -255,22 +256,79 @@ public class Locacao extends JInternalFrame {
 		
 
 		
+		// Alugar e Devolver
 		btn_tbl_locacao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				
-				for(int i = 0; i < cadCliente.size(); i++) { 
-					if (cadCliente.get(i).getId() == idClienteSelecionado) {
+				//idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+				
+				if (tbl_dependentes.getSelectedRow() ){
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+				} else if(editdependente){
+					if(tbl_clientes.getSelectedRow() != -1) {
+						idClienteSelecionado = (int) tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 0);
+						for(int i = 0; i < cadCliente.size(); i++) { 
+							if (cadCliente.get(i).getId() == idClienteSelecionado) {
+								
+							
+								JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+								
+							}
+						}
 						
+						setarTabelaDetalhe();	
+					} else {
+						for (Dependente d: temp) {
+							if(d.getId() == tbl_modelo_locacoes.getValueAt(tbl_dependentes.getSelectedRow(), 0)) {
+								
+							}
+							
 						
-						
-					
-						JOptionPane.showMessageDialog(null, "Locação efetuada com sucesso!", "Locação Efetuada!", JOptionPane.WARNING_MESSAGE);
+						}
+						tbl_modelo_locacoes.setNumRows(0);
+						for (Dependente d: temp) { tbl_modelo_locacoes.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()}); }
 					}
-				}
-				setarTabelaDetalhe();					  		
+					
+					btn_tbl_locacao.setText("Cadastrar");
+					editdependente = false;					
+					
+					
+				} else {
+					
+					if(tbl_clientes.getSelectedRow() != -1) {
+						idClienteSelecionado = (int) tbl_modelo_clientes.getValueAt(tbl_clientes.getSelectedRow(), 0);
+						for(int i = 0; i < cadCliente.size(); i++) { 
+							if (cadCliente.get(i).getId() == idClienteSelecionado) {
+		
+								if(cadCliente.get(i).getDependentes().size()<3) {
+									JOptionPane.showMessageDialog(null, "O Dependente Foi Cadastrado!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+									
+									setarTabelaDetalhe();
+								}else {
+									JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
+								}
+								
+							}
+						} 
+					} else {
+							
+						if(temp.size()<3) {
+							
+							JOptionPane.showMessageDialog(null, "O Dependente Foi Cadastrado!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+							
+							
+							tbl_modelo_locacoes.setNumRows(0);
+							for (Dependente d: temp) { tbl_modelo_locacoes.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()}); }
+							
+						}else {
+							JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
+						}
+							
+					}
+					
+				}  		
 			}
 		});	
-		
 		
 		btn_tbl_devolucao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
@@ -286,7 +344,7 @@ public class Locacao extends JInternalFrame {
 		// Monta Tabela
 		tbl_modelo_clientes.setNumRows(0);
 		cadCliente.sort(Comparator.comparing(Cliente::getNome));
-		for (Cliente c : cadCliente) { tbl_modelo_clientes.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf()});	}
+		for (Cliente c : cadCliente) { tbl_modelo_clientes.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	}
 	}
 	
 	private void setarTabelaDetalhe () {
