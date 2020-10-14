@@ -415,6 +415,7 @@ public class ClienteCadastro extends JInternalFrame {
 					
 					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
 					limparComponentes ();
+					temp = new ArrayList<>();
 					abas.setSelectedIndex(0);
 					btn_cadastro.setText("Cadastrar");
 					edit = false;
