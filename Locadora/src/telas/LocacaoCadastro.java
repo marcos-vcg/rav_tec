@@ -54,7 +54,7 @@ public class LocacaoCadastro extends JInternalFrame {
 	DateFormat dataFormatada;
 	
 	private int idClienteSelect, indexClienteSelect, idLocacaoSelect, indexLocacaoSelect, idFilmeSelect, indexFilmeSelect; 
-	
+	long prazoDevolucao;
 	
 	public LocacaoCadastro(ArrayList<Filme> cadFilme, ArrayList<Genero> cadGenero, ArrayList<Categoria> cadCategoria, ArrayList<Cliente> cadCliente) {
 		super("Locação de Filmes", true, // resizable
@@ -85,6 +85,7 @@ public class LocacaoCadastro extends JInternalFrame {
 		indexFilmeSelect = -1;
 		
 		dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+		prazoDevolucao = 15;
 		
 		
 		teste = new JPanel();
@@ -274,26 +275,13 @@ public class LocacaoCadastro extends JInternalFrame {
 		
 		btn_tbl_locacao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-
-				int data;
-				long diasPassados;
-				long prazoMaximo = 15;
-				for (Locacao l : cadCliente.get(indexClienteSelect).getLocacoes()) { 
-					diasPassados = ((new Date().getTime() - l.getLocacao().getTime())/ 86400000L);
-					
-					if(diasPassados > prazoMaximo) {
-						JOptionPane.showMessageDialog(null, "Possui filme em atraso!", "Locação não Permitida!", JOptionPane.WARNING_MESSAGE);
-					}
-				}
-				
-				
+			
 				// Tela exibir Filmes
 				escolherFilme = new JInternalFrame("Locação de Filmes", true, true, true, true);
 				escolherFilme.setLayout(null);
 				escolherFilme.setLocation(120, 10);
 				escolherFilme.setSize(300, 250);
 				pnl_locacoes.add(escolherFilme, 0);
-				
 				escolherFilme.setVisible(true);
 				
 				// Criar Tabela de Dados
@@ -319,7 +307,7 @@ public class LocacaoCadastro extends JInternalFrame {
 
 				
 				
-				
+				// Selecionar filme da tabela
 				tbl_filmes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		            @Override
 		            public void valueChanged(ListSelectionEvent e) {
@@ -355,7 +343,21 @@ public class LocacaoCadastro extends JInternalFrame {
 		                	abas.setSelectedIndex(0);
 		                }
 		            }
-		        });		  		
+		        });	
+				
+				
+				long diasPassados;
+				for (Locacao l : cadCliente.get(indexClienteSelect).getLocacoes()) { 
+					diasPassados = ((new Date().getTime() - l.getLocacao().getTime()) / 86400000L);
+					
+					if((l.getDevolucao() == null) && (diasPassados > prazoDevolucao)) {
+						JOptionPane.showMessageDialog(null, "Possui filme em atraso!", "Locação não Permitida!", JOptionPane.WARNING_MESSAGE);
+						escolherFilme.doDefaultCloseAction();
+						break;
+					} 	
+				}
+				
+					
 			}
 		});	
 		
@@ -390,13 +392,13 @@ public class LocacaoCadastro extends JInternalFrame {
 			cadCliente.get(indexClienteSelect).getLocacoes().sort(Comparator.comparing(Locacao::getLocacao));
 			String situacao = "";
 			String devolucao = null;
+			long diasPassados;
+			
 			for (Locacao l : cadCliente.get(indexClienteSelect).getLocacoes()) { 
-				long diasPassados = ((new Date().getTime() - l.getLocacao().getTime())/ 86400000L);
-				long prazoMaximo = 15;
-				int data;
+				diasPassados = ((new Date().getTime() - l.getLocacao().getTime())/ 86400000L);
 				if(l.getDevolucao() != null) {
 					situacao = "Devolvido";
-				}else if(diasPassados > prazoMaximo) {
+				}else if(diasPassados > prazoDevolucao) {
 					situacao = "Atrasado";
 				}else {
 					situacao = "No Prazo";
