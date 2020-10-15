@@ -417,9 +417,7 @@ public class ClienteCadastro extends JInternalFrame {
 					abas.setSelectedIndex(0);
 					btn_cadastro.setText("Cadastrar");
 					edit = false;
-				} else if(existeCpf()){
-					JOptionPane.showMessageDialog(null, "CPF já Cadastrado!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
-				}else{
+				} else {
 					
 					String palavra = txf_nome.getText();
 					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
@@ -607,16 +605,6 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		txf_dependente.setText("");	
 		cbx_grau.setSelectedIndex(0);
-	}
-	
-	public boolean existeCpf() {
-		boolean retorno = false;
-		for(Cliente c: cadCliente) {
-			if(c.getCpf().trim().equals(txf_cpf.getText())) {
-				retorno = true;
-			} 
-		} 
-		return retorno;
 	}
 
 	private class SwingAction_1 extends AbstractAction {

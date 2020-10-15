@@ -609,14 +609,14 @@ public class ClienteCadastro extends JInternalFrame {
 		cbx_grau.setSelectedIndex(0);
 	}
 	
-	public boolean existeCpf() {
-		boolean retorno = false;
+	private boolean existeCpf() {
 		for(Cliente c: cadCliente) {
-			if(c.getCpf().trim().equals(txf_cpf.getText())) {
-				retorno = true;
-			} 
+			if(c.getCpf() == txf_cpf.getText()) {
+				return true;
+			} else {
+				return false;
+			}
 		} 
-		return retorno;
 	}
 
 	private class SwingAction_1 extends AbstractAction {

@@ -612,7 +612,7 @@ public class ClienteCadastro extends JInternalFrame {
 	public boolean existeCpf() {
 		boolean retorno = false;
 		for(Cliente c: cadCliente) {
-			if(c.getCpf().trim().equals(txf_cpf.getText())) {
+			if(c.getCpf() == txf_cpf.getText()) {
 				retorno = true;
 			} 
 		} 
