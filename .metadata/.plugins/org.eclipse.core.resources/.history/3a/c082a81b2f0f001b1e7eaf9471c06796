@@ -464,6 +464,8 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_tbl_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				
+				//idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+				
 				if (txf_dependente.getText().contentEquals("") || Grau.valueOf(cbx_grau.getSelectedItem().toString()).getDescricao().contentEquals("") ){
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
 				} else if(editdependente){

@@ -423,6 +423,7 @@ public class ClienteCadastro extends JInternalFrame {
 						
 						JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
 						limparComponentes ();
+						temp = new ArrayList<>();
 						abas.setSelectedIndex(0);
 						btn_cadastro.setText("Cadastrar");
 						edit = false;
@@ -451,6 +452,7 @@ public class ClienteCadastro extends JInternalFrame {
 					cadCliente.add(novoCliente);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
 					limparComponentes ();	
+					temp = new ArrayList<>();
 				}
 				
 				tbl_modelo.setNumRows(0);
@@ -463,6 +465,8 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		btn_tbl_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
+				
+				//idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
 				
 				if (txf_dependente.getText().contentEquals("") || Grau.valueOf(cbx_grau.getSelectedItem().toString()).getDescricao().contentEquals("") ){
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
@@ -605,8 +609,6 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		txf_dependente.setText("");	
 		cbx_grau.setSelectedIndex(0);
-		temp = null;
-		temp = new ArrayList<>();
 	}
 	
 	public boolean existeCpf() {

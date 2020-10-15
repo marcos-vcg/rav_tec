@@ -63,7 +63,7 @@ public class ClienteCadastro extends JInternalFrame {
 	JButton btnVoltar, btn_cadastro;
 	JButton btn_tbl_cadastro, btn_tbl_editar, btn_tbl_excluir;
 	
-	int idClienteSelect, indexClienteSelect, idDependenteSelecionado, indexDependenteSelect; 
+	int idClienteSelecionado, idDependenteSelecionado; 
 	ArrayList<Dependente> temp = new ArrayList<>();
 	//clienteSelecionado;
 	//Dependente dependenteSelecionado;
@@ -253,17 +253,6 @@ public class ClienteCadastro extends JInternalFrame {
                 btn_excluir.setEnabled(!lsm.isSelectionEmpty());
                 //btn_tbl_cadastro.setEnabled(!lsm.isSelectionEmpty());
 				
-                
-                if(lsm.isSelectionEmpty()) {
-                	idClienteSelect = -1;
-                	indexClienteSelect = -1;
-                }else {
-                	idClienteSelect = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
-                    for(int i = 0; i < cadCliente.size(); i++) { 
-						if (cadCliente.get(i).getId() == idClienteSelect) {	indexClienteSelect = i;	} 
-                    }
-                }
-                
             }
         });
 		
@@ -400,37 +389,34 @@ public class ClienteCadastro extends JInternalFrame {
 				
 				if (txf_nome.getText().contentEquals("") || txf_cpf.getText().contentEquals("") || txf_telefone.getText().contentEquals("") ) {
 
-					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Operação Inválida!", JOptionPane.WARNING_MESSAGE);
-					if(edit) {
-						limparComponentes();
-						abas.setSelectedIndex(0);
-						btn_cadastro.setText("Cadastrar");
-						edit = false;
-					}
-					
+					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
+					abas.setSelectedIndex(0);
+					btn_cadastro.setText("Cadastrar");
+					edit = false;
 				} else if (edit) {
 					String palavra = txf_nome.getText();
 					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
-
-					if (indexClienteSelect != -1) {
-						cadCliente.get(indexClienteSelect).setNome(palavra); 
-						cadCliente.get(indexClienteSelect).setCpf(txf_cpf.getText());
-						cadCliente.get(indexClienteSelect).setTelefone(txf_telefone.getText());
-						cadCliente.get(indexClienteSelect).setEmail(txf_email.getText());
-						cadCliente.get(indexClienteSelect).setNascimento(txf_nascimento.getText());
-						cadCliente.get(indexClienteSelect).setEndereco(txf_endereco.getText());
-						cadCliente.get(indexClienteSelect).setImagem(lbl_mostrar_imagem.getIcon());		
-						
-						JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
-						limparComponentes ();
-						abas.setSelectedIndex(0);
-						btn_cadastro.setText("Cadastrar");
-						edit = false;
-					}  else {
-						JOptionPane.showMessageDialog(null, "Selecione novamente o Cliente!", "Edição não Efetuada!", JOptionPane.WARNING_MESSAGE);
-						abas.setSelectedIndex(0);
+					
+					Integer idSelected = (Integer) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+					for(int i = 0; i < cadCliente.size(); i++) { 
+						if (cadCliente.get(i).getId() == idSelected) {
+							
+							cadCliente.get(i).setNome(palavra); 
+							cadCliente.get(i).setCpf(txf_cpf.getText());
+							cadCliente.get(i).setTelefone(txf_telefone.getText());
+							cadCliente.get(i).setEmail(txf_email.getText());
+							cadCliente.get(i).setNascimento(txf_nascimento.getText());
+							cadCliente.get(i).setEndereco(txf_endereco.getText());
+							cadCliente.get(i).setImagem(lbl_mostrar_imagem.getIcon());							
+						}  
 					}
-	
+					
+					JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+					limparComponentes ();
+					temp = new ArrayList<>();
+					abas.setSelectedIndex(0);
+					btn_cadastro.setText("Cadastrar");
+					edit = false;
 				} else if(existeCpf()){
 					JOptionPane.showMessageDialog(null, "CPF já Cadastrado!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
 				}else{
@@ -451,6 +437,7 @@ public class ClienteCadastro extends JInternalFrame {
 					cadCliente.add(novoCliente);
 					JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
 					limparComponentes ();	
+					temp = new ArrayList<>();
 				}
 				
 				tbl_modelo.setNumRows(0);
@@ -464,16 +451,24 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_tbl_cadastro.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				
+				//idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+				
 				if (txf_dependente.getText().contentEquals("") || Grau.valueOf(cbx_grau.getSelectedItem().toString()).getDescricao().contentEquals("") ){
 					JOptionPane.showMessageDialog(null, "Campos Obrigatórios Vazios!", "Cadastro Inválido!", JOptionPane.WARNING_MESSAGE);
 				} else if(editdependente){
 					if(tbl_clientes.getSelectedRow() != -1) {
+						idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
 						idDependenteSelecionado = (int) tbl_modelo_dep.getValueAt(tbl_dependentes.getSelectedRow(), 0);
-						if (indexClienteSelect != -1) {
-							cadCliente.get(indexClienteSelect).getDependentes().get(idDependenteSelecionado).setNome(txf_dependente.getText().toString());
-							cadCliente.get(indexClienteSelect).getDependentes().get(idDependenteSelecionado).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
-							JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+						for(int i = 0; i < cadCliente.size(); i++) { 
+							if (cadCliente.get(i).getId() == idClienteSelecionado) {
+								
+								cadCliente.get(i).getDependentes().get(idDependenteSelecionado).setNome(txf_dependente.getText().toString());
+								cadCliente.get(i).getDependentes().get(idDependenteSelecionado).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
+								JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
+								
+							}
 						}
+						
 						setarTabelaDetalhe();	
 					} else {
 						for (Dependente d: temp) {
@@ -481,6 +476,8 @@ public class ClienteCadastro extends JInternalFrame {
 								d.setNome(txf_dependente.getText().toString());
 								d.setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
 							}
+							
+						
 						}
 						tbl_modelo_dep.setNumRows(0);
 						for (Dependente d: temp) { tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()}); }
@@ -498,21 +495,23 @@ public class ClienteCadastro extends JInternalFrame {
 				} else {
 					
 					if(tbl_clientes.getSelectedRow() != -1) {
-						if (indexClienteSelect != -1) {
-	
-							if(cadCliente.get(indexClienteSelect).getDependentes().size()<3) {
-								cadCliente.get(indexClienteSelect).getDependentes().add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
-								JOptionPane.showMessageDialog(null, "O Dependente Foi Cadastrado!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+						idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
+						for(int i = 0; i < cadCliente.size(); i++) { 
+							if (cadCliente.get(i).getId() == idClienteSelecionado) {
+		
+								if(cadCliente.get(i).getDependentes().size()<3) {
+									cadCliente.get(i).getDependentes().add(new Dependente(txf_dependente.getText().toString() , Grau.valueOf(cbx_grau.getSelectedItem().toString())));
+									JOptionPane.showMessageDialog(null, "O Dependente Foi Cadastrado!", "Cadastro Efetuado!", JOptionPane.WARNING_MESSAGE);
+									
+									txf_dependente.setText("");	
+									cbx_grau.setSelectedIndex(0);
+									setarTabelaDetalhe();
+								}else {
+									JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
+								}
 								
-								txf_dependente.setText("");	
-								cbx_grau.setSelectedIndex(0);
-								setarTabelaDetalhe();
-							}else {
-								JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
 							}
-							
-						}
-						 
+						} 
 					} else {
 							
 						if(temp.size()<3) {
@@ -550,14 +549,15 @@ public class ClienteCadastro extends JInternalFrame {
 		btn_tbl_excluir.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				
+				idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
 				idDependenteSelecionado = (int) tbl_modelo_dep.getValueAt(tbl_dependentes.getSelectedRow(), 0);
 				
-				if (indexClienteSelect != -1) {	
-					for(int j = 0; j < cadCliente.get(indexClienteSelect).getDependentes().size(); j++) { if (cadCliente.get(indexClienteSelect).getDependentes().get(j).getId() == idDependenteSelecionado) {cadCliente.get(indexClienteSelect).getDependentes().remove(j);}  }
-				}	 
-					
-					
+				for(int i = 0; i < cadCliente.size(); i++) { 
+					if (cadCliente.get(i).getId() == idClienteSelecionado) {
+						
+						for(int j = 0; j < cadCliente.get(i).getDependentes().size(); j++) { if (cadCliente.get(i).getDependentes().get(j).getId() == idDependenteSelecionado) {cadCliente.get(i).getDependentes().remove(j);}  }
+					}
+				}
 				
 				txf_dependente.setText("");	
 				cbx_grau.setSelectedIndex(0);
@@ -577,14 +577,16 @@ public class ClienteCadastro extends JInternalFrame {
 	
 	private void setarTabelaDetalhe () {
 		tbl_modelo_dep.setNumRows(0);
+		idClienteSelecionado = (int) tbl_modelo.getValueAt(tbl_clientes.getSelectedRow(), 0);
 		
-		if (indexClienteSelect != -1) {
-			cadCliente.get(indexClienteSelect).getDependentes().sort(Comparator.comparing(Dependente::getNome));
-			for (Dependente d : cadCliente.get(indexClienteSelect).getDependentes()) { 
-				tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()});	
+		for(int i = 0; i < cadCliente.size(); i++) { 
+			if (cadCliente.get(i).getId() == idClienteSelecionado) {
+				cadCliente.get(i).getDependentes().sort(Comparator.comparing(Dependente::getNome));
+				for (Dependente d : cadCliente.get(i).getDependentes()) { 
+					tbl_modelo_dep.addRow(new Object[]{d.getId(), d.getNome(), d.getGrau()});	
+				}
 			}
 		}
-		
 		
 		
 		
@@ -605,8 +607,6 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		txf_dependente.setText("");	
 		cbx_grau.setSelectedIndex(0);
-		temp = null;
-		temp = new ArrayList<>();
 	}
 	
 	public boolean existeCpf() {
