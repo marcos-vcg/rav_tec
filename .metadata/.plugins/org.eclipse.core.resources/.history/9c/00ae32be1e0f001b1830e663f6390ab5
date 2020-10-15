@@ -275,7 +275,6 @@ public class LocacaoCadastro extends JInternalFrame {
 		btn_tbl_locacao.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 
-				int data;
 				long diasPassados;
 				long prazoMaximo = 15;
 				for (Locacao l : cadCliente.get(indexClienteSelect).getLocacoes()) { 
