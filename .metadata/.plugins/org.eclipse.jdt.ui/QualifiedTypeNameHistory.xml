@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
     <fullyQualifiedTypeName name="java.awt.Dimension"/>
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
-    <fullyQualifiedTypeName name="javax.swing.JInternalFrame"/>
     <fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction"/>
     <fullyQualifiedTypeName name="com.sun.java.swing.action.BackAction"/>
     <fullyQualifiedTypeName name="classes.Cliente"/>
@@ -20,7 +18,6 @@
     <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.GOTO"/>
     <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.GotoInstruction"/>
     <fullyQualifiedTypeName name="com.sun.tools.example.debug.expr.ExpressionParser.GetFrame"/>
-    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="classes.Categoria"/>
     <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="classes.Dependente"/>
     <fullyQualifiedTypeName name="telas.Main"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="javax.swing.JInternalFrame"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

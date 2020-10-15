@@ -4,36 +4,27 @@ import java.util.Date;
 
 public class Locacao {
 	
-	private String filme;
-	private Genero genero;
+	private Filme filme;
 	private Date locacao;
 	private Date devolucao;
 	private Integer id;
 	static int contador = 0;
 	
-	public Locacao(String filme, Genero genero, Date locacao) {
+	public Locacao(Filme filme, Date locacao) {
 		super();
 		this.filme = filme;
-		this.genero = genero;
 		this.locacao = locacao;
 		this.id = contador++;
 	}
 
-	public String getFilme() {
+	public Filme getFilme() {
 		return filme;
 	}
 
-	public void setFilme(String filme) {
+	public void setFilme(Filme filme) {
 		this.filme = filme;
 	}
 	
-	public Genero getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
 	
 	public Date getLocacao() {
 		return locacao;
