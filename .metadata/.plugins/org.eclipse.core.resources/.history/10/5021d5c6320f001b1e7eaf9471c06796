@@ -411,7 +411,7 @@ public class ClienteCadastro extends JInternalFrame {
 				} else if (edit) {
 					String palavra = txf_nome.getText();
 					palavra = palavra.substring(0,1).toUpperCase().concat(palavra.substring(1).toLowerCase());
-					
+
 					if (indexClienteSelect != -1) {
 						cadCliente.get(indexClienteSelect).setNome(palavra); 
 						cadCliente.get(indexClienteSelect).setCpf(txf_cpf.getText());
