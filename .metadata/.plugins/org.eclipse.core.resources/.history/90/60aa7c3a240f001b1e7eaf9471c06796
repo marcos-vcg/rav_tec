@@ -407,7 +407,9 @@ public class ClienteCadastro extends JInternalFrame {
 							cadCliente.get(i).setEmail(txf_email.getText());
 							cadCliente.get(i).setNascimento(txf_nascimento.getText());
 							cadCliente.get(i).setEndereco(txf_endereco.getText());
-							cadCliente.get(i).setImagem(lbl_mostrar_imagem.getIcon());							
+							cadCliente.get(i).setImagem(lbl_mostrar_imagem.getIcon());
+							//cadCliente.get(i).setDependente1(txa_dependentes.getText());
+							
 						}  
 					}
 					

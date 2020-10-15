@@ -61,7 +61,7 @@ class Main {
 		menuCadastros.setMnemonic('C');
 		menuLocacao = new JMenu("Locação");
 		menuLocacao.setMnemonic('L');
-		//submenuCadastros = new JMenu("Sub Menu");
+		submenuCadastros = new JMenu("Sub Menu");
 		
 		
 		i1 = new JMenuItem("Gênero");
@@ -121,9 +121,9 @@ class Main {
 		menuCadastros.add(i2);
 		menuCadastros.add(i3);
 		menuCadastros.add(i4);
-		//menuCadastros.add(submenuCadastros);
-		//submenuCadastros.add(i5);
-		//submenuCadastros.add(i6);
+		menuCadastros.add(submenuCadastros);
+		submenuCadastros.add(i5);
+		submenuCadastros.add(i6);
 		mb.add(menuCadastros);
 		
 		
