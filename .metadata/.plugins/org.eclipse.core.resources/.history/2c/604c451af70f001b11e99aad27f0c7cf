@@ -96,9 +96,5 @@ public class Filme implements Serializable{
 	public Integer getId() {
 		return id;
 	}
-	
-	public static void setContador(int cont) {
-		contador = cont;
-	}
 
 }

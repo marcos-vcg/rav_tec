@@ -35,7 +35,6 @@ class Main {
 
 		//generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical", "Retrô", "Infantil"}));
 		generos = new ArrayList<Genero>();
-		
 		generos.add(new Genero(""));
 		generos.add(new Genero("Ação"));
 		generos.add(new Genero("Aventura"));
@@ -47,7 +46,6 @@ class Main {
 		generos.add(new Genero("Musical"));
 		generos.add(new Genero("Retrô"));
 		generos.add(new Genero("Infantil"));
-		
 		
 		//categorias = new ArrayList<String>(Arrays.asList (new String[]{"", "Lançamento", "Padrão", "Antigo"}));
 		categorias = new ArrayList<Categoria>();
@@ -63,28 +61,12 @@ class Main {
 		
 
 		// Deserializa => Carrega dos arquivos 
+		
 		try {
-			
 			generos = (ArrayList<Genero>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\generos");
-			int contGenero = 0;
-			for(Genero g: generos) { if(g.getId() > contGenero) contGenero = g.getId();	}
-			Genero.setContador(contGenero+1);
-			
 			categorias = (ArrayList<Categoria>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\categorias");
-			int contCategoria = 0;
-			for(Categoria c: categorias) { if(c.getId() > contCategoria) contCategoria = c.getId();	}
-			Categoria.setContador(contCategoria+1);
-			
 			filmes = (ArrayList<Filme>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\filmes");
-			int contFilme = 0;
-			for(Filme f: filmes) { if(f.getId() > contFilme) contFilme = f.getId();	}
-			Filme.setContador(contFilme+1);
-			
-			clientes = (ArrayList<Cliente>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\clientes");
-			int contCliente = 0;
-			for(Cliente c: clientes) { if(c.getId() > contCliente) contCliente = c.getId();	}
-			Cliente.setContador(contCliente+1);
-			
+            clientes = (ArrayList<Cliente>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\clientes");
 		} catch (java.io.FileNotFoundException ex){	
 		} catch (Exception ex) {
             System.err.println("Falha ao deserializar! - " + ex.toString());

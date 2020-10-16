@@ -1,15 +1,12 @@
 package classes;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 import javax.swing.Icon;
 
 public class Filme implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String titulo;
 	private Genero genero;
 	private Integer copias;
@@ -95,10 +92,6 @@ public class Filme implements Serializable{
 	
 	public Integer getId() {
 		return id;
-	}
-	
-	public static void setContador(int cont) {
-		contador = cont;
 	}
 
 }

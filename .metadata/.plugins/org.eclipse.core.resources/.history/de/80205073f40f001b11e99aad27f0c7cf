@@ -7,10 +7,10 @@ public class Genero implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6057165976595835546L;
 	private String nome;
 	private Integer id;
-	static int contador = 0;
+	static Integer contador = 0;
 	
 	public Genero(String nome) {
 		super();
@@ -31,8 +31,5 @@ public class Genero implements Serializable {
 		return id;
 	}
 
-	public static void setContador(int cont) {
-		contador = cont;
-	}
 	
 }

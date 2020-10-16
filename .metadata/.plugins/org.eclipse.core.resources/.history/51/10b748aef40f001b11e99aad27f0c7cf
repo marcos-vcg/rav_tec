@@ -7,10 +7,6 @@ import javax.swing.Icon;
 
 public class Cliente implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String cpf;
 	private String telefone;
@@ -107,8 +103,6 @@ public class Cliente implements Serializable{
 		return id;
 	}
 
-	public static void setContador(int cont) {
-		contador = cont;
-	}
+	
 		
 }

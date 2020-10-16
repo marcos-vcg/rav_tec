@@ -63,32 +63,25 @@ class Main {
 		
 
 		// Deserializa => Carrega dos arquivos 
+		/*
 		try {
 			
 			generos = (ArrayList<Genero>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\generos");
-			int contGenero = 0;
-			for(Genero g: generos) { if(g.getId() > contGenero) contGenero = g.getId();	}
-			Genero.setContador(contGenero+1);
+			Genero.setContador(generos.size());
 			
 			categorias = (ArrayList<Categoria>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\categorias");
-			int contCategoria = 0;
-			for(Categoria c: categorias) { if(c.getId() > contCategoria) contCategoria = c.getId();	}
-			Categoria.setContador(contCategoria+1);
+			Categoria.setContador(categorias.size());
 			
 			filmes = (ArrayList<Filme>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\filmes");
-			int contFilme = 0;
-			for(Filme f: filmes) { if(f.getId() > contFilme) contFilme = f.getId();	}
-			Filme.setContador(contFilme+1);
+			Filme.setContador(filmes.size());
 			
 			clientes = (ArrayList<Cliente>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\clientes");
-			int contCliente = 0;
-			for(Cliente c: clientes) { if(c.getId() > contCliente) contCliente = c.getId();	}
-			Cliente.setContador(contCliente+1);
+			Cliente.setContador(clientes.size());
 			
 		} catch (java.io.FileNotFoundException ex){	
 		} catch (Exception ex) {
             System.err.println("Falha ao deserializar! - " + ex.toString());
-        }
+        }*/
 		
 		
 		JFrame f = new JFrame("Locadora");

@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Dependente implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private Grau grau;
 	private Integer id;

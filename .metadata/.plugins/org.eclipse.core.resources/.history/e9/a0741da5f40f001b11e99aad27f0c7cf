@@ -4,10 +4,6 @@ import java.io.Serializable;
 
 public class Categoria implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String preco;
 	private Integer id;
@@ -40,7 +36,4 @@ public class Categoria implements Serializable{
 		return id;
 	}
 
-	public static void setContador(int cont) {
-		contador = cont;
-	}
 }

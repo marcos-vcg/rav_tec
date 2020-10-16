@@ -4,10 +4,6 @@ import java.io.Serializable;
 
 public class Genero implements Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private String nome;
 	private Integer id;
 	static int contador = 0;
@@ -31,8 +27,5 @@ public class Genero implements Serializable {
 		return id;
 	}
 
-	public static void setContador(int cont) {
-		contador = cont;
-	}
 	
 }

@@ -5,10 +5,6 @@ import java.util.Date;
 
 public class Locacao implements Serializable{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Filme filme;
 	private Date locacao;
 	private Date devolucao;

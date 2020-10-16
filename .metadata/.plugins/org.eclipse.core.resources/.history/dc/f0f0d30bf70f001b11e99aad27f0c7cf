@@ -40,7 +40,4 @@ public class Categoria implements Serializable{
 		return id;
 	}
 
-	public static void setContador(int cont) {
-		contador = cont;
-	}
 }

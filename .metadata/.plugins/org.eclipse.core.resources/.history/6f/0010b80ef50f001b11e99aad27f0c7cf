@@ -185,7 +185,9 @@ public class LocacaoCadastro extends JInternalFrame {
 		btn_tbl_devolucao = new JButton("Devolução");
 		btn_tbl_devolucao.setEnabled(false);
 		pnl_locacoes.add(btn_tbl_devolucao).setBounds(20, 238, 120, 23);
-	
+		
+		
+		
 	}
 	
 	
