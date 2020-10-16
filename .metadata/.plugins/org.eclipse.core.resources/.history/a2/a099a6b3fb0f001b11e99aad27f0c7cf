@@ -17,10 +17,8 @@ import javax.swing.JMenuItem;
 
 import classes.Categoria;
 import classes.Cliente;
-import classes.Dependente;
 import classes.Filme;
 import classes.Genero;
-import classes.Locacao;
 
 
 class Main {
@@ -63,7 +61,7 @@ class Main {
 		filmes = new ArrayList<Filme>();
 		clientes = new ArrayList<Cliente>();
 		
-		
+
 		// Deserializa => Carrega dos arquivos 
 		try {
 			
@@ -86,15 +84,6 @@ class Main {
 			int contCliente = 0;
 			for(Cliente c: clientes) { if(c.getId() > contCliente) contCliente = c.getId();	}
 			Cliente.setContador(contCliente+1);
-			
-			int contLocacao = 0;
-			for(Cliente c: clientes) { for(Locacao l: c.getLocacoes()) { if(l.getId() > contLocacao) contLocacao = l.getId(); }	}
-			Locacao.setContador(contLocacao+1);
-			
-			int contDependente = 0;
-			for(Cliente c: clientes) { for(Dependente d: c.getDependentes()) { if(d.getId() > contDependente) contDependente = d.getId(); }	}
-			Dependente.setContador(contDependente+1);
-			
 			
 		} catch (java.io.FileNotFoundException ex){	
 		} catch (Exception ex) {
