@@ -1,10 +1,11 @@
 package classes;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import javax.swing.Icon;
 
-public class Filme {
+public class Filme implements Serializable{
 
 	private String titulo;
 	private Genero genero;

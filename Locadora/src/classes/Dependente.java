@@ -1,6 +1,8 @@
 package classes;
 
-public class Dependente {
+import java.io.Serializable;
+
+public class Dependente implements Serializable{
 	
 	private String nome;
 	private Grau grau;

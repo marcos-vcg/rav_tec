@@ -1,8 +1,9 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Locacao {
+public class Locacao implements Serializable{
 	
 	private Filme filme;
 	private Date locacao;

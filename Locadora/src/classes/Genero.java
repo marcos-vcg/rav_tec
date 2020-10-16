@@ -1,6 +1,8 @@
 package classes;
 
-public class Genero {
+import java.io.Serializable;
+
+public class Genero implements Serializable {
 	
 	private String nome;
 	private Integer id;

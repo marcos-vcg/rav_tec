@@ -25,3 +25,5 @@
 1602777221501	Rename field 'idFilmeSelecionado'
 1602777231907	Rename field 'indexFilmeSelecionado'
 1602791527355	Rename field 'prazoMaximo'
+1602877855604	Rename method 'setarTabelaMestre'
+1602877887532	Rename method 'setarTabelaDetalhe'

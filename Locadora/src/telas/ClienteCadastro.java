@@ -82,7 +82,7 @@ public class ClienteCadastro extends JInternalFrame {
 		
 		setarElementos();
 		adicionarListeners();
-		setarTabelaMestre();
+		setarTabelaClientes();
 		limparComponentes();
 
 	}
@@ -316,7 +316,7 @@ public class ClienteCadastro extends JInternalFrame {
 				String nome = txf_nome_pesquisa.getText().toLowerCase();
 				String cpf = txf_cpf_pesquisa.getText().toLowerCase();
 				if(nome.isEmpty() && cpf.isEmpty()) {
-					setarTabelaMestre();
+					setarTabelaClientes();
 				} else {
 					// Filtra a Tabela
 					for (Cliente c : cadCliente) {
@@ -374,7 +374,7 @@ public class ClienteCadastro extends JInternalFrame {
 				for(int i = 0; i < cadCliente.size(); i++) { if (cadCliente.get(i).getId() == idSelected) {cadCliente.remove(i);}  }
 				JOptionPane.showMessageDialog(null, "Exclusão efetuada com sucesso!", "Exclusão Efetuada!", JOptionPane.WARNING_MESSAGE);
 				
-				setarTabelaMestre();
+				setarTabelaClientes();
 				limparComponentes ();				
 				btn_cadastro.setText("Cadastrar");
 				edit = false;
@@ -474,7 +474,7 @@ public class ClienteCadastro extends JInternalFrame {
 							cadCliente.get(indexClienteSelect).getDependentes().get(idDependenteSelecionado).setGrau(Grau.valueOf(cbx_grau.getSelectedItem().toString()));
 							JOptionPane.showMessageDialog(null, "Edição efetuada com sucesso!", "Edição Efetuada!", JOptionPane.WARNING_MESSAGE);
 						}
-						setarTabelaDetalhe();	
+						setarTabelaDependentes();	
 					} else {
 						for (Dependente d: temp) {
 							if(d.getId() == tbl_modelo_dep.getValueAt(tbl_dependentes.getSelectedRow(), 0)) {
@@ -506,7 +506,7 @@ public class ClienteCadastro extends JInternalFrame {
 								
 								txf_dependente.setText("");	
 								cbx_grau.setSelectedIndex(0);
-								setarTabelaDetalhe();
+								setarTabelaDependentes();
 							}else {
 								JOptionPane.showMessageDialog(null, "O máximo de Dependentes é 3!", "Cadastro não Efetuado!", JOptionPane.WARNING_MESSAGE);
 							}
@@ -561,21 +561,21 @@ public class ClienteCadastro extends JInternalFrame {
 				
 				txf_dependente.setText("");	
 				cbx_grau.setSelectedIndex(0);
-				setarTabelaDetalhe ();	
+				setarTabelaDependentes ();	
 			}
 		});	
 		
 		
 	}
 	
-	private void setarTabelaMestre() {
+	private void setarTabelaClientes() {
 		// Monta Tabela
 		tbl_modelo.setNumRows(0);
 		cadCliente.sort(Comparator.comparing(Cliente::getNome));
 		for (Cliente c : cadCliente) { tbl_modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getCpf(), c.getEmail()});	}
 	}
 	
-	private void setarTabelaDetalhe () {
+	private void setarTabelaDependentes () {
 		tbl_modelo_dep.setNumRows(0);
 		
 		if (indexClienteSelect != -1) {

@@ -3,6 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -17,6 +22,7 @@ import classes.Genero;
 
 
 class Main {
+
 	JMenu menuCadastros, submenuCadastros, menuLocacao;
 	JMenuItem i1, i2, i3, i4, i5, i6, i7;
 	ArrayList<Genero> generos;
@@ -28,6 +34,13 @@ class Main {
 	
 	
 	Main() {
+		
+		
+		
+		
+
+		
+		
 		
 		//generos = new ArrayList<>(Arrays.asList (new String[]{"", "Ação", "Aventura", "Comédia", "Drama", "Romance", "Suspense", "Terror", "Musical", "Retrô", "Infantil"}));
 		generos = new ArrayList<Genero>();
@@ -54,6 +67,20 @@ class Main {
 		
 		filmes = new ArrayList<Filme>();
 		clientes = new ArrayList<Cliente>();
+		
+
+		// Deserializa => Carrega dos arquivos 
+		
+		try {
+			generos = (ArrayList<Genero>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\generos");
+			categorias = (ArrayList<Categoria>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\categorias");
+			filmes = (ArrayList<Filme>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\filmes");
+            clientes = (ArrayList<Cliente>) deserializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\clientes");
+		} catch (java.io.FileNotFoundException ex){	
+		} catch (Exception ex) {
+            System.err.println("Falha ao deserializar! - " + ex.toString());
+        }
+		
 		
 		JFrame f = new JFrame("Locadora");
 		JMenuBar mb = new JMenuBar();
@@ -149,11 +176,29 @@ class Main {
 		f.setLayout(null);
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+
+		f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 		
+		
+
+
 		f.addWindowListener(new WindowAdapter() {
 
 			public void windowClosing(WindowEvent e) {
-				System.exit(0);
+				//serializa
+				try {
+					serializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\generos", generos);
+					serializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\categorias", categorias);
+					serializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\filmes", filmes);
+					serializar("C:\\Users\\RAVDev\\Documents\\GitHub\\rav_tec_marcos\\Locadora\\src\\arquivos\\clientes", clientes); 
+		        } catch (java.io.FileNotFoundException ex){
+				} catch (Exception ex) {
+		            System.err.println("Falha ao serializar! - " + ex.toString());
+		        } finally {
+		        	System.exit(0);
+		        }
+
 			}
 		});
 	}
@@ -163,5 +208,24 @@ class Main {
 	public static void main(String args[]) {
 		new Main();
 	}
+	
+	
+	
+    public void serializar(String path, Object obj) throws Exception {
+        FileOutputStream outFile = new FileOutputStream(path);
+		ObjectOutputStream s = new ObjectOutputStream(outFile);
+		s.writeObject(obj);
+		s.close();
+	}
+
+
+    public Object deserializar(String path) throws Exception {
+        FileInputStream inFile = new FileInputStream(path);
+        ObjectInputStream d = new ObjectInputStream(inFile);
+        Object o = d.readObject();
+        d.close();
+        return o;
+    }
+
 	
 }
