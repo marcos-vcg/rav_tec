@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
-    <fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction"/>
-    <fullyQualifiedTypeName name="com.sun.java.swing.action.BackAction"/>
-    <fullyQualifiedTypeName name="classes.Cliente"/>
-    <fullyQualifiedTypeName name="javax.swing.JTabbedPane"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="javax.swing.JComponent"/>
     <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
@@ -38,8 +33,6 @@
     <fullyQualifiedTypeName name="sun.swing.ImageIconUIResource"/>
     <fullyQualifiedTypeName name="java.awt.Image"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
     <fullyQualifiedTypeName name="jdk.incubator.jpackage.internal.IOUtils"/>
     <fullyQualifiedTypeName name="sun.security.util.IOUtils"/>
     <fullyQualifiedTypeName name="classes.Genero"/>
@@ -53,11 +46,18 @@
     <fullyQualifiedTypeName name="telas.ClienteCadastro"/>
     <fullyQualifiedTypeName name="classes.Grau"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="classes.Dependente"/>
     <fullyQualifiedTypeName name="telas.Main"/>
     <fullyQualifiedTypeName name="javax.swing.JFrame"/>
     <fullyQualifiedTypeName name="javax.swing.JInternalFrame"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+    <fullyQualifiedTypeName name="java.awt.event.WindowEvent"/>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
+    <fullyQualifiedTypeName name="classes.Locacao"/>
+    <fullyQualifiedTypeName name="classes.Dependente"/>
 </qualifiedTypeNameHistroy>
